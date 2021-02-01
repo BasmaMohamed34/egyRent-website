@@ -10,37 +10,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-
-      < Header />
-
-      <Switch >
-        <Route path="/search">
-        {/* Search */}
-      <SearchPage />
-      </Route>
-
-      <Route path ="/">
-
-      < Home />
-      </Route>
-      
-
-      </Switch>
-
-      < Footer />
-
+          < Header/>
+          <Switch>
+                <Route path="/search"> <SearchPage/> </Route>
+                <Route path ="/"> <Home/> </Route>
+          </Switch>
+          <Footer/>
       </Router>
-{/* Home */}
-      {/* Header */}
 
-      {/*Banner*/}
-           {/* Search*/}
-    
-      {/* Card*/}
-          {/* Footer*/}
-
-    {/* Search Page */}
-          {/* ...... */}
 
      </div>
   );
