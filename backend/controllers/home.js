@@ -6,5 +6,6 @@ module.exports={
         Posts.find({}).limit(limit)
         .then(Posts => res.send(Posts))
         .catch(next) 
+        
     }
 }

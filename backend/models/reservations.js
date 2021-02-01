@@ -2,6 +2,7 @@ const Posts=require('./post');
 const mongoose=require('mongoose');
 const schema=mongoose.Schema;
 const reservationSchema=new schema({
+    
     post:{
         type: mongoose.Schema.Types.ObjectId,
         ref: Posts

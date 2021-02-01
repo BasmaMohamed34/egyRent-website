@@ -12,6 +12,5 @@ module.exports={
      Posts.create(postProps)
       .then(post => res.send(post)) 
       .catch(next) 
-
     }
 }

@@ -2,7 +2,7 @@ import Posts from './post';
 const mongoose=require('mongoose');
 const schema=mongoose.Schema;
 const usersSchema=new schema({
-    
+
     username:{
         type:String,
         required:true

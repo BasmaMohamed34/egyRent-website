@@ -6,7 +6,7 @@ module.exports={
         Posts.find({}).limit(limit)
         .then(Posts => res.send(Posts))
         .catch(next) 
-    },
+    }, 
     send(req, res, next){
         const searchProp=req.body;
         Posts.find({location:searchProp.location})
