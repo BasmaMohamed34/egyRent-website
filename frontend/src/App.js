@@ -1,67 +1,49 @@
-//import logo from "./logo.svg";
-//import "./assets";
-//import "https://fonts.googleapis.com/css?family=Rufina:400,700";
+import React from 'react';
+import './App.css';
+import Home from './Component/Home/Home'
+import Header from './Component/Header/Header'
+import Footer from './Component/Footer/Footer'
+import SearchPage from './Container/SearchPage/SearchPage'
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
-const App = () => {
+function App() {
   return (
     <div className="App">
-      <header className="top-area">
-        <div className="header-area">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-2">
-                <div className="logo">
-                  <a href="index.html">
-                    tour<span>Nest</span>
-                  </a>
-                </div>
-              </div>
-              <div className="col-sm-10">
-                <div className="main-menu">
-                  <div className="navbar-header">
-                    <button
-                      type="button"
-                      className="navbar-toggle"
-                      data-toggle="collapse"
-                      data-target=".navbar-collapse"
-                    >
-                      <i className="fa fa-bars"></i>
-                    </button>
-                  </div>
-                  <div className="collapse navbar-collapse">
-                    <ul className="nav navbar-nav navbar-right">
-                      <li className="smooth-menu">
-                        <a href="#home">home</a>
-                      </li>
-                      <li className="smooth-menu">
-                        <a href="#gallery">Destination</a>
-                      </li>
-                      <li className="smooth-menu">
-                        <a href="#pack">Packages </a>
-                      </li>
-                      <li className="smooth-menu">
-                        <a href="#spo">Special Offers</a>
-                      </li>
-                      <li className="smooth-menu">
-                        <a href="#blog">blog</a>
-                      </li>
-                      <li className="smooth-menu">
-                        <a href="#subs">subscription</a>
-                      </li>
-                      <li>
-                        <button className="book-btn">book now</button>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="home-border"></div>
-          </div>
-        </div>
-      </header>
-    </div>
+      <Router>
+
+      < Header />
+
+      <Switch >
+        <Route path="/search">
+        {/* Search */}
+      <SearchPage />
+      </Route>
+
+      <Route path ="/">
+
+      < Home />
+      </Route>
+      
+
+      </Switch>
+
+      < Footer />
+
+      </Router>
+{/* Home */}
+      {/* Header */}
+
+      {/*Banner*/}
+           {/* Search*/}
+    
+      {/* Card*/}
+          {/* Footer*/}
+
+    {/* Search Page */}
+          {/* ...... */}
+
+     </div>
   );
-};
+}
 
 export default App;
