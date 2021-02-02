@@ -11,7 +11,9 @@
     transform: scale(1.02);
     background-color: rgb(240, 234, 234);
 }
-
+.detailBtn:hover{
+    text-decoration: none;
+}
 .searchResult > img {
     height: 200px;
     width: 350px;

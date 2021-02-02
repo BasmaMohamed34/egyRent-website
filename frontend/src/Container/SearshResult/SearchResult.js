@@ -1,6 +1,5 @@
 import React from 'react';
 import './SearchResult.css';
-import StarIcon from "@material-ui/icons/Star";
 import {Link} from "react-router-dom"
 
 function SearchResult({
@@ -8,9 +7,7 @@ function SearchResult({
     location,
     title,
     description,
-    star,
-    price,
-    total,
+    price
 }) {
     return (
         <div className='searchResult'>
@@ -25,15 +22,10 @@ function SearchResult({
                 </div>
 
                 <div className="searchResult__infoBottom">
-                    <div className="searchResult__stars">
-                        <StarIcon className="searchResult__star" />
-                        <p>
-                            <strong>{star}</strong>
-                        </p>
-                    </div>
+                   
                     <div className='searchResults__price'>
-                        <h2>{price}</h2>
-                        <button className="button"> <Link to = "/searsh/resultDetailes"> Show Detailes</Link> </button>
+                        <h3>{price}</h3>
+                        <button className="btn btn-primary "> <Link to = "/searsh/resultDetailes" className="text-light detailBtn"> Show Detailes</Link> </button>
                     </div>
                 </div>
             </div>
