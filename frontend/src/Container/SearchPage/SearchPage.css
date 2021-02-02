@@ -1,5 +1,8 @@
 .searchPage__info {
-    padding: 20px;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(246, 246, 246);
   }
 
 .searchPage__info > p {
