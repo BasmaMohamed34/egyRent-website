@@ -18,13 +18,13 @@ class Post extends Component{
                             </ol>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src="./images/gallary/g1.jpg" className="d-block w-100" alt="..." />
+                                    <img src="./images/gallary/g1.jpg" className="d-block w-100 x" alt="..." />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="./images/home/banner.jpg" className="d-block w-100" alt="..." />
+                                    <img src="./images/home/banner.jpg" className="d-block w-100 x" alt="..." />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="./images/gallary/g6.jpg" className="d-block w-100" alt="..." />
+                                    <img src="./images/gallary/g6.jpg" className="d-block w-100 x" alt="..." />
                                 </div>
                             </div>
                             <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

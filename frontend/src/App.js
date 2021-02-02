@@ -5,7 +5,6 @@ import Header from './Component/Header/Header'
 import Footer from './Component/Footer/Footer'
 import SearchPage from './Container/SearchPage/SearchPage'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Post from './Container/Post/post';
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
             <Route path="/search"> <SearchPage /> </Route>
             <Route path="/"> <Home /> </Route>
           </Switch>
-          <Post />
           <Footer />
         </Router>
       </div>
