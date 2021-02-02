@@ -3,12 +3,13 @@
     position: relative;
     margin: 20px;
     padding: 20px;
-    border-bottom: 1px solid lightgray;
-    cursor: pointer;
+    border-bottom: 1px solid rgb(243, 94, 94);
+    margin: auto;
   }
 
 .searchResult:hover {
-    opacity: 0.8;
+    transform: scale(1.02);
+    background-color: rgb(240, 234, 234);
 }
 
 .searchResult > img {
@@ -63,7 +64,7 @@
 }
 
 .searchResults__price > p {
-    text-align: right;
+    text-align: center;
   }
 
 .searchResults__price {
@@ -72,6 +73,13 @@
     right: 30px;
 }
 
+.button{
+    background-color: #ff7779;
+    padding: 8px;
+    border-radius: 10px;
+    padding-right: px;
+    float: right;    
+}
 
 
   

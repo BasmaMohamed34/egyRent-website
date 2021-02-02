@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchResult.css';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import StarIcon from "@material-ui/icons/Star";
+import {Link} from "react-router-dom"
 
 function SearchResult({
     img,
@@ -15,7 +15,6 @@ function SearchResult({
     return (
         <div className='searchResult'>
             <img src={img} alt="" />
-            <FavoriteBorderIcon className="searchResult__heart" />
 
             <div className='searchResult__info'>
                 <div className="searchResult__infoTop">
@@ -34,7 +33,7 @@ function SearchResult({
                     </div>
                     <div className='searchResults__price'>
                         <h2>{price}</h2>
-                        <p>{total}</p>
+                        <button className="button"> <Link to = "/searsh/resultDetailes"> Show Detailes</Link> </button>
                     </div>
                 </div>
             </div>
