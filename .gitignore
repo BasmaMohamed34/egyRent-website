@@ -1782,3 +1782,4 @@ backend/node_modules/xdg-basedir/index.js
 backend/node_modules/xdg-basedir/license
 backend/node_modules/xdg-basedir/package.json
 backend/node_modules/xdg-basedir/readme.md
+frontend/.eslintcache
