@@ -3,6 +3,9 @@
   padding: 20px;
   text-align: center;
   background-color: rgb(246, 246, 246);
+  display: block;
+  text-align: center;
+  
   }
 
 .searchPage__info > p {
@@ -19,4 +22,13 @@
     text-transform: inherit;
     margin: 5px;
   }
-  
+  .select{
+      background-color: rgb(255, 0, 0);
+      width: 300px;
+      display: inline;
+      padding: 300px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid red;
+
+  }
