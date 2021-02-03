@@ -35,5 +35,4 @@ function Search() {
         </div>
     )
 }
-
 export default Search
