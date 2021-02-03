@@ -1,4 +1,6 @@
 const User=require('../models/users');
+const PostController=require('./post');
+const Posts=require('../models/post')
 
 module.exports={
     getUser(req,res,next){
@@ -9,10 +11,17 @@ module.exports={
     },
     getSaved(req,res,next){
         const userId=req.params.id;
-        User.find({_id:userId})
-        .then(user=>{res.send(user[0].saved)}) //leeeh el response array ??!!!!!!
+        User.find({_id:userId}).select("saved -_id")
+        .then(user=>{
+        let data;
+            data=user[0];
+            console.log(data);
+        })
+        Posts.find({_id:data.saved[0].post})
+        .then(post=>{res.send(post)})
         .catch(next)
-    },
+        }//leeeh el response array ??!!!!!!
+    ,
     getHistory(req,res,next){
         const userId=req.params.id;
         User.find({_id:userId})
