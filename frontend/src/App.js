@@ -6,17 +6,19 @@ import Footer from './Component/Footer/Footer'
 import SignIn  from "./Component/form/signin";
 import Signup from "./Component/form/signup"
 import SearchPage from './Container/SearchPage/SearchPage'
+import Post from './Container/Post/post'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="container-fluid">
+    <div>
       <Router>
           <Header/>
           <Switch>
-                <Route path="/search"> <SearchPage/> </Route>
-                <Route exact path ="/"> <Home/> </Route>
+                <Route exact path ="/" component={Home}/>
+                <Route path="/search" component={SearchPage}/>
                 <Route exact path="/signin" component = {SignIn}/> 
-                 <Route exact path="/signup" component = {Signup} /> 
+                <Route exact path="/signup" component = {Signup} />
+                <Route path="/post" component={Post}/> 
           </Switch>
           <Footer/>
       </Router>

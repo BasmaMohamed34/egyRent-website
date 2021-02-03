@@ -1,4 +1,4 @@
-import Posts from './post';
+const Posts=require('./post')
 const mongoose=require('mongoose');
 const schema=mongoose.Schema;
 const usersSchema=new schema({
@@ -26,23 +26,11 @@ const usersSchema=new schema({
     photo:{
         type:String
     },
-    notification:[
-        {
-            message:{
-                type:String
-            }
-        }
-    ],
-    type:[
-        {
-            host:{
-                type:Boolean
-            },
-            traveller:{
-                type:Boolean
-            }
-        }
-    ],
+    notification:[],
+    type:{
+            host:{type:Boolean},
+            traveller:{type:Boolean}
+    },
     posts:[
         {
             post:{
@@ -51,15 +39,7 @@ const usersSchema=new schema({
             }
         }
     ],
-    wishlist:[
-        {
-            post:{
-                type: mongoose.Schema.Types.ObjectId,
-                ref: Posts
-            }
-        }
-    ],
-    upcoming:[
+    saved:[
         {
             post:{
                 type: mongoose.Schema.Types.ObjectId,

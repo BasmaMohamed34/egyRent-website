@@ -4,6 +4,7 @@ const home=require('./routes/home');
 const search=require('./routes/search');
 const post=require('./routes/post');
 const explore=require('./routes/explore');
+const profile=require('./routes/profile')
 const PORT = process.env.PORT || 5000
 const app=express();
 const mongoose=require('mongoose')
@@ -17,6 +18,7 @@ home(app);
 explore(app);
 search(app);
 post(app);
+profile(app);
 app.use((err, req, res, next)=>{
   // any error should return from response
   console.log(err);

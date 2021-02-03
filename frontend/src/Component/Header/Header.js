@@ -1,13 +1,12 @@
 import React from 'react'
 import './Header.css'
-import SearchIcon from "@material-ui/icons/Search";
 import LanguageIcon from "@material-ui/icons/Language";
 import { Link } from "react-router-dom";
 import {NavLink} from 'react-router-dom'
 function Header() {
         return (
-            <nav class="navbar  navbar-expand-lg  navbar-dark">
-         <div className="container-fluid h"> 
+            <nav className="navbar header bg-dark navbar-expand-lg">
+         <div className="container-fluid "> 
              <a className="navbar-brand" href="#" target="_blank">
              <Link to='/'>
                     <img
@@ -17,10 +16,10 @@ function Header() {
                     />
                 </Link>
              </a>
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className=" navbar-nav ml-auto pl-3">
              <li className="nav-item active">
                  <a className="nav-link" href="#">
@@ -44,7 +43,7 @@ function Header() {
                     activeClassName="btn"
                     className="btn btn-pink"
                     exact
-                    style={{backgroundColor:"#00D8FF",padding:"7px", borderRadius: "5px",color:"#fff"}}
+                    style={{backgroundColor:"#007bff",padding:"7px", borderRadius: "5px",color:"#fff"}}
                     ><b>sign Up</b>
                            </Link>
               </li>
@@ -54,7 +53,7 @@ function Header() {
                     activeClassName="btn"
                     className="btn btn-pink"
                     exact
-                    style={{backgroundColor:"#00D8FF",padding:"7px", borderRadius: "5px",color:"#fff"}}
+                    style={{backgroundColor:"#007bff",padding:"7px", borderRadius: "5px",color:"#fff"}}
                     ><b>sign In</b>
                            </NavLink>
               </li>

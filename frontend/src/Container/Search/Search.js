@@ -2,37 +2,37 @@ import React, {useState} from 'react';
 import './Search.css';
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
-import { Button } from "@material-ui/core";
-import PeopleIcon from "@material-ui/icons/People";
-import { useHistory } from "react-router-dom";
 
 // DATE PICKER COMPONENT
 function Search() {
-    const history = useHistory();
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-
-    const selectionRange = {
-        startDate: startDate,
-        endDate: endDate,
-        key: "selection",
-      };
-
-    function handleSelect(ranges) {
-        setStartDate(ranges.selection.startDate);
-        setEndDate(ranges.selection.endDate);
-    }
-
     return (
-        <div className='search'>
-            <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
-            <h2 className="search">
-                Number of guests <PeopleIcon />
-            </h2>
-            <input className="search" min={0} defaultValue={0} type="number" />
-            <Button onClick={() => history.push('/search')}>Search Airbnb</Button>
-        </div>
+        
+          <div className="row align-self-center ml-auto mr-auto border rounded p-3 w-75 m-5 shadow">
+            <div className="card-body">            
+            <div className="container">
+                        <div className="row search-form justify-content-between ">
+                            {/* <form className="form-row"> */}
+                                <div className="col-md-3 col">
+                                <h5>Location</h5>
+                                    <input type="text" className="form-control rounded w-100" id="inlineFormInputGroup" placeholder="Location"/>
+                                </div>
+                                <div className="col-md-3 col ">
+                                <h5>Check In</h5>
+                                    <input className="form-control" type="date" />
+                                </div>
+                                <div className="col-md-3 col">
+                                <h5>Check Out</h5>
+                                    <input className="form-control" type="date"/>
+                                </div>
+                                <div className="col-md-3 search-btn">
+                                    <button type="submit" className="form-control btn btn-block btn-primary">Search</button>
+                                </div>
+                            {/* </form> */}
+                        </div>
+            </div>
+
+            </div>
+            </div>     
     )
 }
 export default Search

@@ -1,47 +1,14 @@
-.search {
-    position: absolute;
-    top: 35px;
-    left: 31.7%;
-    width: 100vw;
+.search-btn button{
+    
+    color: white; 
+    text-transform: inherit;
+    margin-top: 30px;
+    font-weight: 600;
 }
-
-.search > h2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 559px;
-    padding: 10px;
-    background-color: white;
-    position: absolute;
-    left: 0;
-    top: 340px;
-}
-
-.search > input {
-    width: 539px;
-    padding: 20px;
-    position: absolute;
-    left: 0;
-    height: 30px;
-    top: 420px;
-    border: none;
-  }
-  
-.search > input:focus {
-    outline-width: 0;
-}
-
-.search > button {
-    position: absolute;
-    left: 0;
-    top: 480px;
-    text-transform: inherit !important;
-    background-color: #ff7779;
+.search-btn button:hover{
     color: white;
-    width: 579px;
-  }
-
-.search > button:hover {
-    background-color: white;
-    color: #ff7779;
+}
+.search-form div .form-control{
+    height: 50px;
+    
 }

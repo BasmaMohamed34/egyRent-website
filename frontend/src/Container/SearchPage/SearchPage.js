@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchPage.css';
 import SearchResult from "../SearshResult/SearchResult";
-import Select from 'react-select';
+// import Select from 'react-select';
 
 
 
@@ -58,9 +58,9 @@ class SearchPage extends React.Component {
             <div className='searchPage__info' >
                  <h1>Stays Nearby</h1>
                  <div className='select'>
-                    <Select placeholder="Select Type Of Place" value={place} onChange={this.handleChange1} options={places}/>
-                    <Select placeholder="Select Number Of Room" value={selectedOption2} onChange={this.handleChange2} options={room}/>
-                    <Select placeholder="Select Price Range" value={selectedOption3} onChange={this.handleChange3} options={price}/>  
+                    {/* <Select placeholder="Select Type Of Place" value={place} onChange={this.handleChange1} options={places}/> */}
+                    {/* <Select placeholder="Select Number Of Room" value={selectedOption2} onChange={this.handleChange2} options={room}/> */}
+                    {/* <Select placeholder="Select Price Range" value={selectedOption3} onChange={this.handleChange3} options={price}/>   */}
                  </div>
                
             </div>
