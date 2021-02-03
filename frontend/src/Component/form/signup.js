@@ -7,20 +7,19 @@ const Signup = ()=>{
         <div className="signup">
             <div className="title">
                 <span>Sign Up</span>
-                <p>Create a new account. You can sign up with your facebook or twitter accunt. Or your regular user
-                    login.</p>
+                <p>Create a new account.</p>
             </div>
-            <div>
-                <a href="https://facebook.com" className="btn-face"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
-                <a href="https://twitter.com" className="btn-twitter"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
-            </div>
-            <div classname="or"><span>OR</span></div>
             <form action="">
                 <input type="text" placeholder="Username"/>
                 <input type="text" placeholder="Email Address"/>
+                <input type="number" placeholder="Phone Number"/>
                 <input type="password" placeholder="Password"/>
-                <input type="password" placeholder="Repeat Password"/>
-                <a href="#" className="btn-signin">Sign Up</a>
+                <select className="text-center">
+                    <option selected disabled>signup as</option>
+                    <option id="host">Host</option>
+                    <option id="traveller">Traveller</option>
+                </select>
+                <a href="#" className="btn-signin btn-primary">Sign Up</a>
             </form>
         </div>
     </div>

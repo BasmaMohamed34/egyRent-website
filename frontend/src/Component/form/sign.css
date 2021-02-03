@@ -43,6 +43,7 @@ body {
     display: block;
     font-size: 46px;
     font-weight: bold;
+    color:#343a40;
 }
 
 .title p {
@@ -50,58 +51,7 @@ body {
     font-weight: 500;
 }
 
-.btn-face,.btn-twitter {
-    color: #fff;
-    display: inline-block;
-    width: 200px;
-    font-size: 20px;
-    height: 50px;
-    border-radius: 50px;
-    text-decoration: none;
-    padding: 11px 0;
-    font-weight: 500;
-}
-
-.btn-face .fa,.btn-twitter .fa {
-    margin-right: 5px;
-}
-
-.btn-face {
-    background: #5397d7;
-    margin-right: 25px;
-}
-
-.btn-twitter {
-    background: #40b9e0;
-}
-
-.or {
-    margin: 35px 0;
-    font-weight: 600;
-    color: #9f9f9f;
-}
-
-.or:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: #cecece;
-    position: absolute;
-    margin-top: -10px;
-    z-index: 0;
-}
-
-.or span {
-    display: block;
-    background: #fff;
-    width: 50px;
-    margin: auto;
-    position: relative;
-    z-index: 2;
-}
-
-.sign-panels input {
+.sign-panels input ,select{
     width: 100%;
     display: block;
     margin-bottom: 15px;
@@ -114,6 +64,7 @@ body {
     font-size: 15px;
     color: #7c7c7c;
     font-weight: 500;
+    text-align-last:center;
 }
 
 .sign-panels input:focus {
