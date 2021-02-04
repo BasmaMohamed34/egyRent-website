@@ -17,4 +17,15 @@
 .searchPage__info > button {
   text-transform: inherit;
   margin: 5px;
+
+  border-radius: 30px;
+  text-transform: inherit;
+  margin: 5px;
+}
+.select {
+  width: 300px;
+  display: inline;
+  padding: 300px;
+  border-radius: 20px;
+  text-align: center;
 }
