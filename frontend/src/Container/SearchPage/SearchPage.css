@@ -23,12 +23,10 @@
     margin: 5px;
   }
   .select{
-      background-color: rgb(255, 0, 0);
       width: 300px;
       display: inline;
       padding: 300px;
       border-radius: 20px;
       text-align: center;
-      border: 3px solid red;
 
   }
