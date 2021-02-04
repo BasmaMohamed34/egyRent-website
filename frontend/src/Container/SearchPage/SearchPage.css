@@ -3,32 +3,18 @@
   padding: 20px;
   text-align: center;
   background-color: rgb(246, 246, 246);
-  display: block;
-  text-align: center;
-  
-  }
+}
 
 .searchPage__info > p {
-    margin-bottom: 10px;
-    font-size: 14px;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .searchPage__info > h1 {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .searchPage__info > button {
-    border-radius: 30px;
-    text-transform: inherit;
-    margin: 5px;
-  }
-  .select{
-      background-color: rgb(255, 0, 0);
-      width: 300px;
-      display: inline;
-      padding: 300px;
-      border-radius: 20px;
-      text-align: center;
-      border: 3px solid red;
-
-  }
+  text-transform: inherit;
+  margin: 5px;
+}

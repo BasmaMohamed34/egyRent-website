@@ -1,6 +1,28 @@
-a:hover {
-    color:#00D8FF;
- }
- span{
-    color:#00D8FF;
+.bgGray {
+  background-color: rgb(211, 211, 211);
+}
+a {
+  transition: all 0.2s ease-in-out;
+}
+.link3reb {
+  transition: all 0.2s ease-in-out;
+  margin: 0 auto;
+}
+.link3reb:hover {
+  font-size: xx-large;
+  transform: scale(1.5);
+}
+ul li .aLink:hover {
+  text-decoration: none;
+  font-size: large;
+  transform: scale(0.5);
+  box-shadow: inset;
+  color: #577ab7;
+}
+span {
+  color: #577ab7;
+}
+
+ul li {
+  padding-top: 5px;
 }
