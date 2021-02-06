@@ -1,3 +1,40 @@
-.x{
+.x {
     height: 700px;
+}
+
+.avail {
+    border: 1px solid gray;
+    border-radius: 15px;
+    box-shadow: 5px 10px 18px pink;
+    position: sticky;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sv {
+    text-align: center;
+    display: flex;
+    float: right;
+    justify-content: center;
+    height: 60px;
+    width: 100px;
+    font-size: 26px;
+}
+
+.hotyp{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.dt {
+    border: 1px solid gray;
+    border-radius: 7px;
+}
+
+.reviewer {
+    height: 60px;
+    width: 60px;
 }
