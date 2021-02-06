@@ -4,3 +4,5 @@ export default function posts(state = [], action) {
   console.log(action.type);
   return state;
 }
+
+
