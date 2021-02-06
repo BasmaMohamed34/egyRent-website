@@ -16,26 +16,37 @@ function Header() {
                     />
                 </Link>
              </a>
-             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
           <ul className=" navbar-nav ml-auto pl-3 bg-dark borderNav">
              <li className="nav-item active">
                  <a className="nav-link" href="#">
-                 <b className = "pr-2" style={{color:"#aaa"}}>Home</b>
+                 <b className = "pr-2" style={{color:"#fff"}}>Home</b>
                    <span className="sr-only">(current)</span>
                  </a>
              </li>
              <li className="nav-item">
                  <a className="nav-link" href="#" target="_blank">
-                   <b style={{color:"#aaa"}}>About US</b>
+                   <b style={{color:"#fff"}}>About US</b>
                  </a>
              </li>
              <li className="nav-item">
-                 <a className="nav-link" href="#" target="_blank">
+             <Link 
+                    to="/createpost"
+                    activeClassName="nav-link "
+                    className="btn btn-pink pr-3"
+                    exact 
+                    >
+                   <b className = "pr-3" style={{color:"#fff"}}>Become A Host</b>
+                           </Link>
+                 {/* <a className="nav-link" href="#" target="_blank">
                    <b className = "pr-3" style={{color:"#aaa"}}>Become A Host</b>
-                 </a>
+                 </a> */}
              </li>
              <li className="nav-item bg mr-3 mb-3">
              <Link 

@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./Container/Home/Home";
 import Header from "./Component/Header/Header";
 import Footer from "./Component/Footer/Footer";
+import CreatePost from "./Container/createpost/createpost"
 import SignIn from "./Container/form/signin";
 import Signup from "./Container/form/signup";
 import Profile from "./Container/Profile/Profile";
@@ -34,6 +35,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/createpost" component={CreatePost} />
           <Route path="/profile">
             <Profile />
           </Route>
