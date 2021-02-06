@@ -1,9 +1,9 @@
 const User = require("../models/users");
 
 module.exports = {
-  getUser(req, res, next) {
+  getUser: async (req, res, next) => {
     const userId = req.params.id;
-    User.find({ _id: userId })
+    await User.findById(userId)
       .then((user) => {
         res.send(user), console.log(user);
       })
