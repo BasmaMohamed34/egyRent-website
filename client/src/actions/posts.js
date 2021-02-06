@@ -32,3 +32,20 @@ export async function getPosts() {
     payload,
   };
 }
+
+export async function getPostById(id) {
+    //fetch
+    let payload = null;
+    try {
+        let response = await fetch(`/post/${id}`);
+        payload = await response.json();
+        console.log(payload);
+    }
+    catch (err) {
+        console.log(err);
+    }
+    return {
+        type: 'POST_DETAILS',
+        payload
+    }
+}
