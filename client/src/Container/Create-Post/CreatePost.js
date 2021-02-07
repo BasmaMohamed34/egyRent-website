@@ -1,5 +1,4 @@
 // import React from 'react'
-import "./createpost.css";
 import { connect } from "react-redux";
 import { createPost } from "../../actions/posts";
 import { bindActionCreators } from "redux";
