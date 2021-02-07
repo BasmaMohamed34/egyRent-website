@@ -21,12 +21,12 @@ function Footer() {
 
             <ul className="list-unstyled mb-0 border-0 bgGray">
               <li>
-                <a href="#s" className="text-dark aLink">
+                <a href="/home" className="text-dark aLink">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#s" className="text-dark aLink">
+                <a href="/about-us" className="text-dark aLink">
                   About As
                 </a>
               </li>

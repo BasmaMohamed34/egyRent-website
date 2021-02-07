@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./Container/Home/Home";
 import Header from "./Component/Header/Header";
 import Footer from "./Component/Footer/Footer";
-import CreatePost from "./Container/createpost/createpost"
+import CreatePost from "./Component/createpost/createpost"
 import SignIn from "./Container/form/signin";
 import Signup from "./Container/form/signup";
 import Profile from "./Container/Profile/Profile";

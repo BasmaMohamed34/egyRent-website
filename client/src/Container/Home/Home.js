@@ -35,21 +35,19 @@ class Home extends Component {
         <Banner />
         <Search />
         <h1 className=" m-5 text-center">Top Destination</h1>
-        <div className="row d-flex justify-content-center top-destination">
+        <div className="row d-flex justify-content-center top-destination
+        h-25">
           <Card
-            src="https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg?im_w=720"
-            title="place"
-            description="Unique activities we can do together, led by a world of hosts."
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/0a/11/98/alexandria.jpg?w=1000&h=600&s=1"
+            title="Alexandria"
           />
           <Card
-            src="https://a0.muscache.com/im/pictures/15159c9c-9cf1-400e-b809-4e13f286fa38.jpg?im_w=720"
-            title="place"
-            description="Spaces that are more than just a place to sleep."
+            src="https://media-cdn.tripadvisor.com/media/photo-s/19/bc/d4/96/rixos-sharm-el-sheikh.jpg"
+            title="Sharm El Sheikh"
           />
           <Card
-            src="https://a0.muscache.com/im/pictures/fdb46962-10c1-45fc-a228-d0b055411448.jpg?im_w=720"
-            title="place"
-            description="Comfortable private places, with room for friends or family."
+            src="https://media-cdn.tripadvisor.com/media/photo-s/19/48/b3/4b/continental-hotel-hurghada.jpg"
+            title="Hurghada"
           />
         </div>
         <h1 className="m-5 text-center">Explore</h1>
