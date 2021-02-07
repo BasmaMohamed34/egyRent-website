@@ -1,8 +1,8 @@
 import { Component } from "react";
 import './post.css'
-import { connect } from "react-redux";
-import { getPostById } from "../../actions/posts";
-import { bindActionCreators } from "redux";
+// import { connect } from "react-redux";
+// import { getPostById } from "../../actions/posts";
+// import { bindActionCreators } from "redux";
 
 
 class Post extends Component{
