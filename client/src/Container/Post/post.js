@@ -1,26 +1,35 @@
 import { Component } from "react";
 import './post.css'
+import { connect } from "react-redux";
+import { getPostById } from "../../actions/posts";
+import { bindActionCreators } from "redux";
+
 
 class Post extends Component{
-    constructor(props) {
-        super()
-    }
+
+    // async componentDidMount() {
+    //     console.log('works')
+    //     await this.props.getPostById(this.props.match.params.id)
+    // }
+    
+
     render = () => {
+        // console.log(details);
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-12 m-3">
                         <h3 className="display-4 text-center">Location Name</h3>
-                        <h4 className="display-5 text-center">Location</h4>
+                        <h3>Location Address</h3>
                         <button className="btn btn-success sv mr-5"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Save</button>
                     </div>
                     <div className="col-12 mt-2 mb-3 text-center">
                         <div className="row">
                             <div className="col-12 col-md-6">
-                                <img src="./images/packages/p1.jpg" className="d-block w-100 x mr-1" alt="..." />
+                                <img src="https://lh3.googleusercontent.com/3Bc_SDMAQYQIiT06vie-YoEk4dYITmjKCq_pi2kppqeduEVwTP6oscOJTFfHPIN90i2n-cM_IRtfUAdQ9NU_Ao97itE=w640-h400-e365-rj-sc0x00ffffff" className="d-block w-100 x mr-1" alt="..." />
                             </div>
                             <div className="col-12 col-md-6">
-                                <img src="./images/home/banner.jpg" className="d-block w-100 y ml-1" alt="..." />
+                                <img src="https://iso.500px.com/wp-content/uploads/2019/04/500px_blog_lexar_global_photo_contest_winners-1500x1000.jpg" className="d-block w-100 y ml-1" alt="..." />
                             </div>
                         </div>
                     </div>
@@ -103,8 +112,12 @@ class Post extends Component{
                     </div>
                     <div className="col-12 col-md-6 com">
                         <div className="col-12">
-                            <img className="reviewer rounded-circle" src='./images/packages/p1.jpg' alt='......' />
-                            <h4>Group 5. <br /><span className="text-secondary">02/06/2021</span></h4>
+                            <div className="col-12 col-md-6">
+                                <img className="reviewer rounded-pill img-fluid" src='https://o.aolcdn.com/images/dims?quality=95&image_uri=https%3A%2F%2Fs.yimg.com%2Fuu%2Fapi%2Fres%2F1.2%2FT9q2sGNvLY8VHfyZgV_yKw--%7EB%2FaD0xMDY3O3c9MTYwMDthcHBpZD15dGFjaHlvbg--%2Fhttps%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fcrop%3D5000%252C3333%252C0%252C0%26quality%3D85%26format%3Djpg%26resize%3D1600%252C1067%26image_uri%3Dhttp%253A%252F%252Fo.aolcdn.com%252Fhss%252Fstorage%252Fmidas%252F3dcf58ea3cb050781655277a8fae35c6%252F206497393%252Fevgeny-tchebotarev-founder-of-500px-attends-the-day-1-of-the-rise-picture-id812329684%26client%3Da1acac3e1b3290917d92%26signature%3D66baae45a48cd2e1da201d48c552f495925c90ce&client=amp-blogside-v2&signature=297d15dc7cca6f80c944cbbbcfd64664297e565d' alt='......' />
+                            </div>
+                            <div className="col-12 col-md-6">
+                                <h4>Group 5. <br /><small className="text-secondary">02/06/2021</small></h4>
+                            </div>
                         </div>
                         <div className="col-12">
                             <p>
@@ -114,8 +127,12 @@ class Post extends Component{
                     </div>
                     <div className="col-12 col-md-6 com">
                         <div className="col-12">
-                            <img className="reviewer rounded-circle" src='./images/packages/p3.jpg' alt='......' />
-                            <h4>Group 5. <br /><span className="text-secondary">02/06/2021</span></h4>
+                            <div className="col-12 col-md-6">
+                                <img className="reviewer rounded-pill img-fluid" src='https://o.aolcdn.com/images/dims?quality=95&image_uri=https%3A%2F%2Fs.yimg.com%2Fuu%2Fapi%2Fres%2F1.2%2FT9q2sGNvLY8VHfyZgV_yKw--%7EB%2FaD0xMDY3O3c9MTYwMDthcHBpZD15dGFjaHlvbg--%2Fhttps%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fcrop%3D5000%252C3333%252C0%252C0%26quality%3D85%26format%3Djpg%26resize%3D1600%252C1067%26image_uri%3Dhttp%253A%252F%252Fo.aolcdn.com%252Fhss%252Fstorage%252Fmidas%252F3dcf58ea3cb050781655277a8fae35c6%252F206497393%252Fevgeny-tchebotarev-founder-of-500px-attends-the-day-1-of-the-rise-picture-id812329684%26client%3Da1acac3e1b3290917d92%26signature%3D66baae45a48cd2e1da201d48c552f495925c90ce&client=amp-blogside-v2&signature=297d15dc7cca6f80c944cbbbcfd64664297e565d' alt='......' />
+                            </div>
+                            <div className="col-12 col-md-6">
+                                <h4>Group 5. <br /><small className="text-secondary">02/06/2021</small></h4>
+                            </div>
                         </div>
                         <div className="col-12">
                             <p>
@@ -125,8 +142,12 @@ class Post extends Component{
                     </div>
                     <div className="col-12 col-md-6 com">
                         <div className="col-12">
-                            <img className="reviewer rounded-circle" src='./images/packages/p4.jpg' alt='......' />
-                            <h4>Group 5. <br /><span className="text-secondary">02/06/2021</span></h4>
+                            <div className="col-12 col-md-6">
+                                <img className="reviewer rounded-pill img-fluid" src='https://o.aolcdn.com/images/dims?quality=95&image_uri=https%3A%2F%2Fs.yimg.com%2Fuu%2Fapi%2Fres%2F1.2%2FT9q2sGNvLY8VHfyZgV_yKw--%7EB%2FaD0xMDY3O3c9MTYwMDthcHBpZD15dGFjaHlvbg--%2Fhttps%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fcrop%3D5000%252C3333%252C0%252C0%26quality%3D85%26format%3Djpg%26resize%3D1600%252C1067%26image_uri%3Dhttp%253A%252F%252Fo.aolcdn.com%252Fhss%252Fstorage%252Fmidas%252F3dcf58ea3cb050781655277a8fae35c6%252F206497393%252Fevgeny-tchebotarev-founder-of-500px-attends-the-day-1-of-the-rise-picture-id812329684%26client%3Da1acac3e1b3290917d92%26signature%3D66baae45a48cd2e1da201d48c552f495925c90ce&client=amp-blogside-v2&signature=297d15dc7cca6f80c944cbbbcfd64664297e565d' alt='......' />
+                            </div>
+                            <div className="col-12 col-md-6 text-left">
+                                <h4>Group 5. <br /><small className="text-secondary">02/06/2021</small></h4>
+                            </div>
                         </div>
                         <div className="col-12">
                             <p>
@@ -136,8 +157,12 @@ class Post extends Component{
                     </div>
                     <div className="col-12 col-md-6 com">
                         <div className="col-12">
-                            <img className="reviewer rounded-circle" src='./images/packages/p4.jpg' alt='......' />
-                            <h4>Group 5. <br /><span className="text-secondary">02/06/2021</span></h4>
+                            <div className="col-12 col-md-6">
+                                <img className="reviewer rounded-pill img-fluid" src='https://o.aolcdn.com/images/dims?quality=95&image_uri=https%3A%2F%2Fs.yimg.com%2Fuu%2Fapi%2Fres%2F1.2%2FT9q2sGNvLY8VHfyZgV_yKw--%7EB%2FaD0xMDY3O3c9MTYwMDthcHBpZD15dGFjaHlvbg--%2Fhttps%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fcrop%3D5000%252C3333%252C0%252C0%26quality%3D85%26format%3Djpg%26resize%3D1600%252C1067%26image_uri%3Dhttp%253A%252F%252Fo.aolcdn.com%252Fhss%252Fstorage%252Fmidas%252F3dcf58ea3cb050781655277a8fae35c6%252F206497393%252Fevgeny-tchebotarev-founder-of-500px-attends-the-day-1-of-the-rise-picture-id812329684%26client%3Da1acac3e1b3290917d92%26signature%3D66baae45a48cd2e1da201d48c552f495925c90ce&client=amp-blogside-v2&signature=297d15dc7cca6f80c944cbbbcfd64664297e565d' alt='......' />
+                            </div>
+                            <div className="col-12 col-md-6">
+                                <h4>Group 5. <br /><small className="text-secondary">02/06/2021</small></h4>
+                            </div>
                         </div>
                         <div className="col-12">
                             <p>
@@ -154,4 +179,17 @@ class Post extends Component{
     }
 }
 
+// const mapStateToProps = (state) => {
+//     console.log(state)
+//     return {
+//         details: state.post.details
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({ getPostById }, dispatch)
+// }
+
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Post)
 export default Post;
