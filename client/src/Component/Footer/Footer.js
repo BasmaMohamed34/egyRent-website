@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./Footer.css";
 
 function Footer() {
@@ -21,19 +23,31 @@ function Footer() {
 
             <ul className="list-unstyled mb-0 border-0 bgGray">
               <li>
-                <a href="/home" className="text-dark aLink">
-                  Home
-                </a>
+              <Link to='/'
+                className="nav-link text-dark"
+                style ={{textDecoration: "none"}}
+                exact
+             >
+             Home
+             </Link>
+               
               </li>
               <li>
-                <a href="/about-us" className="text-dark aLink">
-                  About As
-                </a>
-              </li>
+              <Link to='/aboutus'
+                  className="nav-link text-dark"
+                  style ={{textDecoration: "none"}}
+                  exact
+              >
+              About Us
+              </Link>             </li>
               <li>
-                <a href="#s" className="text-dark aLink">
-                  Become A Host
-                </a>
+              <Link to='/createpost'
+                className="nav-link text-dark"
+                style ={{textDecoration: "none"}}
+                exact
+             >
+             Become A Host
+             </Link>
               </li>
             </ul>
           </div>
@@ -43,9 +57,9 @@ function Footer() {
             <ul className="list-unstyled mb-0 border-0 bgGray">
               <li>+1 (300) 1234 6543</li>
               <li>
-                <a href="#s!" className="text-dark  aLink">
-                  Info@egyRent.com
-                </a>
+              <a href="#!"style = {{textDecoration: "none"}} className="text-dark">
+                  email@youremail.com
+                  </a>
               </li>
               <li>North Warnner Park 336/A</li>
               <li>Newyork, UbgGray</li>
