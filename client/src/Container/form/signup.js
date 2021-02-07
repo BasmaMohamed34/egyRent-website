@@ -142,7 +142,10 @@ class Signup extends Component {
                 <option id="traveller">Traveller</option>
                 <option id="host">Host</option>
               </select>
-
+              <label for="img" className="mt-2">
+                Select profile picture:
+              </label>
+              <input type="file" id="img" name="img" />
               <a
                 href="#s"
                 className="btn-signin btn-primary"

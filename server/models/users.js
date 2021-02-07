@@ -34,6 +34,7 @@ const usersSchema = new schema({
     type: String,
   },
   notification: [],
+  /* notification: { type: Array }, Should be like this!!!*/
   type: {
     host: { type: Boolean },
     traveller: { type: Boolean },

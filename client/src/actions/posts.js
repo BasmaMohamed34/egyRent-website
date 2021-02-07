@@ -34,18 +34,41 @@ export async function getPosts() {
 }
 
 export async function getPostById(id) {
-    //fetch
-    let payload = null;
-    try {
-        let response = await fetch(`/post/${id}`);
-        payload = await response.json();
-        console.log(payload);
-    }
-    catch (err) {
-        console.log(err);
-    }
-    return {
-        type: 'POST_DETAILS',
-        payload
-    }
+  //fetch
+  let payload = null;
+  try {
+    let response = await fetch(`/post/${id}`);
+    payload = await response.json();
+    console.log(payload);
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "POST_DETAILS",
+    payload,
+  };
+}
+export async function createPost(id, post) {
+  //console.log(std)
+  //console.log(post);
+  let payload = null;
+  try {
+    let response = await fetch(`/${id}/createpost`, {
+      method: "POST",
+      /* headers: {
+        "Content-Type": "application/json",
+      }, */
+      headers: { "Content-Type": "multipart/form-data" },
+      body: new FormData(post),
+      /* body: JSON.stringify(post), */
+    });
+    payload = response.json;
+    console.log(payload);
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "CREATE_POST",
+    payload,
+  };
 }

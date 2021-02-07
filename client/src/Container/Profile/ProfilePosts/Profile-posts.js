@@ -1,24 +1,9 @@
-/* function ProfilePosts() {
-  return (
-    <div className="container m-3">
-      <h2 className="">Posts</h2>
-      <p>
-        Lorem text everyff t to make a type specip electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and more
-        recently with desktop publishing software like Aldus PageMaker including
-        versions of Lorem Ipsum.
-      </p>
-    </div>
-  );
-} */
 import { Component } from "react";
 import { connect } from "react-redux";
 import { getProfilePosts } from "../../../actions/profile";
 import { bindActionCreators } from "redux";
 
 class ProfilePosts extends Component {
-  /*   console.log(profile); */
   constructor() {
     super();
     this.state = {
@@ -55,7 +40,6 @@ class ProfilePosts extends Component {
     return <div className="">{this.renderProfilePosts(this.props)}</div>;
   };
 }
-/* export default ProfilePosts; */
 const mapStateToProps = (state) => {
   console.log(state.profilePosts);
   return { profilePosts: state.profilePosts };

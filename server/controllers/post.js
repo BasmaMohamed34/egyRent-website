@@ -14,6 +14,7 @@ module.exports = {
       .then((post) => res.send(post))
       .catch(next); */
     const newPost = new Posts(req.body);
+    /* await newPost.save(); */
     const user = await User.findById(userId);
     newPost.createdBy = user.id;
     await newPost.save();
