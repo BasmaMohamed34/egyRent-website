@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -27,7 +26,7 @@ app.use(
   })
 );
 
-=======
+
 const http = require('http');
 const express= require('express');
 const home=require('./routes/home');
@@ -56,7 +55,7 @@ mongoose.connect(connection_url, { useNewUrlParser: true, useUnifiedTopology: tr
 
 app.use(bodyParser.json());
  
->>>>>>> Stashed changes
+
 home(app);
 explore(app);
 search(app);
