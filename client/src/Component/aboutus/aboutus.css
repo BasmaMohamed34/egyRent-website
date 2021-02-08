@@ -50,7 +50,11 @@
 	transform: scale(1.1,1.1) ;
 }
 .about .lead{
-	color: #CC0039;
+	color: #2b2da1;
 	font-size: 14px;
 	font-weight: bold;
+}
+
+.type{
+    list-style-type: none
 }

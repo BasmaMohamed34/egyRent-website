@@ -42,9 +42,6 @@ function Header() {
               >
                 <b className="pr-3" style={{ color: "#fff" }}>Become A Host</b>
               </Link>
-              {/* <a className="nav-link" href="#" target="_blank">
-                   <b className = "pr-3" style={{color:"#aaa"}}>Become A Host</b>
-                 </a> */}
             </li>
             <li className="nav-item bg mr-3 mb-3">
               <Link

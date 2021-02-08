@@ -33,7 +33,7 @@ function Footer() {
                
               </li>
               <li>
-              <Link to='/aboutus'
+              <Link to='/about'
                   className="nav-link text-dark"
                   style ={{textDecoration: "none"}}
                   exact
