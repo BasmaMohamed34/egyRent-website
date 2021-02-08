@@ -28,21 +28,12 @@ function Header() {
                 <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item pr-2">
               <Link className="nav-link" to="/about">
                 <b style={{ color: "#fff" }}>About US</b>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/createpost"
-                activeClassName="nav-link "
-                className="btn btn-pink pr-3"
-                exact
-              >
-                <b className="pr-3" style={{ color: "#fff" }}>Become A Host</b>
-              </Link>
-            </li>
+          
             <li className="nav-item bg mr-3 mb-3">
               <Link
                 to="/signup"

@@ -9,7 +9,6 @@ import SignIn from "./Container/form/signin";
 import Signup from "./Container/form/signup";
 import Profile from "./Container/Profile/Profile";
 import SearchPage from "./Container/SearchPage/SearchPage";
-import NotFound from "./Component/notfound";
 import Post from "./Container/Post/post";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
@@ -37,7 +36,6 @@ function App() {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/about" component = {AboutUs}/>
-          <Route path="*"  component={NotFound}/>
           <Route exact path="/:id/createpost" component={CreatePost} />
           <Route path="/profile">
             <Profile />
