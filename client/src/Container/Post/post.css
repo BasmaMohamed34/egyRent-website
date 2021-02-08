@@ -3,14 +3,26 @@
     box-shadow: 5px 10px 18px gray;
     height: 500px;
 }
-
+.pictures{
+    width: 55%;
+}
 .avail {
     border-radius: 15px;
     box-shadow: 5px 3px 15px rgb(196, 191, 191);
     position: sticky;
 }
+.user-img{
+    border-radius: 80%;
+    width: 30%;
+}
 .loc{
     font-size: 40px;
+}
+.comment{
+    font-size: 20px;
+}
+.review{
+    display: block;
 }
 .price {
     font-size: 22px;

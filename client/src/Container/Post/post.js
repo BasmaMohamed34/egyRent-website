@@ -1,17 +1,18 @@
 import './post.css'
 import PostPictures from '../../Component/postPictures/postPictures'
-// import Comments from '../../Component/postComments/postComments';
-import { Component } from "react";
+import Comments from '../../Component/postComments/postComments';
 import { connect } from "react-redux";
 import { getPostById } from "../../actions/posts";
 import { bindActionCreators } from "redux";
-
-
+import React, { Component } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 class Post extends Component{
     constructor(){
         super();
         this.state={
-            post:[]
+            post:[],
+            comments:[]
         }
     }
      async componentDidMount() {
@@ -34,21 +35,24 @@ class Post extends Component{
         else return(<span style={{color:"black"}}>{type}</span>)
     }
     showPostDetails = (details) => {
-         console.log(details);
+ 
         return (details.map(details=>{
             return (
                 <div className="container" key={details.id}>
                     <div className="row">
                         <div className="col-12 m-3">
                             <h3 className="loc p-3 text-center">{details.title}</h3>
-                            <button className="btn btn-outline-success sv mr-5" onClick={
-                                console.log({...details.savedBy})
-                            }><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Save</button>
+                            <button className="btn btn-outline-success sv mr-5"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Save</button>
                         </div>
-                        <div className="col-12 mt-2 mb-3 text-center">
-                            <div className="row">
-                               <PostPictures {...details.pictures}/>
-                               
+                        <div className="col-12 mt-2 mb-3">
+                            <div className="row pictures m-auto">
+                            <Carousel>
+                            {details.pictures.map(src=>{
+                               return(
+                                <PostPictures picture={src}/>  
+                               )
+                            })}
+                               </Carousel>
                             </div>
                         </div>
                     </div>
@@ -127,11 +131,16 @@ class Post extends Component{
                         </div>
                     </div>
                     <hr />
-                    <div className="row">
-                        <div className="col-12 mb-5">
                             <h3>Reviews</h3>
-                        </div>
-                        {/* <Comments {...details.comments}/> */}
+                    <div className="row pb-5">
+                            {details.comments.map(comment=>{
+                                console.log(comment)
+                               return(
+                         <Comments comment={comment}/> 
+                                 
+                               )
+                            })}
+                       
                  
                     </div>
                 </div>

@@ -40,29 +40,17 @@ function Footer() {
               >
               About Us
               </Link>             </li>
-              <li>
-              <Link to='/createpost'
-                className="nav-link text-dark"
-                style ={{textDecoration: "none"}}
-                exact
-             >
-             Become A Host
-             </Link>
-              </li>
             </ul>
           </div>
           <div className="col-md-4 mb-4 mb-md-0 col-sm-12 bgGray">
             <h5>Contacts</h5>
 
             <ul className="list-unstyled mb-0 border-0 bgGray">
-              <li>+1 (300) 1234 6543</li>
               <li>
               <a href="#!"style = {{textDecoration: "none"}} className="text-dark">
                   email@youremail.com
                   </a>
               </li>
-              <li>North Warnner Park 336/A</li>
-              <li>Newyork, UbgGray</li>
             </ul>
           </div>
         </div>
