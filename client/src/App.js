@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./Container/Home/Home";
 import Header from "./Component/Header/Header";
 import Footer from "./Component/Footer/Footer";
+import AboutUs from './Component/aboutus/aboutus'
 import CreatePost from "./Container/Create-Post/CreatePost";
 import SignIn from "./Container/form/signin";
 import Signup from "./Container/form/signup";
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/about" component = {AboutUs}/>
           <Route exact path="/:id/createpost" component={CreatePost} />
           <Route path="/profile">
             <Profile />

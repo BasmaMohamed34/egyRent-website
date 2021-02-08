@@ -6,21 +6,20 @@
 
 .avail {
     border-radius: 15px;
-    box-shadow: 5px 10px 18px gray;
+    box-shadow: 5px 3px 15px rgb(196, 191, 191);
     position: sticky;
 }
-
+.loc{
+    font-size: 40px;
+}
 .price {
     font-size: 22px;
     font-weight: bold;
 }
 
-.sv {
-    text-align: center;
+.sv { 
     display: flex;
     float: right;
-    justify-content: center;
-    height: 60px;
     width: 100px;
     font-size: 26px;
 }
@@ -38,4 +37,7 @@
 .reviewer {
     height: 200px;
     width: 100px;
+}
+.check-form{
+    background-color: #DDDDDD;
 }

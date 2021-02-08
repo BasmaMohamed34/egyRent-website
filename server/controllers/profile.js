@@ -1,4 +1,6 @@
 const User = require("../models/users");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 module.exports = {
   getUser: async (req, res, next) => {
@@ -30,12 +32,20 @@ module.exports = {
       .then((user) => res.status(200).json(user.history))
       .catch(next);
   },
-  createUser: async (req, res, next) => {
-    //console.log("userss");
-    const userProps = req.body;
-    User.create(userProps)
-      .then((user) => res.status(200).json(user))
-      .catch(next);
+  createUser(req, res, next) {
+    console.log("userss");
+    const myPlaintextPassword = req.body.password;
+    bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+      // Store hash in your password DB.
+      if (hash) {
+        console.log(hash);
+        req.body.password = hash;
+        userProps = req.body;
+        User.create(userProps)
+          .then((user) => res.send(user))
+          .catch(next);
+      } else console.log(err);
+    });
   },
   deleteUser: async (req, res, next) => {
     const userId = req.params.id;

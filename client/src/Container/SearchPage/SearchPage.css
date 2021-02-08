@@ -29,3 +29,18 @@
   border-radius: 20px;
   text-align: center;
 }
+
+.nearby {
+position: relative;
+left : 600px;
+background-color: rgb(243, 243, 243);
+width: 720px;
+}
+
+
+.nearby1 {
+  position: relative;
+  left : 800px;
+  padding: 30px;
+  }
+

@@ -25,8 +25,7 @@ const Ecard = ({ posts }) => {
           <div className="card__info">
             <h2>{post.title}</h2>
             <h2>{post.location}</h2>
-            <p>{post.description}</p>
-            <h5>{post.price}$ / Night</h5>
+            <h5 className="text-right">{post.price}$ / Night</h5>
           </div>
         </div>
       </div>
