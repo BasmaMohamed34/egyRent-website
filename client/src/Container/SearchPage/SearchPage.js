@@ -5,9 +5,7 @@ import { Button } from "@material-ui/core";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getSearch} from "../../actions/Search"
-import SearchResult from "./SearshResult/SearchResult"
-
-
+import SearchResult from './SearshResult/SearchResult'
 class SearchPage extends Component {
   constructor() {
     super();

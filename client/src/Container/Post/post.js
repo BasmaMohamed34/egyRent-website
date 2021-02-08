@@ -1,6 +1,6 @@
 import './post.css'
 import PostPictures from '../../Component/postPictures/postPictures'
-import Comments from '../../Component/postComments/postComments';
+// import Comments from '../../Component/postComments/postComments';
 import { Component } from "react";
 import { connect } from "react-redux";
 import { getPostById } from "../../actions/posts";
@@ -37,11 +37,13 @@ class Post extends Component{
          console.log(details);
         return (details.map(details=>{
             return (
-                <div className="container">
+                <div className="container" key={details.id}>
                     <div className="row">
                         <div className="col-12 m-3">
                             <h3 className="loc p-3 text-center">{details.title}</h3>
-                            <button className="btn btn-outline-success sv mr-5"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Save</button>
+                            <button className="btn btn-outline-success sv mr-5" onClick={
+                                console.log({...details.savedBy})
+                            }><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Save</button>
                         </div>
                         <div className="col-12 mt-2 mb-3 text-center">
                             <div className="row">

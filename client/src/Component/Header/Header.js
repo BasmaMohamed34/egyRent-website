@@ -37,7 +37,6 @@ function Header() {
             <li className="nav-item bg mr-3 mb-3">
               <Link
                 to="/signup"
-                activeClassName="btn"
                 className="btn btn-pink"
                 exact
                 style={{ backgroundColor: "#007bff", padding: "7px", borderRadius: "5px", color: "#fff" }}
@@ -47,7 +46,6 @@ function Header() {
             <li className="nav-item bg md-mt-3 mb-3">
               <NavLink
                 to="/signin"
-                activeClassName="btn"
                 className="btn btn-pink"
                 exact
                 style={{ backgroundColor: "#007bff", padding: "7px", borderRadius: "5px", color: "#fff" }}
