@@ -8,6 +8,9 @@ const explore = require("./routes/explore");
 const profile = require("./routes/profile");
 const PORT = process.env.PORT || 5000;
 const app = express();
+const bcrypt = require('bcrypt');
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
 const mongoose = require("mongoose");
 const connection_url =
   "mongodb+srv://egyRent:egyRent-website-G5@cluster0.f7cmj.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -25,24 +28,6 @@ app.use(
     parameterLimit: 50000,
   })
 );
-
-
-const http = require('http');
-const express= require('express');
-const home=require('./routes/home');
-const search=require('./routes/search');
-const post=require('./routes/post');
-const explore=require('./routes/explore');
-const profile=require('./routes/profile')
-const PORT = process.env.PORT || 5000
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
-const app=express();
-const mongoose=require('mongoose')
-const connection_url="mongodb+srv://egyRent:egyRent-website-G5@cluster0.f7cmj.mongodb.net/<dbname>?retryWrites=true&w=majority";
-mongoose.connect(connection_url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Load hash from your password DB.
