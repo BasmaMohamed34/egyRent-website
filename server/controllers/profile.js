@@ -11,32 +11,44 @@ module.exports = {
   },
   getPosts: async (req, res, next) => {
     const userId = req.params.id;
-    const user = await User.findById(userId).populate("posts");
-    res.status(200).json(user.posts);
+    const user = await User.findById(userId)
+      .populate("posts")
+      .then((user) => res.status(200).json(user.posts))
+      .catch(next);
   },
   getSaved: async (req, res, next) => {
     const userId = req.params.id;
-    /* User.find({ _id: userId })
-      .then((user) => {
-        res.send(user[0].saved);
-      }) //leeeh el response array ??!!!!!!
-      .catch(next); */
-    const user = await User.findById(userId).populate("saved");
-    res.status(200).json(user.saved);
+    const user = await User.findById(userId)
+      .populate("saved")
+      .then((user) => res.status(200).json(user.saved))
+      .catch(next);
   },
   getHistory: async (req, res, next) => {
     const userId = req.params.id;
-    /*   User.find({ _id: userId })
-      .then((user) => res.send(user.history))
-      .catch(next); */
-    const user = await User.findById(userId).populate("history");
-    res.status(200).json(user.history);
+    const user = await User.findById(userId)
+      .populate("history")
+      .then((user) => res.status(200).json(user.history))
+      .catch(next);
   },
-  createUser(req, res, next) {
-    console.log("userss");
+  createUser: async (req, res, next) => {
+    //console.log("userss");
     const userProps = req.body;
     User.create(userProps)
-      .then((user) => res.send(user))
+      .then((user) => res.status(200).json(user))
+      .catch(next);
+  },
+  deleteUser: async (req, res, next) => {
+    const userId = req.params.id;
+    await User.findOneAndDelete(userId)
+      .then(() => res.send(500))
+      .catch(next);
+  },
+  editUser: async (req, res, next) => {
+    const userId = req.params.id;
+    const userProps = req.body;
+    //console.log(userProps);
+    await User.findByIdAndUpdate(userId, userProps)
+      .then((user) => res.status(200).json(user))
       .catch(next);
   },
 };

@@ -6,7 +6,7 @@
   border-bottom: 1px solid rgb(184, 182, 182);
   margin: auto;
 }
-img {
+.imgSearchResult {
   width: 100%;
   height: 100%;
   border-radius: 20px;

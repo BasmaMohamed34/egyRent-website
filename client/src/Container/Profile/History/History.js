@@ -1,7 +1,7 @@
-function Settings() {
+function History() {
   return (
     <div className="container m-3">
-      <h2 className="">Settings</h2>
+      <h2 className="">History</h2>
       <p>
         Lorem text everyff t to make a type specip electronic typesetting,
         remaining essentially unchanged. It was popularised in the 1960s with
@@ -13,4 +13,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default History;

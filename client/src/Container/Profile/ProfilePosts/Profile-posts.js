@@ -21,18 +21,26 @@ class ProfilePosts extends Component {
   }
   renderProfilePosts({ profilePosts }) {
     return profilePosts.map((profilePosts) => (
-      <div className="col col-md-12">
-        <div className="pp bg-light Ecard border-0 ">
-          <img src={profilePosts.pictures[0]} alt="" />
-          <div className="card__info text-left">
-            <h2>{profilePosts.title}</h2>
-            <h2>{profilePosts.location}</h2>
-            <p>{profilePosts.description}</p>
-            <h5>{profilePosts.price}$ / Night</h5>
+      <>
+        <div className="col col-md-12p-2 ">
+          <img
+            className=" rounded"
+            src={profilePosts.pictures[0]}
+            alt="img"
+            style={{ width: "100%", height: "50%" }}
+          />
+          <div className="card-body text-left  bg-light rounded ">
+            <h4 className="card-title text-left">{profilePosts.title}</h4>
+            <h5 className="card-title">{profilePosts.location}</h5>
+            <p className="card-text">{profilePosts.description}</p>
+            <h4 className="card-title">{profilePosts.price}$ / Night</h4>
+            <a href="#!" className="btn btn-primary mt-1">
+              More Details
+            </a>
           </div>
+          <hr />
         </div>
-        <hr />
-      </div>
+      </>
     ));
   }
 

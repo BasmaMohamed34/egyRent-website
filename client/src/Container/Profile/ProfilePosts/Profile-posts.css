@@ -1,12 +1,4 @@
-.pp {
-  margin: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
-  transition: transform 100ms ease-in;
-  width: 100%;
-}
-
-.pp:hover {
-  transform: scale(1.07);
+.imgProfilePosts {
+  width: 50%;
+  height: 50%;
 }

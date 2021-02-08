@@ -7,7 +7,7 @@ function SearchResult({ img, location, title, description, price }) {
     <div className="row">
       <div className="searchResult container">
         <div className="col-sm-12 col-md-4 img-fluid">
-          <img src={img} alt="" className="" />
+          <img src={img} alt="" className="imgSearchResult" />
         </div>
         <div className="searchResult__info col-md-10 col col-sm-12">
           <div className="searchResult__infoTop text-dark col-md-10 col">

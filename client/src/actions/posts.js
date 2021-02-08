@@ -48,6 +48,7 @@ export async function getPostById(id) {
     payload,
   };
 }
+
 export async function createPost(id, post) {
   //console.log(std)
   //console.log(post);
@@ -55,12 +56,12 @@ export async function createPost(id, post) {
   try {
     let response = await fetch(`/${id}/createpost`, {
       method: "POST",
-      /* headers: {
+      headers: {
         "Content-Type": "application/json",
-      }, */
-      headers: { "Content-Type": "multipart/form-data" },
-      body: new FormData(post),
-      /* body: JSON.stringify(post), */
+      },
+      /* headers: { "Content-Type": "multipart/form-data" },
+      body: new FormData(post), */
+      body: JSON.stringify(post),
     });
     payload = response.json;
     console.log(payload);

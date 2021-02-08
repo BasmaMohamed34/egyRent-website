@@ -478,11 +478,11 @@ class CreatePost extends Component {
               className="btn btn-primary"
               onClick={(e) => {
                 e.preventDefault();
-                const formData = new FormData(this.state.post);
+                /* const formData = new FormData(this.state.post); */
                 /* formData.append("post", this.state.post); */
                 this.props.createPost(
                   window.location.pathname.split("/")[1],
-                  formData
+                  /* formData */ this.state.post
                 );
                 //console.log(this.state.post);
               }}

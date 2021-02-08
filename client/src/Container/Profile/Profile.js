@@ -6,11 +6,12 @@ import { bindActionCreators } from "redux";
 import { Route, Switch, Link } from "react-router-dom";
 import ProfilePosts from "./ProfilePosts/Profile-posts";
 import Saved from "./Saved/Saved";
-import Settings from "./Settings/Settings";
+import History from "./History/History";
 import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
 import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
 import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
-
+import Popup from "./Popup";
+import EditUser from "./EditUser";
 class Profile extends Component {
   constructor() {
     super();
@@ -75,6 +76,22 @@ class Profile extends Component {
                           enamel pin sartorial venmo tbh hot chicken gentrify
                           portland.
                         </p>
+                        <button
+                          class="btn btn-light border col-md-6"
+                          data-toggle="modal"
+                          data-target="#EditModal"
+                        >
+                          Edit Info
+                        </button>
+                        <EditUser />
+                        <button
+                          class="btn btn-danger border rounded col-md-6"
+                          data-toggle="modal"
+                          data-target="#Modal"
+                        >
+                          Delete Account
+                        </button>
+                        <Popup />
                       </div>
                     </div>
                   </div>
@@ -86,7 +103,7 @@ class Profile extends Component {
 
         <div className="jumbotron col-md-8 row h-25 justify-content-between">
           <h1 className="font-medium title-font mt-4 ml-3 text-gray-900 text-lg col-8 text-left">
-            {profile.username}
+            {`${profile.firstname} ${profile.lastname}`}
           </h1>
           {/* <NotificationsRoundedIcon
           className="ico rounded-circle p-2"
@@ -108,10 +125,10 @@ class Profile extends Component {
                 Saved
               </Link>
               <Link
-                to={`/profile/${profile._id}/profile-settings`}
+                to={`/profile/${profile._id}/profile-history`}
                 className="btn w-100 roundedBtn text-left text-dark"
               >
-                Settings
+                History
               </Link>
             </div>
           </div>
@@ -126,8 +143,8 @@ class Profile extends Component {
               <Route exact path={`/profile/${profile._id}/profile-saved`}>
                 <Saved />
               </Route>
-              <Route exact path={`/profile/${profile._id}/profile-settings`}>
-                <Settings />
+              <Route exact path={`/profile/${profile._id}/profile-history`}>
+                <History />
               </Route>
             </Switch>
           </div>

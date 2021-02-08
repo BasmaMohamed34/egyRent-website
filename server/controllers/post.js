@@ -22,4 +22,16 @@ module.exports = {
     await user.save();
     res.status(201).json(newPost);
   },
+  savePost: async (req, res, next) => {
+    const postId = req.params.id;
+    const userName = req.params.username;
+    const user = await User.findOne({ username: userName });
+    console.log(user.username);
+    const post = await Posts.findById(postId);
+    post.savedBy = user.id;
+    await post.save();
+    user.saved.push(post);
+    await user.save();
+    res.status(201).json(post);
+  },
 };

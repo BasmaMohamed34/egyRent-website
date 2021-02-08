@@ -7,6 +7,7 @@ import CreatePost from "./Container/Create-Post/CreatePost";
 import SignIn from "./Container/form/signin";
 import Signup from "./Container/form/signup";
 import Profile from "./Container/Profile/Profile";
+import NotFound from "./Component/NotFound/not-found";
 import SearchPage from "./Container/SearchPage/SearchPage";
 import Post from "./Container/Post/post";
 import { applyMiddleware, createStore } from "redux";
@@ -42,6 +43,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/post/:id" component={Post} />
+          <Route path="*" component={NotFound} />
         </Switch>
         <Footer />
       </Router>
