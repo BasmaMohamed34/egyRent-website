@@ -3,3 +3,4 @@ export default function Search(state = [], action) {
 
   return state;
 }
+

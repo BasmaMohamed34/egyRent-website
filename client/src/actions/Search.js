@@ -13,4 +13,20 @@ export async function getSearch() {
   };
 }
 
+    // export async function getByLocation(​​location,guests) {
+    //   let payload = null;
+    //   try {
+    //     let response = await fetch(`/search-result/${​​location}​​?guests=${guests}`);
+    //     payload = await response.json();
+    //     console.log("Payload", payload);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    //   return {
+    //     type: "LOCATION_GUESTS",
+    //     payload,
+    //   };
+    // }
+
+
 

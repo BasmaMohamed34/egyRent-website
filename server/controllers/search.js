@@ -20,7 +20,25 @@ module.exports={
         //     .then(Reservation=>res.send(Reservation))   
         //     .catch(next) 
         
+
+
     },
+
+
+    byLocation(req,res,next){
+        const location = req.params.location;
+        const guests = req.params.guests;
+        Posts.find({location:location,guests:guests})
+        .then(Posts => res.send(Posts))
+        .catch(next)
+
+    },
+
+
+
+
+
+
     create(req,res,next){
         const postProps = req.body;
      Reservation.create(postProps)

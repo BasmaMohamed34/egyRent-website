@@ -28,7 +28,9 @@ class SearchPage extends Component {
 
   handleClick =(e)=> {
     this.setState({
-      location: e.target.value.charAt(0).toUpperCase()
+      // location: e.target.value.charAt(0).toUpperCase()
+      location: e.target.value
+
 
     });
   }
