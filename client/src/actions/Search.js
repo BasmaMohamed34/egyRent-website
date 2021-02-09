@@ -13,20 +13,20 @@ export async function getSearch() {
   };
 }
 
-    // export async function getByLocation(​​location,guests) {
-    //   let payload = null;
-    //   try {
-    //     let response = await fetch(`/search-result/${​​location}​​?guests=${guests}`);
-    //     payload = await response.json();
-    //     console.log("Payload", payload);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    //   return {
-    //     type: "LOCATION_GUESTS",
-    //     payload,
-    //   };
-    // }
-
-
-
+export async function getByLocation(location, guests) {
+  //console.log(location, guests);
+  let payload = null;
+  try {
+    let response = await fetch(`/search-result/${location}/${guests}`);
+    payload = await response.json();
+    //payload = response.json();
+    //console.log("Payload", payload);
+  } catch (err) {
+    console.log(err);
+  }
+  console.log(payload);
+  return {
+    type: "LOCATION_GUESTS",
+    payload,
+  };
+}

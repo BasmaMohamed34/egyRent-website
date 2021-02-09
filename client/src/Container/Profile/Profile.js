@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import { Route, Switch, Link } from "react-router-dom";
 import ProfilePosts from "./ProfilePosts/Profile-posts";
 import Saved from "./Saved/Saved";
-import History from "./History/History";
 import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
 import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
 import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
@@ -124,12 +123,6 @@ class Profile extends Component {
               >
                 Saved
               </Link>
-              <Link
-                to={`/profile/${profile._id}/profile-history`}
-                className="btn w-100 roundedBtn text-left text-dark"
-              >
-                History
-              </Link>
             </div>
           </div>
           <div className="col-md-10 outerElem p-2">
@@ -142,9 +135,6 @@ class Profile extends Component {
               </Route>
               <Route exact path={`/profile/${profile._id}/profile-saved`}>
                 <Saved />
-              </Route>
-              <Route exact path={`/profile/${profile._id}/profile-history`}>
-                <History />
               </Route>
             </Switch>
           </div>

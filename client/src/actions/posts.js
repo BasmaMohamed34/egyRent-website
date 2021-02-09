@@ -50,21 +50,21 @@ export async function getPostById(id) {
 }
 
 export async function createPost(id, post) {
-  //console.log(std)
-  //console.log(post);
   let payload = null;
+  //console.log(post);
+  console.log(Object.fromEntries(post));
   try {
     let response = await fetch(`/${id}/createpost`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      /* headers: { "Content-Type": "multipart/form-data" },
-      body: new FormData(post), */
-      body: JSON.stringify(post),
+      /*  headers: {
+        "Content-Type": "multipart/form-data",
+        "content-type": "application/json",
+        Accept: "application/json", 
+        type: "formData",
+      }, */
+      body: post,
     });
-    payload = response.json;
-    console.log(payload);
+    payload = response.json();
   } catch (err) {
     console.log(err);
   }

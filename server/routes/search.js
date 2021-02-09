@@ -1,9 +1,8 @@
-const searchController=require('../controllers/search');
+const searchController = require("../controllers/search");
 
-module.exports=(app)=>{ 
-    app.get('/search-result',searchController.all);
-    app.get('/search-result/:location/:guests',searchController.byLocation);
-    app.post('/search-result',searchController.send);
-    app.post('/search-reserve',searchController.create)
-
-}
+module.exports = (app) => {
+  app.get("/search-result", searchController.all);
+  app.get("/search-result/:location/:guests", searchController.byLocation);
+  app.post("/search-result", searchController.send);
+  app.post("/search-reserve", searchController.create);
+};

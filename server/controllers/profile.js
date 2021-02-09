@@ -25,13 +25,7 @@ module.exports = {
       .then((user) => res.status(200).json(user.saved))
       .catch(next);
   },
-  getHistory: async (req, res, next) => {
-    const userId = req.params.id;
-    const user = await User.findById(userId)
-      .populate("history")
-      .then((user) => res.status(200).json(user.history))
-      .catch(next);
-  },
+
   createUser(req, res, next) {
     console.log("userss");
     const myPlaintextPassword = req.body.password;

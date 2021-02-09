@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { createPost } from "../../actions/posts";
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
-import FileBase64 from "react-file-base64";
-
+/* import FileBase64 from "react-file-base64"; */
 class CreatePost extends Component {
   constructor() {
     super();
@@ -20,7 +19,6 @@ class CreatePost extends Component {
         beds: 0,
         baths: 0,
         bedrooms: 0,
-        pictures: "",
         description: "",
         /* amenities: { */
         wifi: false,
@@ -33,6 +31,7 @@ class CreatePost extends Component {
         smokeAlarm: false,
         /*  }, */
       },
+      pictures: [],
     };
   }
 
@@ -117,6 +116,7 @@ class CreatePost extends Component {
                 <select
                   id="type"
                   name="type"
+                  className="form-control"
                   defaultValue={this.state.post.type}
                   onChange={(e) => {
                     this.setState({
@@ -145,6 +145,7 @@ class CreatePost extends Component {
                   Number of Guests<span className="require">*</span>
                 </label>
                 <input
+                  className="form-control"
                   type="number"
                   id="guests"
                   name="guests"
@@ -171,6 +172,7 @@ class CreatePost extends Component {
                   name="rooms"
                   min="1"
                   max="15"
+                  className="form-control"
                   value={this.state.post.rooms}
                   onChange={(e) => {
                     this.setState({
@@ -194,6 +196,7 @@ class CreatePost extends Component {
                   name="baths"
                   min="1"
                   max="15"
+                  className="form-control"
                   value={this.state.post.baths}
                   onChange={(e) => {
                     this.setState({
@@ -215,6 +218,7 @@ class CreatePost extends Component {
                   name="beds"
                   min="1"
                   max="15"
+                  className="form-control"
                   value={this.state.post.beds}
                   onChange={(e) => {
                     this.setState({
@@ -239,6 +243,7 @@ class CreatePost extends Component {
                   name="bedrooms"
                   min="1"
                   max="15"
+                  className="form-control"
                   value={this.state.post.bedrooms}
                   onChange={(e) => {
                     this.setState({
@@ -259,6 +264,7 @@ class CreatePost extends Component {
                   id="price"
                   name="price"
                   min="1"
+                  className="form-control"
                   value={this.state.post.price}
                   onChange={(e) => {
                     this.setState({
@@ -280,6 +286,7 @@ class CreatePost extends Component {
                   id="description"
                   name="description"
                   row="5"
+                  className="form-control"
                   value={this.state.post.description}
                   onChange={(e) => {
                     this.setState({
@@ -295,21 +302,26 @@ class CreatePost extends Component {
             <div className="form-group row">
               <div className="col-sm-12">
                 <label for="pics">Select Your Property Pictures:</label>
-                <FileBase64
+                <input
                   type="file"
                   id="pics"
                   name="pics"
                   multiple
-                  onDone={(base64) => {
+                  enctype="multipart/form-data"
+                  onChange={(e) => {
                     this.setState({
-                      post: {
-                        ...this.state.post,
-                        pictures: base64,
-                      },
+                      pictures: e.target.files,
                     });
                   }}
                 />
-                {/* <div className="col-sm-12">
+                {/* /* const pictures = state.pictures.concat(
+                        state.e.target.files[0]
+                      );
+                      return pictures; */
+                /* {state
+                      pictures: e.target.files[0], 
+                      
+                      <div className="col-sm-12">
                 <div class="file-input mb-5">
                   <input type="file" id="file" class="file" />
                   <label for="file">file one</label>
@@ -478,13 +490,19 @@ class CreatePost extends Component {
               className="btn btn-primary"
               onClick={(e) => {
                 e.preventDefault();
-                /* const formData = new FormData(this.state.post); */
-                /* formData.append("post", this.state.post); */
+                const formData = new FormData();
+                Object.keys(this.state.post).forEach((key) =>
+                  formData.append(key, this.state.post[key])
+                );
+                formData.append("post", this.state.post);
+                formData.append("myFiles", this.state.pictures);
                 this.props.createPost(
                   window.location.pathname.split("/")[1],
-                  /* formData */ this.state.post
+                  formData
                 );
-                //console.log(this.state.post);
+                console.log(this.state.pictures);
+                console.log(formData);
+                console.log(Object.fromEntries(formData));
               }}
             >
               Create Post
