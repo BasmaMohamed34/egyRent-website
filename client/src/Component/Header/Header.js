@@ -40,7 +40,7 @@ function Header() {
                 className="btn btn-pink"
                 exact
                 style={{ backgroundColor: "#007bff", padding: "7px", borderRadius: "5px", color: "#fff" }}
-              ><b>sign Up</b>
+              ><b>Sign Up</b>
               </Link>
             </li>
             <li className="nav-item bg md-mt-3 mb-3">
@@ -49,7 +49,7 @@ function Header() {
                 className="btn btn-pink"
                 exact
                 style={{ backgroundColor: "#007bff", padding: "7px", borderRadius: "5px", color: "#fff" }}
-              ><b>sign In</b>
+              ><b>Sign In</b>
               </NavLink>
             </li>
             <li className="smooth-menu nav-item" data-toggle="tooltip" title="Languages" >

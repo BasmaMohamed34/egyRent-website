@@ -15,3 +15,24 @@
 .search-body{
     width: 70%;
 }
+
+.searchBtn{
+    border-radius: 7px;
+    display: block;
+    width: 500px;
+    padding: 20px;
+    margin: auto;
+    position: relative;
+    left: 300px;
+    top: 12px;
+    font-size: 25px;
+}
+
+.fa-search{
+    color: rgb(255, 255, 255);
+    position: relative;
+    left: 750px;
+    top: -39px;
+    font-size: 25px;
+
+}

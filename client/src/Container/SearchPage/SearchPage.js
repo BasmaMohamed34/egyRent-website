@@ -1,17 +1,20 @@
 import React from "react";
 import { Component } from "react";
 import "./SearchPage.css";
-import { Button } from "@material-ui/core";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getSearch} from "../../actions/Search"
 import SearchResult from './SearshResult/SearchResult'
+import { Link } from "react-router-dom";
+
+
 class SearchPage extends Component {
   constructor() {
     super();
 
     this.state = {
-      Search: []
+      Search: [],
+      location : ""
     };
   }
   async componentDidMount() {
@@ -19,13 +22,21 @@ class SearchPage extends Component {
     console.log("sdddd",x.payload);
     this.setState({
       Search: x.payload,
+      
     });
   }
 
+  handleClick =(e)=> {
+    this.setState({
+      location: e.target.value.charAt(0).toUpperCase()
 
+    });
+  }
+
+  
   listSearch (searchList){
    return (
-    searchList.map((item) =>{
+    searchList.filter( (auto) =>  auto.location.includes(this.state.location) ).map((item) =>{
       return(
         <div className="container1">
           <SearchResult
@@ -34,6 +45,7 @@ class SearchPage extends Component {
               title={item.title}
               description={item.description}
               price={item.price}
+              
       />
          </div>
       )
@@ -48,18 +60,15 @@ class SearchPage extends Component {
       <div>
          <div>
          <h1 className="nearby1">Stays Nearby </h1>
-         <div className="nearby">
-        <Button className=" border-bottom rounded">Type of place</Button>
-        <Button className=" border-bottom rounded">Price</Button>
-        <Button className=" border-bottom rounded">Rooms and beds</Button>
-        <Button className=" border-bottom rounded">More filters</Button>
+         <div >
+        <input  className="search" type="text" onKeyUp={this.handleClick} placeholder="Search By Location...(For Example : Cairo, Alexandria)"/>
+        <Link to="/search-result"></Link>
          </div>
        
       </div>
       <div >
         {this.listSearch(this.state.Search)}
       </div>
-
 
       </div>
      

@@ -44,3 +44,16 @@ width: 720px;
   padding: 30px;
   }
 
+  .search{
+    position: relative;
+    left : 660px;
+    padding: 20px;
+    width: 30%;
+    padding: 20px;
+    background-color: aliceblue;
+    border: 3px solid rgb(45, 45, 216);
+    border-radius: 10px;
+    font-size: 30pxc;
+    text-align: center;
+    cursor: pointer;
+  }
