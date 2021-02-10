@@ -1,3 +1,26 @@
+export async function signIn(username, password) {
+  console.log(username, password);
+  let payload = null;
+  try {
+    let response = await fetch("/signin", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({ username, password }),
+    });
+    payload = await response.json();
+    console.log(payload);
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "SIGNIN",
+    payload,
+  };
+}
 export async function getProfile(id) {
   console.log(id);
   let payload = null;

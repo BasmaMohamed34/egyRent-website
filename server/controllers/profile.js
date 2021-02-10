@@ -1,7 +1,6 @@
 const User = require("../models/users");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
 module.exports = {
   getUser: async (req, res, next) => {
     const userId = req.params.id;
@@ -27,7 +26,7 @@ module.exports = {
   },
 
   createUser(req, res, next) {
-    console.log("userss");
+    //console.log("userss");
     const myPlaintextPassword = req.body.password;
     bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
       // Store hash in your password DB.
@@ -54,5 +53,20 @@ module.exports = {
     await User.findByIdAndUpdate(userId, userProps)
       .then((user) => res.status(200).json(user))
       .catch(next);
+  },
+  signIn: async (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const user = await User.findOne({ username: username });
+    if (user) {
+      const validatePassowrd = await bcrypt.compare(password, user.password);
+      if (validatePassowrd) {
+        res.status(200).json({ message: "Valid Password" });
+      } else {
+        res.status(400).json({ error: "Invalid Password" });
+      }
+    } else {
+      res.status(401).json({ error: "User does not exist" });
+    }
   },
 };

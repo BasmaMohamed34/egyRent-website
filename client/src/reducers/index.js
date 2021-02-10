@@ -8,6 +8,7 @@ import createPost from "./create-post";
 import deleteUser from "./profile-delete";
 import editUser from "./profile-edit";
 import Search from "./Search";
+import signin from "./signin";
 import locationSearch from "./locationGuests";
 export default combineReducers({
   posts,
@@ -20,4 +21,5 @@ export default combineReducers({
   editUser,
   Search,
   locationSearch,
+  signin,
 });

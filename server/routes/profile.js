@@ -7,4 +7,5 @@ module.exports = (app) => {
   app.post("/createuser", profileController.createUser);
   app.delete("/profile/:id", profileController.deleteUser);
   app.patch("/profile/:id", profileController.editUser);
+  app.post("/signin", profileController.signIn);
 };
