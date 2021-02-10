@@ -42,6 +42,7 @@ class SearchPage extends Component {
       return(
         <div className="container1">
           <SearchResult
+              id={item._id}
               img={item.pictures}
               location={item.location}
               title={item.title}

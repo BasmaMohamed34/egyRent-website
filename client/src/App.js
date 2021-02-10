@@ -31,6 +31,11 @@ function App() {
             path="/search-result/:location/:guests"
             component={SearchByLocation}
           />
+          <Route
+            exact
+            path="/search-result?location=location"
+            component={SearchByLocation}
+          />
           <Route exact path="/search-result">
             {" "}
             <SearchPage />{" "}

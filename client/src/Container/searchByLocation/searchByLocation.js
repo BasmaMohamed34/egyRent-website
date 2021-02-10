@@ -3,7 +3,7 @@ import { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getByLocation } from "../../actions/Search";
-import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 class SearchByLocation extends Component {
   constructor() {
@@ -54,14 +54,10 @@ class SearchByLocation extends Component {
                     <h6>____</h6>
                     <h6>{res.description}</h6>
                     <h4 className="d-inline mt-5">{res.price}</h4>
-                    <button className="btn Detailsbtn btn-primary float-right">
-                      <Link
-                        to="/searsh/resultDetailes"
-                        className="text-light detailBtn"
-                      >
-                        Show Detailes
-                      </Link>
-                    </button>
+                    <Route render={({ history}) => ( 
+            <button className="btn Detailsbtn btn-primary float-right" onClick={() => { history.push(`/post/${res._id}`)}}>
+            Show Details </button>
+            )}/>
                   </div>
                 </div>
               </div>

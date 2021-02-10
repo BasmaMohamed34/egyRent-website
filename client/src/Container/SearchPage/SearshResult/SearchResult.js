@@ -1,8 +1,8 @@
 import React from "react";
 import "./SearchResult.css";
-import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
-function SearchResult({ img, location, title, description, price }) {
+function SearchResult({ id,img, location, title, description, price }) {
   return (
     <div className="row">
       <div className="searchResult container">
@@ -16,14 +16,10 @@ function SearchResult({ img, location, title, description, price }) {
             <h6>____</h6>
             <h6>{description}</h6>
             <h4 className="d-inline mt-5">{price}</h4>
-            <button className="btn Detailsbtn btn-primary float-right">
-              <Link
-                to="/searsh/resultDetailes"
-                className="text-light detailBtn"
-              >
-                Show Detailes
-              </Link>
-            </button>
+            <Route render={({ history}) => ( 
+            <button className="btn Detailsbtn btn-primary float-right" onClick={() => { history.push(`/post/${id}`)}}>
+            Show Details </button>
+            )}/>
           </div>
         </div>
       </div>

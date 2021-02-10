@@ -25,9 +25,9 @@
 	background-color: #01070e;
 	border: 2px solid #09031b;
 
-	webkit-transition:all .5s ease;
- 	moz-transition:all .5s ease;
- 	os-transition:all .5s ease;
+	-webkit-transition:all .5s ease;
+ 	-moz-transition:all .5s ease;
+ 	/* os-transition:all .5s ease; */
  	transition:all .5s ease;
 
 }
@@ -54,5 +54,7 @@
 }
 
 .type{
-    list-style-type: none
+    list-style-type: none;
+	background-color: #7f91a5;
+	border:#7f91a5;
 }

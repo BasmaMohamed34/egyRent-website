@@ -30,3 +30,21 @@ export async function getByLocation(location, guests) {
     payload,
   };
 }
+
+export async function getLocation(location) {
+  //console.log(location, guests);
+  let payload = null;
+  try {
+    let response = await fetch(`/search-result/${location}`);
+    payload = await response.json();
+    //payload = response.json();
+    //console.log("Payload", payload);
+  } catch (err) {
+    console.log(err);
+  }
+  console.log(payload);
+  return {
+    type: "LOCATION_GUESTS",
+    payload,
+  };
+}
