@@ -14,7 +14,8 @@ class SearchPage extends Component {
 
     this.state = {
       Search: [],
-      location : ""
+      bedrooms : "",
+      beds : ""
     };
   }
   async componentDidMount() {
@@ -28,45 +29,55 @@ class SearchPage extends Component {
 
   handleClick =(e)=> {
     this.setState({
-      // location: e.target.value.charAt(0).toUpperCase()
-      location: e.target.value
-
-
+      bedrooms: e.target.value
     });
   }
 
-  
+  handleClick1 =(e)=> {
+    this.setState({
+      beds: e.target.value
+    });
+  }
+
+
   listSearch (searchList){
    return (
-    searchList.filter( (auto) =>  auto.location.includes(this.state.location) ).map((item) =>{
+    searchList.sort((a, b) => a.price > b.price ? 1 : -1).filter( (auto) =>  String(auto.price).includes(String(this.state.price))).map((item) =>{
       return(
-        <div className="container1">
-          <SearchResult
-              id={item._id}
-              img={item.pictures}
-              location={item.location}
-              title={item.title}
-              description={item.description}
-              price={item.price}
-              
-      />
+        <div>
          </div>
       )
     }
-
-   ) )
+   ) ,
+   searchList.filter( (auto) =>  String(auto.bedrooms).includes(String(this.state.bedrooms)) 
+   && String(auto.beds).includes(String(this.state.beds))).map((item) =>{
+    return(
+      <div className="container1">
+        <SearchResult
+            id={item._id}
+            img={item.pictures}
+            location={item.location}
+            title={item.title}
+            description={item.description}
+            price={item.price}    
+    />
+       </div>
+    )
   }
-
+ )   
+  )
+  }
 
   render = () => {
     return (
       <div>
          <div>
          <h1 className="nearby1">Stays Nearby </h1>
-         <div >
-        <input  className="search" type="text" onKeyUp={this.handleClick} placeholder="Search By Location...(For Example : Cairo, Alexandria)"/>
+         <form >
+        <input  className="search1" type="number" onKeyUp={this.handleClick} placeholder="Search By Bedrooms... "/>
+        <input  className="search1" type="number" onKeyUp={this.handleClick1} placeholder="Search By Beds..."/>
         <Link to="/search-result"></Link>
-         </div>
+         </form>
        
       </div>
       <div >
