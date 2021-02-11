@@ -1,11 +1,11 @@
-const Posts = require('../models/post');
+const Posts = require("../models/post");
 
-module.exports={
-    all(req, res, next){
-        limit =  parseInt(req.query.limit) || ''
-        Posts.find({}).limit(limit)
-        .then(Posts => res.send(Posts))
-        .catch(next) 
-        
-    }
-}
+module.exports = {
+  all(req, res, next) {
+    limit = parseInt(req.query.limit) || "";
+    Posts.find({})
+      .limit(limit)
+      .then((Posts) => res.send(Posts))
+      .catch(next);
+  },
+};

@@ -3,11 +3,11 @@ const path = require("path");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
-    cb(null, "../uploads/");
+    cb(null, "uploads");
   },
   filename: function (req, file, cb) {
     console.log(file);
-    cb(null, "congar" + "-" + Date.now() + path.extname(file.originalname));
+    cb(null, "img" + "-" + Date.now() + path.extname(file.originalname));
   },
 });
 const fileFilter = (res, req, cb) => {
@@ -17,10 +17,14 @@ const upload = multer({
   storage: storage,
   /* fileFilter: fileFilter, */
   /* limits: { fileSize: 40000, files: 5 }, */
-}).array("myFiles", 5);
+});
 
 module.exports = (app) => {
   app.get("/post/:id", postController.getPost);
   app.get("/:username/post/:id", postController.savePost);
-  app.post("/:id/createpost", upload, postController.createPost);
+  app.post(
+    "/:id/createpost",
+    upload.array("files", 5),
+    postController.createPost
+  );
 };

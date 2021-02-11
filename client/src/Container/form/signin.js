@@ -3,6 +3,7 @@ import { Component } from "react";
 import SimpleReactValidator from "simple-react-validator";
 import { connect } from "react-redux";
 import { signIn } from "../../actions/profile";
+import { Route } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
 class SignIn extends Component {
@@ -15,6 +16,7 @@ class SignIn extends Component {
       //email: "",
       username: "",
       password: "",
+      done: "",
     };
   }
   render() {
@@ -65,24 +67,30 @@ class SignIn extends Component {
               </div>
               <input type="checkbox" className="checkbox" id="remember" />
               <label for="remember">Keep me sign in</label>
-              <button
-                type="button"
-                className="btn-signin btn-primary"
-                onClick={() => {
-                  let success;
-                  if (this.validator.allValid()) {
-                    this.props.signIn(this.state.username, this.state.password)
-                    .then(res=>{
-                      success = res.payload;
-                    })
-                    console.log(success);
-                  } else {
-                    this.validator.showMessages();
-                  }
-                }}
-              >
-                Sign In
-              </button>
+              <Route
+                render={({ history }) => (
+                  <button
+                    type="button"
+                    className="btn-signin btn-primary"
+                    onClick={() => {
+                      if (this.validator.allValid()) {
+                        this.props
+                          .signIn(this.state.username, this.state.password)
+                          .then((res) => {
+                            this.setState({ done: res.payload });
+                            if (this.state.done === "Valid Password") {
+                              history.push(`/home`);
+                            }
+                          });
+                      } else {
+                        this.validator.showMessages();
+                      }
+                    }}
+                  >
+                    Sign In
+                  </button>
+                )}
+              />
             </form>
           </div>
         </div>
@@ -91,6 +99,6 @@ class SignIn extends Component {
   }
 }
 const mapactionstoprops = (dispatch) => {
-  return bindActionCreators({ signIn }, dispatch); 
+  return bindActionCreators({ signIn }, dispatch);
 };
 export default connect(null, mapactionstoprops)(SignIn);
