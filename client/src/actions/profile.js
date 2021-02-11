@@ -12,7 +12,7 @@ export async function signIn(username, password) {
       body: JSON.stringify({ username, password }),
     });
     payload = await response.json();
-    console.log(payload);
+    // console.log(payload.message);
   } catch (err) {
     console.log(err);
   }
@@ -24,14 +24,14 @@ export async function signIn(username, password) {
 export async function getProfile(id) {
   console.log(id);
   let payload = null;
-  try {
-    let response = await fetch("/profile/" + id);
-    console.log(id);
-    payload = await response.json();
-    console.log("get profile payload: ", payload);
-  } catch (err) {
-    console.log(err);
-  }
+    try {
+      let response = await fetch("/profile/" + id);
+      console.log(id);
+      payload = await response.json();
+      console.log("get profile payload: ", payload);
+    } catch (err) {
+      console.log(err);
+    }
   return {
     type: "PROFILE",
     payload,
@@ -58,7 +58,6 @@ export async function getProfileSaved(id) {
   try {
     let response = await fetch("/profile/" + id + "/profile-saved");
     payload = await response.json();
-    //console.log("get profile saved payload: ", payload);
   } catch (err) {
     console.log(err);
   }
@@ -95,9 +94,8 @@ export async function editUser(id, userInfo) {
       body: JSON.stringify(userInfo),
     });
     payload = response.json;
-    // console.log(payload);
   } catch (err) {
-    //console.log(err);
+    console.log(err);
   }
   return {
     type: "EDIT_USER",

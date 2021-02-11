@@ -69,8 +69,13 @@ class SignIn extends Component {
                 type="button"
                 className="btn-signin btn-primary"
                 onClick={() => {
+                  let success;
                   if (this.validator.allValid()) {
-                    this.props.signIn(this.state.username, this.state.password);
+                    this.props.signIn(this.state.username, this.state.password)
+                    .then(res=>{
+                      success = res.payload;
+                    })
+                    console.log(success);
                   } else {
                     this.validator.showMessages();
                   }
@@ -86,6 +91,6 @@ class SignIn extends Component {
   }
 }
 const mapactionstoprops = (dispatch) => {
-  return bindActionCreators({ signIn }, dispatch);
+  return bindActionCreators({ signIn }, dispatch); 
 };
 export default connect(null, mapactionstoprops)(SignIn);
