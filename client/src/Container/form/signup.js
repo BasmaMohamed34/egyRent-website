@@ -1,5 +1,9 @@
 import "./sign.css";
 import { Component } from "react";
+import { connect } from "react-redux";
+import { signUp } from "../../actions/profile";
+import { bindActionCreators } from "redux";
+
 import SimpleReactValidator from "simple-react-validator";
 
 class Signup extends Component {
@@ -9,12 +13,15 @@ class Signup extends Component {
       autoForceUpdate: this,
     });
     this.state = {
-      username: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      phone: 0,
+      user: {
+        username: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        phone: 0,
+        location: "",
+      },
     };
   }
   render() {
@@ -33,16 +40,18 @@ class Signup extends Component {
                 placeholder="First Name"
                 required
                 id="first name"
-                value={this.state.firstName}
+                value={this.state.user.firstname}
                 onChange={(e) => {
-                  this.setState({ firstName: e.target.value });
+                  this.setState({
+                    user: { ...this.state.user, firstname: e.target.value },
+                  });
                 }}
                 onBlur={() => this.validator.showMessageFor("first name")}
               />
               <div className="validation">
                 {this.validator.message(
                   "first name",
-                  this.state.firstName,
+                  this.state.user.firstname,
                   "required|alpha_space"
                 )}
               </div>
@@ -52,16 +61,18 @@ class Signup extends Component {
                 placeholder="Last Name"
                 required
                 id="last name"
-                value={this.state.lastName}
+                value={this.state.user.lastname}
                 onChange={(e) => {
-                  this.setState({ lastName: e.target.value });
+                  this.setState({
+                    user: { ...this.state.user, lastname: e.target.value },
+                  });
                 }}
                 onBlur={() => this.validator.showMessageFor("last name")}
               />
               <div className="validation">
                 {this.validator.message(
                   "last name",
-                  this.state.lastName,
+                  this.state.user.lastname,
                   "required|alpha_space"
                 )}
               </div>
@@ -70,17 +81,19 @@ class Signup extends Component {
                 placeholder="Username"
                 required
                 id="username"
-                value={this.state.username}
+                value={this.state.user.username}
                 onChange={(e) => {
-                  this.setState({ username: e.target.value });
+                  this.setState({
+                    user: { ...this.state.user, username: e.target.value },
+                  });
                 }}
                 onBlur={() => this.validator.showMessageFor("username")}
               />
               <div className="validation">
                 {this.validator.message(
                   "username",
-                  this.state.username,
-                  "required|alpha_space"
+                  this.state.user.username,
+                  "required|alpha_num_dash"
                 )}
               </div>
               <input
@@ -88,16 +101,18 @@ class Signup extends Component {
                 name="email"
                 placeholder="Email Address"
                 id="email"
-                value={this.state.email}
+                value={this.state.user.email}
                 onChange={(e) => {
-                  this.setState({ email: e.target.value });
+                  this.setState({
+                    user: { ...this.state.user, email: e.target.value },
+                  });
                 }}
                 onBlur={() => this.validator.showMessageFor("email")}
               />
               <div className="validation">
                 {this.validator.message(
                   "email",
-                  this.state.email,
+                  this.state.user.email,
                   "required|email"
                 )}
               </div>
@@ -105,16 +120,18 @@ class Signup extends Component {
                 type="number"
                 placeholder="Phone Number"
                 id="phone"
-                value={this.state.phone}
+                value={this.state.user.phone}
                 onChange={(e) => {
-                  this.setState({ phone: e.target.value });
+                  this.setState({
+                    user: { ...this.state.user, phone: e.target.value },
+                  });
                 }}
                 onBlur={() => this.validator.showMessageFor("phone")}
               />
               <div className="validation">
                 {this.validator.message(
                   "phone",
-                  this.state.phone,
+                  this.state.user.phone,
                   "required|phone"
                 )}
               </div>
@@ -122,17 +139,38 @@ class Signup extends Component {
                 type="password"
                 placeholder="Password"
                 id="password"
-                value={this.state.password}
+                value={this.state.user.password}
                 onChange={(e) => {
-                  this.setState({ password: e.target.value });
+                  this.setState({
+                    user: { ...this.state.user, password: e.target.value },
+                  });
                 }}
                 onBlur={() => this.validator.showMessageFor("password")}
               />
               <div className="validation">
                 {this.validator.message(
                   "password",
-                  this.state.password,
-                  "required|password"
+                  this.state.user.password,
+                  "required|password|min:4" //will be 8 after editing users passwords in db
+                )}
+              </div>
+              <input
+                type="location"
+                placeholder="Location"
+                id="location"
+                value={this.state.user.location}
+                onChange={(e) => {
+                  this.setState({
+                    user: { ...this.state.user, location: e.target.value },
+                  });
+                }}
+                onBlur={() => this.validator.showMessageFor("location")}
+              />
+              <div className="validation">
+                {this.validator.message(
+                  "location",
+                  this.state.user.location,
+                  "required|string"
                 )}
               </div>
               <select className="text-center">
@@ -146,19 +184,20 @@ class Signup extends Component {
                 Select profile picture:
               </label>
               <input type="file" id="img" name="img" />
-              <a
-                href="#s"
+              <button
                 className="btn-signin btn-primary"
+                type="button"
                 onClick={(e) => {
                   if (this.validator.allValid()) {
-                    alert("signed up");
+                    console.log(this.state.user);
+                    this.props.signUp(this.state.user);
                   } else {
                     this.validator.showMessages();
                   }
                 }}
               >
                 Sign Up
-              </a>
+              </button>
             </form>
           </div>
         </div>
@@ -166,4 +205,7 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+const mapactionstoprops = (dispatch) => {
+  return bindActionCreators({ signUp }, dispatch);
+};
+export default connect(null, mapactionstoprops)(Signup);

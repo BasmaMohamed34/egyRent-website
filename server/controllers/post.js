@@ -10,14 +10,11 @@ module.exports = {
   },
 
   createPost: async (req, res, next) => {
-    //const userId = req.params.id;
-    //console.log(req.myFiles); //Postman test for multiple files works!!!
-    for (let i in req.myFiles) {
-      console.log(i.path);
-    }
-
-    return res.json({ message: "created" });
-    /* const newPost = new Posts({
+    const userId = req.params.id;
+    //console.log(req.files); //Postman test for multiple files works!!!
+    const picturesList = req.files.map((file) => file.path);
+    console.log(picturesList);
+    const newPost = new Posts({
       title: req.body.title,
       location: req.body.location,
       address: req.body.address,
@@ -38,14 +35,14 @@ module.exports = {
       breakfast: req.body.breakfast,
       ac: req.body.ac,
       smokeAlarm: req.body.smokeAlarm,
-      //pictures: [req.myFiles.path.map((file) => file.path)],
+      pictures: picturesList,
     });
     const user = await User.findById(userId);
     newPost.createdBy = user.id;
     await newPost.save();
     user.posts.push(newPost);
     await user.save();
-    res.status(201).json(newPost); */
+    res.status(201).json(newPost);
   },
   
   savePost: async (req, res, next) => {

@@ -42,12 +42,11 @@ const postSchema = new schema({
     type: Number,
     required: true,
   },
-  pictures: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
+  pictures: {
+    type: Array,
+    required: true,
+  },
+
   comments: [
     {
       type: String,

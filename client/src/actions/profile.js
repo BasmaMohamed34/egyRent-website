@@ -16,22 +16,46 @@ export async function signIn(username, password) {
   } catch (err) {
     console.log(err);
   }
+  //console.log(payload.message);
+  payload = payload.message;
   return {
     type: "SIGNIN",
+    payload,
+  };
+}
+export async function signUp(user) {
+  let payload = null;
+  try {
+    let response = await fetch("/signin", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      body: /* JSON.stringify({ user }) */ JSON.stringify(user),
+    });
+    payload = await response.json();
+    console.log(payload);
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "SIGNUP",
     payload,
   };
 }
 export async function getProfile(id) {
   console.log(id);
   let payload = null;
-    try {
-      let response = await fetch("/profile/" + id);
-      console.log(id);
-      payload = await response.json();
-      console.log("get profile payload: ", payload);
-    } catch (err) {
-      console.log(err);
-    }
+  try {
+    let response = await fetch("/profile/" + id);
+    console.log(id);
+    payload = await response.json();
+    console.log("get profile payload: ", payload);
+  } catch (err) {
+    console.log(err);
+  }
   return {
     type: "PROFILE",
     payload,

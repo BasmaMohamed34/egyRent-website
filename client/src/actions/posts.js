@@ -52,7 +52,7 @@ export async function getPostById(id) {
 export async function createPost(id, post) {
   let payload = null;
   //console.log(post);
-  console.log(Object.fromEntries(post));
+  // console.log(Object.fromEntries(post));
   try {
     let response = await fetch(`/${id}/createpost`, {
       method: "POST",

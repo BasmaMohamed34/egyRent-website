@@ -494,15 +494,15 @@ class CreatePost extends Component {
                 Object.keys(this.state.post).forEach((key) =>
                   formData.append(key, this.state.post[key])
                 );
-                formData.append("post", this.state.post);
-                formData.append("myFiles", this.state.pictures);
+                for (let i = 0; i < this.state.pictures.length; i++) {
+                  formData.append("files", this.state.pictures[i]);
+                }
                 this.props.createPost(
                   window.location.pathname.split("/")[1],
                   formData
                 );
+
                 console.log(this.state.pictures);
-                console.log(formData);
-                console.log(Object.fromEntries(formData));
               }}
             >
               Create Post
