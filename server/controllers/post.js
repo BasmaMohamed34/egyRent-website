@@ -1,5 +1,6 @@
 const Posts = require("../models/post");
 const User = require("../models/users");
+
 module.exports = {
   getPost(req, res, next) {
     const postId = req.params.id;
@@ -45,6 +46,7 @@ module.exports = {
     await user.save();
     res.status(201).json(newPost);
   },
+  
   savePost: async (req, res, next) => {
     const postId = req.params.id;
     const userName = req.params.username;

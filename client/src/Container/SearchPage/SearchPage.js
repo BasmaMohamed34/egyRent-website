@@ -15,9 +15,14 @@ class SearchPage extends Component {
     this.state = {
       Search: [],
       bedrooms : "",
-      beds : ""
+      beds : "",
+      type : "",
+      price : ""
+      
     };
   }
+
+  
   async componentDidMount() {
     let x = await this.props.getSearch();
     console.log("sdddd",x.payload);
@@ -39,18 +44,40 @@ class SearchPage extends Component {
     });
   }
 
+  handleChange =(e)=> {
+    this.setState({
+      type : e.target.value
+    });
+  }
+
+  handleReset =(e)=> {
+    this.setState({
+      type : "",bedrooms:"",beds:"",price:""
+    });
+  }
+
+  
+  handlePrice =(e)=> {
+    this.setState({
+      price : e.target.value
+    });
+  }
+ 
+
 
   listSearch (searchList){
    return (
-    searchList.sort((a, b) => a.price > b.price ? 1 : -1).filter( (auto) =>  String(auto.price).includes(String(this.state.price))).map((item) =>{
+    searchList.sort((a, b) => a.price > b.price ? 1 : -1).map((item) =>{
       return(
         <div>
          </div>
       )
     }
    ) ,
-   searchList.filter( (auto) =>  String(auto.bedrooms).includes(String(this.state.bedrooms)) 
-   && String(auto.beds).includes(String(this.state.beds))).map((item) =>{
+   searchList.filter( (auto) =>  String(auto.bedrooms).includes(String(this.state.bedrooms))
+   && String(auto.price).includes(String(this.state.price))
+   && String(auto.beds).includes(String(this.state.beds))
+   && String(auto.type).includes(String(this.state.type))).map((item) =>{
     return(
       <div className="container1">
         <SearchResult
@@ -73,11 +100,35 @@ class SearchPage extends Component {
       <div>
          <div>
          <h1 className="nearby1">Stays Nearby </h1>
-         <form >
-        <input  className="search1" type="number" onKeyUp={this.handleClick} placeholder="Search By Bedrooms... "/>
-        <input  className="search1" type="number" onKeyUp={this.handleClick1} placeholder="Search By Beds..."/>
+<div className="contain">
+        <label className="label">bedrooms Number ==></label>
+        <select className="search1" value={this.state.bedrooms} onChange={this.handleClick}>
+            <option  value="">-------Select bedrooms Number------</option>
+            <option  value="1">1</option>
+            <option  value="2">2</option>
+            <option  value="3">3</option>
+            <option  value="4">4</option>
+        </select>
+        <label className="label">beds Number ==></label>
+        <select className="search1" value={this.state.beds} onChange={this.handleClick1}>
+            <option  value="">---------Select Beds Number---------</option>
+            <option  value="1">1</option>
+            <option  value="2">2</option>
+            <option  value="3">3</option>
+            <option  value="4">4 </option>
+        </select>
+        <label className="label">Type ==></label>
+        <select className="search1" value={this.state.type} onChange={this.handleChange}>
+            <option  value="">--------------Select Type--------------</option>
+            <option  value="room">room</option>
+            <option  value="house">house</option>
+            <option  value="Boutique">Boutique</option>
+            <option  value="Bed">Bed </option>
+        </select> 
+        <input className="search1" type="text" onKeyUp={this.handlePrice} placeholder="Enter Price..."/>
+        <input className="reset" type="button" onClick={this.handleReset} value="Reset"/>
+</div>
         <Link to="/search-result"></Link>
-         </form>
        
       </div>
       <div >

@@ -1,18 +1,13 @@
 const http = require("http");
+const usersRoute = require("./routes/users.route");
 const express = require("express");
 const bodyParser = require("body-parser");
 const home = require("./routes/home");
 const search = require("./routes/search");
-const post = require("./routes/post");
 const explore = require("./routes/explore");
-const profile = require("./routes/profile");
 const PORT = process.env.PORT || 5000;
 const app = express();
-const bcrypt = require("bcrypt");
-/* const fileUpload = require("express-fileupload"); */
-/* var multer = require("multer"); */
-const myPlaintextPassword = "s0//P4$$w0rD";
-const someOtherPlaintextPassword = "not_bacon";
+const cors = require("cors");
 const mongoose = require("mongoose");
 const connection_url =
   "mongodb+srv://egyRent:egyRent-website-G5@cluster0.f7cmj.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -31,21 +26,15 @@ app.use(
   })
 );
 
-// Load hash from your password DB.
-// bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
-//     // result == true
-// });
-// bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
-//     // result == false
-// });
-
 app.use(bodyParser.json());
 /* app.use(fileUpload()); */
+
+usersRoute(app);
 home(app);
+
 explore(app);
 search(app);
-post(app);
-profile(app);
+
 app.use((err, req, res, next) => {
   // any error should return from response
   console.log(err);
@@ -53,12 +42,6 @@ app.use((err, req, res, next) => {
 });
 
 app.use("/uploads/", express.static("../uploads"));
-
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello World');
-// });
 app.listen(PORT, () => {
   console.log("Server running...");
 });
