@@ -13,8 +13,15 @@
 .card:hover {
   transform: scale(1.07);
 }
-
-.card > img ,.Ecard >img{
+.imgDivEcard {
+  height: 55vh;
+  width: 100%;
+}
+.divIMG {
+  height: 40vh;
+}
+.card > img,
+.Ecard > img {
   object-fit: fill;
   min-width: 50px;
   min-height: 50px;

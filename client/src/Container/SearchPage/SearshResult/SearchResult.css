@@ -11,6 +11,9 @@
   height: 100%;
   border-radius: 20px;
 }
+.imgDIV {
+  height: 40vh;
+}
 .searchResult:hover {
   background-color: rgb(255, 255, 255);
 }

@@ -9,7 +9,6 @@ const profile = require("./routes/profile");
 const PORT = process.env.PORT || 5000;
 const app = express();
 const bcrypt = require("bcrypt");
-const cors = require("cors");
 /* const fileUpload = require("express-fileupload"); */
 /* var multer = require("multer"); */
 const myPlaintextPassword = "s0//P4$$w0rD";
@@ -21,8 +20,6 @@ mongoose.connect(connection_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
-app.use(cors());
 
 /* app.use(bodyParser.json()); */
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
@@ -54,6 +51,9 @@ app.use((err, req, res, next) => {
   console.log(err);
   res.status(422).send({ err: err.message });
 });
+
+app.use("/uploads/", express.static("../uploads"));
+
 // const server = http.createServer((req, res) => {
 //   res.statusCode = 200;
 //   res.setHeader('Content-Type', 'text/plain');

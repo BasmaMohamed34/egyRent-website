@@ -4,14 +4,16 @@ module.exports = {
   getPost(req, res, next) {
     const postId = req.params.id;
     Posts.find({ _id: postId })
+      .populate("createdBy")
       .then((Posts) => res.send(Posts))
+      .then((Posts) => res.send(Posts.createdBy))
       .catch(next);
   },
 
   createPost: async (req, res, next) => {
     const userId = req.params.id;
     //console.log(req.files); //Postman test for multiple files works!!!
-    const picturesList = req.files.map((file) => file.path);
+    const picturesList = req.files.map((file) => file.filename);
     console.log(picturesList);
     const newPost = new Posts({
       title: req.body.title,

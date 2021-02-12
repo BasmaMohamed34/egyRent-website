@@ -45,7 +45,11 @@ class SearchByLocation extends Component {
             <div className="row">
               <div className="searchResult container">
                 <div className="col-sm-12 col-md-4 img-fluid">
-                  <img src={res.pictures} alt="" className="imgSearchResult" />
+                  <img
+                    src={"http://localhost:5000/uploads/" + res.pictures}
+                    alt=""
+                    className="imgSearchResult"
+                  />
                 </div>
                 <div className="searchResult__info col-md-10 col col-sm-12">
                   <div className="searchResult__infoTop text-dark col-md-10 col">
@@ -54,10 +58,18 @@ class SearchByLocation extends Component {
                     <h6>____</h6>
                     <h6>{res.description}</h6>
                     <h4 className="d-inline mt-5">{res.price}</h4>
-                    <Route render={({ history}) => ( 
-            <button className="btn Detailsbtn btn-primary float-right" onClick={() => { history.push(`/post/${res._id}`)}}>
-            Show Details </button>
-            )}/>
+                    <Route
+                      render={({ history }) => (
+                        <button
+                          className="btn Detailsbtn btn-primary float-right"
+                          onClick={() => {
+                            history.push(`/post/${res._id}`);
+                          }}
+                        >
+                          Show Details{" "}
+                        </button>
+                      )}
+                    />
                   </div>
                 </div>
               </div>

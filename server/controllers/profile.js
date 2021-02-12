@@ -26,7 +26,6 @@ module.exports = {
   },
 
   createUser(req, res, next) {
-    //console.log("userss");
     const myPlaintextPassword = req.body.password;
     bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
       // Store hash in your password DB.
@@ -34,11 +33,25 @@ module.exports = {
         console.log(hash);
         req.body.password = hash;
         userProps = req.body;
-        User.create(userProps)
+        userpic = req.file.filename;
+        User.create({
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          phone: req.body.phone,
+          location: req.body.location,
+          photo: req.file.filename,
+          type: req.body.type,
+        })
+          .then((user) => user.save())
           .then((user) => res.send(user))
           .catch(next);
       } else console.log(err);
     });
+    /* console.log(req.body);
+    console.log(req.file); */
   },
   deleteUser: async (req, res, next) => {
     const userId = req.params.id;
@@ -48,12 +61,20 @@ module.exports = {
   },
   editUser: async (req, res, next) => {
     const userId = req.params.id;
-    const userProps = req.body;
-    //console.log(userProps);
-    await User.findByIdAndUpdate(userId, userProps)
+    /*  const userProps = req.body; */
+    await User.findByIdAndUpdate(userId, {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      username: req.body.username,
+      email: req.body.email,
+      phone: req.body.phone,
+      location: req.body.location,
+      photo: req.file.filename,
+    })
       .then((user) => res.status(200).json(user))
       .catch(next);
   },
+
   signIn: async (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;

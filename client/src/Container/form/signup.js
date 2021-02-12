@@ -21,6 +21,8 @@ class Signup extends Component {
         password: "",
         phone: 0,
         location: "",
+        type: "",
+        photo: "",
       },
     };
   }
@@ -173,7 +175,19 @@ class Signup extends Component {
                   "required|string"
                 )}
               </div>
-              <select className="text-center">
+              <select
+                className="text-center"
+                defaultValue={this.state.user.type}
+                onChange={(e) => {
+                  this.setState({
+                    user: {
+                      ...this.state.user,
+                      type: e.target.value,
+                    },
+                  });
+                  console.log(this.state.user);
+                }}
+              >
                 <option selected disabled>
                   Signup as
                 </option>
@@ -181,19 +195,33 @@ class Signup extends Component {
                 <option id="host">Host</option>
               </select>
               <label for="img" className="mt-2">
-                Select profile picture:
+                Select profile photo:
               </label>
-              <input type="file" id="img" name="img" />
+              <input
+                type="file"
+                id="pic"
+                name="pic"
+                onChange={(e) => {
+                  this.setState({
+                    user: { ...this.state.user, photo: e.target.files[0] },
+                  });
+                }}
+              />
               <button
                 className="btn-signin btn-primary"
                 type="button"
                 onClick={(e) => {
-                  if (this.validator.allValid()) {
-                    console.log(this.state.user);
-                    this.props.signUp(this.state.user);
-                  } else {
+                  /* if (this.validator.allValid()) { */
+                  e.preventDefault();
+                  const formData = new FormData();
+                  //formData.append("photo", this.state.photo);
+                  Object.keys(this.state.user).forEach((key) =>
+                    formData.append(key, this.state.user[key])
+                  );
+                  this.props.signUp(formData);
+                  /* } else {
                     this.validator.showMessages();
-                  }
+                  } */
                 }}
               >
                 Sign Up

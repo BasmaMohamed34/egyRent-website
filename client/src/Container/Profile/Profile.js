@@ -36,9 +36,9 @@ class Profile extends Component {
             <div className="lg:w-4/6 mx-auto">
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
-                  src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png"
+                  src={"http://localhost:5000/uploads/" + profile.photo}
                   alt="content"
-                  className="rounded-circle w-75 bg-dark imgCenter"
+                  className="rounded-circle w-75 bg-dark imgCenter border-0"
                 ></img>
                 <div className="flex flex-col sm:flex-row mt-10">
                   <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">

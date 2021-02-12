@@ -11,17 +11,18 @@ class EditUser extends Component {
     this.state = {
       //profile: {},
       user: {},
+      photo: "",
+      /* "https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png" */
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   async componentDidMount() {
-    //console.log(this.props);
     await this.props.getProfile(window.location.pathname.split("/")[2]);
     this.setState({
       user: this.props.profile,
     });
-    //console.log(this.state.profile);
   }
+
   handleInputChange(e) {
     const target = e.target;
     const value = target.value;
@@ -106,19 +107,7 @@ class EditUser extends Component {
                       onChange={this.handleInputChange}
                     />
                   </div>
-                  <div className="col-6">
-                    <label for="password" className="mt-3">
-                      Password
-                    </label>
-                    <input
-                      class="form-control"
-                      type="password"
-                      name="password"
-                      value={this.state.user.password}
-                      placeholder="your new password"
-                      onChange={this.handleInputChange}
-                    />
-                  </div>
+
                   <div className="col-6">
                     <label for="location" className="mt-3">
                       Location
@@ -145,6 +134,28 @@ class EditUser extends Component {
                       onChange={this.handleInputChange}
                     />
                   </div>
+                  <div className="col-12">
+                    <label for="photo" className="col-6 mt-3 mr-3">
+                      your new profile picture:
+                    </label>
+                    {/* <img
+                      src={this.state.photo}
+                      alt="profile Pic"
+                      className="rounded-circle w-25 h-75 bg-dark mt-3 mb-2 border-0"
+                    ></img> */}
+                    <input
+                      name="photo"
+                      className="form-control-file col-12"
+                      type="file"
+                      onChange={(e) => {
+                        /* if (e.target.files[0] !== null) { */
+                        this.setState({
+                          photo: e.target.files[0],
+                        });
+                        /* } */
+                      }}
+                    />
+                  </div>
                 </div>
               </form>
             </div>
@@ -155,14 +166,20 @@ class EditUser extends Component {
                     type="button"
                     className="btn btn-primary"
                     onClick={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData();
+                      Object.keys(this.state.user).forEach((key) =>
+                        formData.append(key, this.state.user[key])
+                      );
+                      formData.append("photo", this.state.photo);
                       this.props.editUser(
                         window.location.pathname.split("/")[2],
-                        this.state.user
+                        formData
                       );
-                      /* history.push(
+
+                      window.location.assign(
                         "/profile/" + window.location.pathname.split("/")[2]
-                      ); */
-                      window.location.reload(false);
+                      );
                     }}
                   >
                     Update

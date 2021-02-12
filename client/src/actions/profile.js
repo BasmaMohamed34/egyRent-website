@@ -1,5 +1,4 @@
 export async function signIn(username, password) {
-  console.log(username, password);
   let payload = null;
   try {
     let response = await fetch("/signin", {
@@ -12,12 +11,10 @@ export async function signIn(username, password) {
       body: JSON.stringify({ username, password }),
     });
     payload = await response.json();
-    // console.log(payload.message);
   } catch (err) {
     console.log(err);
   }
-  //console.log(payload.message);
-  payload = payload.message;
+  /* payload = payload.message; */
   return {
     type: "SIGNIN",
     payload,
@@ -26,16 +23,19 @@ export async function signIn(username, password) {
 export async function signUp(user) {
   let payload = null;
   try {
-    let response = await fetch("/signin", {
+    let response = await fetch("/signup", {
       method: "POST",
-      headers: {
+      /* headers: {
+        "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      body: /* JSON.stringify({ user }) */ JSON.stringify(user),
+        type: "formData",
+      }, */
+      body: user,
     });
     payload = await response.json();
+    /* for (var pair of user.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    } */
     console.log(payload);
   } catch (err) {
     console.log(err);
@@ -45,6 +45,7 @@ export async function signUp(user) {
     payload,
   };
 }
+
 export async function getProfile(id) {
   console.log(id);
   let payload = null;
@@ -110,12 +111,12 @@ export async function editUser(id, userInfo) {
   try {
     let response = await fetch(`/profile/${id}`, {
       method: "PATCH",
-      headers: {
+      /*  headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-      },
+      }, */
 
-      body: JSON.stringify(userInfo),
+      body: userInfo,
     });
     payload = response.json;
   } catch (err) {

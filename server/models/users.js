@@ -32,12 +32,14 @@ const usersSchema = new schema({
   },
   photo: {
     type: String,
+    required: true,
   },
   notification: [],
   /* notification: { type: Array }, Should be like this!!!*/
   type: {
-    host: { type: Boolean },
-    traveller: { type: Boolean },
+    /* host: { type: Boolean },
+    traveller: { type: Boolean }, */
+    type: String,
   },
   posts: [
     {

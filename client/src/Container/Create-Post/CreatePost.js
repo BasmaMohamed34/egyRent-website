@@ -128,11 +128,13 @@ class CreatePost extends Component {
                     console.log(this.state.post);
                   }}
                 >
-                  <option value="" selected disabled hidden>
+                  <option selected disabled>
                     Choose from list here
                   </option>
                   <option value="Apartment">Apartment</option>
-                  <option value="Bed and Room">Room</option>
+                  <option value="Room">Room</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Roof">Roof</option>
                   <option value="Boutique">Boutique</option>
                   <option value="Studio">Studio</option>
                   <option value="House">House</option>
@@ -342,7 +344,7 @@ class CreatePost extends Component {
               <div className="col-sm-12">
                 <label>Interests</label>
                 <br />
-                <div class="checkboxes">
+                <div class="checkboxes pr-2">
                   <label for="wifi">
                     <input
                       type="checkbox"
@@ -358,9 +360,9 @@ class CreatePost extends Component {
                         // console.log(this.state.post.wifi);
                       }}
                     />
-                    <span className="text-dark">WiFi</span>
+                    <span className="text-dark m-1">WiFi</span>
                   </label>
-                  <label for="kitchen">
+                  <label for="kitchen" className="m-2">
                     <input
                       type="checkbox"
                       id="kitchen"
@@ -374,9 +376,9 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">kitchen</span>
+                    <span className="text-dark m-1">kitchen</span>
                   </label>
-                  <label for="heating">
+                  <label for="heating" className="m-2">
                     <input
                       type="checkbox"
                       id="heating"
@@ -390,7 +392,7 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">Heating</span>
+                    <span className="text-dark m-1">Heating</span>
                   </label>
                   <label for="tv">
                     <input
@@ -406,7 +408,7 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">TV</span>
+                    <span className="text-dark m-1">TV</span>
                   </label>
                   <br />
                   <label for="elevator">
@@ -423,9 +425,9 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">Elevator</span>
+                    <span className="text-dark m-1">Elevator</span>
                   </label>
-                  <label for="breakfast">
+                  <label for="breakfast" className="m-2">
                     <input
                       type="checkbox"
                       id="breakfast"
@@ -439,9 +441,9 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">Breakfast</span>
+                    <span className="text-dark m-1">Breakfast</span>
                   </label>
-                  <label for="ac">
+                  <label for="ac" className="m-2">
                     <input
                       type="checkbox"
                       id="ac"
@@ -455,9 +457,9 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">AC</span>
+                    <span className="text-dark m-1">AC</span>
                   </label>
-                  <label for="smokeAlarm">
+                  <label for="smokeAlarm" className="m-2">
                     <input
                       type="checkbox"
                       id="smokeAlarm"
@@ -471,7 +473,7 @@ class CreatePost extends Component {
                         });
                       }}
                     />
-                    <span className="text-dark">smokeAlarm</span>
+                    <span className="text-dark m-1">smokeAlarm</span>
                   </label>
                 </div>
               </div>

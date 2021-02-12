@@ -37,7 +37,7 @@ class Home extends Component {
         <h1 className=" m-5 text-center">Top Destination</h1>
         <div
           className="row d-flex justify-content-center top-destination
-        h-25"
+        "
         >
           <Card
             src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/0a/11/98/alexandria.jpg?w=1000&h=600&s=1"

@@ -23,7 +23,7 @@ class Saved extends Component {
         <div className="col col-md-12p-2 ">
           <img
             className=" rounded"
-            src={profileSaved.pictures[0]}
+            src={"http://localhost:5000/uploads/" + profileSaved.pictures[0]}
             alt="img"
             style={{ width: "100%", height: "50%" }}
           />

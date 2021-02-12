@@ -25,7 +25,7 @@ class ProfilePosts extends Component {
         <div className="col col-md-12p-2 ">
           <img
             className=" rounded"
-            src={profilePosts.pictures[0]}
+            src={"http://localhost:5000/uploads/" + profilePosts.pictures[0]}
             alt="img"
             style={{ width: "100%", height: "50%" }}
           />
@@ -34,7 +34,10 @@ class ProfilePosts extends Component {
             <h5 className="card-title">{profilePosts.location}</h5>
             <p className="card-text">{profilePosts.description}</p>
             <h4 className="card-title">{profilePosts.price}$ / Night</h4>
-            <a href="#!" className="btn btn-primary mt-1">
+            <a
+              href={"/post/" + profilePosts._id}
+              className="btn btn-primary mt-1"
+            >
               More Details
             </a>
           </div>

@@ -8,13 +8,13 @@ export function Card({ src, title }) {
     <Route
       render={({ history }) => (
         <div
-          className="col col-md-4 col-lg-3"
+          className="col col-md-4 col-lg-3 "
           onClick={() => {
             history.push(`/search-result/location=${title}`);
           }}
         >
           <div className="card">
-            <img src={src} alt="" />
+            <img src={src} alt="" className="divIMG" />
             <div className="card__info">
               <h2 className="text-center text-uppercase">{title}</h2>
             </div>
@@ -37,7 +37,11 @@ const Ecard = ({ posts }) => {
             }}
           >
             <div className="card Ecard border-0">
-              <img src={post.pictures[0]} alt="" />
+              <img
+                src={"http://localhost:5000/uploads/" + post.pictures[0]}
+                alt=""
+                className="imgDivEcard"
+              />
               <div className="card__info">
                 <h2>{post.title}</h2>
                 <h2>{post.location}</h2>
