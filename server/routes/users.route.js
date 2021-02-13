@@ -31,9 +31,9 @@ module.exports = (app) => {
   app.get("/profile/:id/profile-saved", auth.verifyUserToken, profileController.getSaved);
   app.delete("/profile/:id", auth.verifyUserToken, profileController.deleteUser);
   app.patch("/profile/:id", auth.verifyUserToken, profileController.editUser);
-  app.post("/createuser", profileController.createUser);
+  app.post("/signup", profileController.createUser);
   app.post("/signin", profileController.signIn);
-  app.get("/post/:id", auth.verifyUserToken, postController.getPost);
+  app.get("/post/:id", postController.getPost);
   app.get("/:username/post/:id", auth.verifyUserToken, postController.savePost);
   app.post("/:id/createpost", auth.verifyUserToken, upload, postController.createPost);
 };

@@ -15,7 +15,7 @@ module.exports = {
       if (validatePassowrd) {
         let payload = { id: user._id, user_type_id: user.user_type_id };
         const token = jwt.sign(payload, config.TOKEN_SECRET);
-        res.status(200).header("auth-token", token).send({ token: token });
+        res.status(200).header("auth-token", token).send({ token: token, id: user._id });
         status = true;
         next();
       } else {
