@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import BellIcon from 'react-bell-icon';
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -35,6 +36,24 @@ class Header extends Component {
               alt=""
             />
           </Link>
+          {/*  */}
+          <li className="nav-item bg md-mt-3 mb-3">
+                    <NavLink
+                      to="/chat"
+                      className="btn btn-pink"
+                      exact
+                      style={{
+                        backgroundColor: "#007bff",
+                        padding: "7px",
+                        borderRadius: "5px",
+                        color: "#fff",
+                      }}
+                    >
+                      <b>Live Chat</b>
+                    </NavLink>
+                  </li>
+            
+          {/*  */}
           <button
             className="navbar-toggler"
             type="button"
@@ -119,6 +138,13 @@ class Header extends Component {
                       <b>Sign In</b>
                     </NavLink>
                   </li>
+                  <li className="smooth-menu nav-item" data-toggle="tooltip" title="Languages" >
+                 <NavLink to='notify'
+                 exact>
+                             <BellIcon width='40'  active={true} animate={true} color="#fff" /> 
+                 </NavLink>
+          </li>
+         
                 </>
               )}
             </ul>
