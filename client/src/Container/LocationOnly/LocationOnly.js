@@ -2,26 +2,24 @@ import React from "react";
 import { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getByLocation } from "../../actions/Search";
+import { getDestination } from "../../actions/Search";
 import { Route } from "react-router-dom";
 
-class SearchByLocation extends Component {
+class LocationOnly extends Component {
   constructor() {
     super();
     this.state = {
-      result: [],
-      loc: "",
+      res: [],
     };
   }
 
   async componentDidMount() {
-    //console.log(this.props.match.params.location);
-
-    let x = await this.props.getByLocation(
-      this.props.match.params.location.toString().toLowerCase(),
-      this.props.match.params.guests
+    let locs = await this.props.getDestination(
+      this.props.match.params.location
     );
-    this.setState({ result: x.payload });
+    this.setState({ res: locs.payload });
+    console.log(this.props);
+    console.log(this.state.res);
   }
 
   render = () => {
@@ -31,19 +29,21 @@ class SearchByLocation extends Component {
           <h1 className="text-center p-5">
             Stays in {this.props.match.params.location}
           </h1>
-          <div>{this.renderSearch(this.state.result)}</div>
+          <div>{this.renderDestination(this.state.result)}</div>
         </div>
       </div>
     );
   };
-  renderSearch(Search) {
-    console.log(Search);
-    if (Search.length !== 0) {
-      return Search.map((res) => {
+  renderDestination() {
+    //console.log(DestinationSearch);
+    console.log(this.state.res);
+    //console.log(":(", DestinationSearch);
+    if (this.state.res.length !== 0) {
+      return this.state.res.map((res) => {
         return (
           <>
             <div className="row">
-              <div className="searchResult container">
+              <div className="searchResult container divIMG">
                 <div className="col-sm-12 col-md-4 img-fluid">
                   <img
                     src={"http://localhost:5000/uploads/" + res.pictures[0]}
@@ -57,7 +57,7 @@ class SearchByLocation extends Component {
                     <h3>{res.title}</h3>
                     <h6>____</h6>
                     <h6>{res.description}</h6>
-                    <h4 className="d-inline mt-5">{res.price}</h4>
+                    <h4 className="d-inline mt-5">{res.price}$ / Night</h4>
                     <Route
                       render={({ history }) => (
                         <button
@@ -81,11 +81,11 @@ class SearchByLocation extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state.locationSearch);
-  return { Search: state.locationSearch };
+  console.log(state.DestinationSearch);
+  return { DestinationSearch: state.DestinationSearch };
 };
 const mapactionstoprops = (dispatch) => {
-  return bindActionCreators({ getByLocation }, dispatch);
+  return bindActionCreators({ getDestination }, dispatch);
 };
 
-export default connect(mapStateToProps, mapactionstoprops)(SearchByLocation);
+export default connect(mapStateToProps, mapactionstoprops)(LocationOnly);

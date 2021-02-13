@@ -13,29 +13,27 @@ export async function getSearch() {
   };
 }
 
-export async function getByLocation(location, guests) {
-  //console.log(location, guests);
+export async function getDestination(location) {
+  console.log(location);
   let payload = null;
   try {
-    let response = await fetch(`/search-result/${location}/${guests}`);
+    let response = await fetch(`/search-result/${location}`);
     payload = await response.json();
-    //payload = response.json();
-    //console.log("Payload", payload);
   } catch (err) {
     console.log(err);
   }
   console.log(payload);
   return {
-    type: "LOCATION_GUESTS",
+    type: "DESTINATION",
     payload,
   };
 }
 
-export async function getLocation(location) {
+export async function getByLocation(location, guests) {
   //console.log(location, guests);
   let payload = null;
   try {
-    let response = await fetch(`/search-result/${location}`);
+    let response = await fetch(`/search-result/${location}/${guests}`);
     payload = await response.json();
     //payload = response.json();
     //console.log("Payload", payload);

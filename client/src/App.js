@@ -6,6 +6,7 @@ import Footer from "./Component/Footer/Footer";
 import AboutUs from "./Component/aboutus/aboutus";
 import CreatePost from "./Container/Create-Post/CreatePost";
 import SearchByLocation from "./Container/searchByLocation/searchByLocation";
+import LocationOnly from "./Container/LocationOnly/LocationOnly";
 import SignIn from "./Container/form/signin";
 import Signup from "./Container/form/signup";
 import Profile from "./Container/Profile/Profile";
@@ -33,8 +34,8 @@ function App() {
           />
           <Route
             exact
-            path="/search-result?location=location"
-            component={SearchByLocation}
+            path="/search-result/:location"
+            component={LocationOnly}
           />
           <Route exact path="/search-result">
             {" "}

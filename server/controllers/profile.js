@@ -15,7 +15,10 @@ module.exports = {
       if (validatePassowrd) {
         let payload = { id: user._id, user_type_id: user.user_type_id };
         const token = jwt.sign(payload, config.TOKEN_SECRET);
-        res.status(200).header("auth-token", token).send({ token: token, id: user._id });
+        res
+          .status(200)
+          .header("auth-token", token)
+          .send({ token: token, id: user._id });
         status = true;
         next();
       } else {
@@ -54,6 +57,7 @@ module.exports = {
 
   createUser: async (req, res, next) => {
     let user = await User.findOne({ username: req.body.username });
+    console.log(req.file);
     if (user) return res.status(400).send("User already registered.");
     else {
       const myPlaintextPassword = req.body.password;
@@ -61,8 +65,19 @@ module.exports = {
         // Store hash in your password DB.
         if (hash) {
           req.body.password = hash;
-          User.create(req.body)
+          User.create({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            phone: req.body.phone,
+            location: req.body.location,
+            photo: req.file.filename,
+            type: req.body.type,
+          })
             .then((user) => {
+              //user.save()
               let payload = { id: user._id };
               const token = jwt.sign(payload, config.TOKEN_SECRET);
               res.status(200).send({ token });
@@ -82,8 +97,16 @@ module.exports = {
 
   editUser: async (req, res, next) => {
     const userId = req.params.id;
-    const userProps = req.body;
-    await User.findByIdAndUpdate(userId, userProps)
+    /* const userProps = req.body; */
+    await User.findByIdAndUpdate(userId, {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      username: req.body.username,
+      email: req.body.email,
+      phone: req.body.phone,
+      location: req.body.location,
+      photo: req.file.filename,
+    })
       .then((user) => res.status(200).json(user))
       .catch(next);
   },

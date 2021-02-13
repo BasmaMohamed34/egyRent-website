@@ -21,21 +21,43 @@ const upload = multer({
   storage: storage,
   /* fileFilter: fileFilter, */
   /* limits: { fileSize: 40000, files: 5 }, */
-}).array("myFiles", 5);
+});
 
 /* ****************************************** */
 
 module.exports = (app) => {
   app.get("/profile/:id", auth.verifyUserToken, profileController.getUser);
-  app.get("/profile/:id/profile-posts", auth.verifyUserToken, profileController.getPosts);
-  app.get("/profile/:id/profile-saved", auth.verifyUserToken, profileController.getSaved);
-  app.delete("/profile/:id", auth.verifyUserToken, profileController.deleteUser);
-  app.patch("/profile/:id", auth.verifyUserToken, profileController.editUser);
-  app.post("/signup", profileController.createUser);
-  app.post("/signin", profileController.signIn);
+  app.get(
+    "/profile/:id/profile-posts",
+    auth.verifyUserToken,
+    profileController.getPosts
+  );
+  app.get(
+    "/profile/:id/profile-saved",
+    auth.verifyUserToken,
+    profileController.getSaved
+  );
   app.get("/post/:id", postController.getPost);
+  app.post("/signup", upload.single("photo"), profileController.createUser);
+  app.post("/signin", profileController.signIn);
   app.get("/:username/post/:id", auth.verifyUserToken, postController.savePost);
-  app.post("/:id/createpost", auth.verifyUserToken, upload, postController.createPost);
+  app.patch(
+    "/profile/:id",
+    upload.single("photo"),
+    auth.verifyUserToken,
+    profileController.editUser
+  );
+  app.post(
+    "/:id/createpost",
+    auth.verifyUserToken,
+    upload.array("files", 5),
+    postController.createPost
+  );
+  app.delete(
+    "/profile/:id",
+    auth.verifyUserToken,
+    profileController.deleteUser
+  );
 };
-  
+
 // module.exports = app;

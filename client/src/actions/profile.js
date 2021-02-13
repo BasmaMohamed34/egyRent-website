@@ -32,7 +32,7 @@ export async function signUp(user) {
       }, */
       body: user,
     });
-    payload = await response.json();
+    payload = await response.json;
     /* for (var pair of user.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     } */

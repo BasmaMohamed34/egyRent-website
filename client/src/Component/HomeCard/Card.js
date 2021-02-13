@@ -3,7 +3,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import "./Card.css";
 
-export function Card({ src, title }) {
+/* export function Card({ src, title }) {
   return (
     <Route
       render={({ history }) => (
@@ -23,7 +23,7 @@ export function Card({ src, title }) {
       )}
     />
   );
-}
+} */
 const Ecard = ({ posts }) => {
   console.log(posts.slice(0, 6));
   if (posts) {
@@ -59,4 +59,4 @@ const mapStateToProps = (state) => {
   return { posts: state.posts };
 };
 
-export default connect(mapStateToProps, null)(Ecard, Card);
+export default connect(mapStateToProps, null)(Ecard);

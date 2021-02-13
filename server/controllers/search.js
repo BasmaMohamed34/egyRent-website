@@ -20,7 +20,12 @@ module.exports = {
     //     .then(Reservation=>res.send(Reservation))
     //     .catch(next)
   },
-
+  byLocationOnly(req, res, next) {
+    const location = req.params.location;
+    Posts.find({ location: location })
+      .then((Posts) => res.send(Posts))
+      .catch(next);
+  },
   byLocation(req, res, next) {
     const location = req.params.location.toString().toLowerCase();
     const guests = req.params.guests;
