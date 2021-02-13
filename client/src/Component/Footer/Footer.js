@@ -48,7 +48,7 @@ function Footer() {
             <ul className="list-unstyled mb-0 border-0 bgGray">
               <li>
               <a href="#!"style = {{textDecoration: "none"}} className="text-dark">
-                  email@youremail.com
+                  egyRent@gmail.com
                   </a>
               </li>
             </ul>

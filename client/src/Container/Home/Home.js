@@ -26,7 +26,7 @@ class Home extends Component {
       posts: this.props.posts,
     });
 
-    console.log("this.state.posts:", this.state.posts);
+    // console.log("this.state.posts:", this.props);
   }
   render = () => {
     return (

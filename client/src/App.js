@@ -19,7 +19,6 @@ import { Provider } from "react-redux";
 import promiseMW from "redux-promise";
 import reducers from "./reducers";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Notify from "./Component/notify";
 
 const createStoreWithMW = applyMiddleware(promiseMW)(createStore);
 
