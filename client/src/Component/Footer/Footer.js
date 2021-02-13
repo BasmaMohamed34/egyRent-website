@@ -9,13 +9,17 @@ function Footer() {
       <div className="container p-4 text-center">
         <div className="row">
           <div className=" col-md-4 mb-4 mb-md-0 col-sm-12 p-4">
-            <a
+            <Link
               className="link3reb h3"
-              href="#s"
+              to={`/`}
+              onClick={() => {
+                let maxY = window.scrollMaxY;
+                window.scrollTo(0, -maxY);
+              }}
               style={{ textDecoration: "none" }}
             >
               EGYRENT
-            </a>
+            </Link>
             <p> best travel agency </p>
           </div>
           <div className="col-md-4 mb-4 mb-md-0 col-sm-12 bgGray">
@@ -23,23 +27,33 @@ function Footer() {
 
             <ul className="list-unstyled mb-0 border-0 bgGray">
               <li>
-              <Link to='/'
-                className="nav-link text-dark"
-                style ={{textDecoration: "none"}}
-                exact
-             >
-             Home
-             </Link>
-               
+                <Link
+                  to="/"
+                  className="nav-link text-dark"
+                  style={{ textDecoration: "none" }}
+                  exact
+                  onClick={() => {
+                    let maxY = window.scrollMaxY;
+                    window.scrollTo(0, -maxY);
+                  }}
+                >
+                  Home
+                </Link>
               </li>
               <li>
-              <Link to='/about'
+                <Link
+                  to="/about"
                   className="nav-link text-dark"
-                  style ={{textDecoration: "none"}}
+                  style={{ textDecoration: "none" }}
                   exact
-              >
-              About Us
-              </Link>             </li>
+                  onClick={() => {
+                    let maxY = window.scrollMaxY;
+                    window.scrollTo(0, -maxY);
+                  }}
+                >
+                  About Us
+                </Link>{" "}
+              </li>
             </ul>
           </div>
           <div className="col-md-4 mb-4 mb-md-0 col-sm-12 bgGray">
@@ -47,9 +61,13 @@ function Footer() {
 
             <ul className="list-unstyled mb-0 border-0 bgGray">
               <li>
-              <a href="#!"style = {{textDecoration: "none"}} className="text-dark">
+                <a
+                  href="#!"
+                  style={{ textDecoration: "none" }}
+                  className="text-dark"
+                >
                   egyRent@gmail.com
-                  </a>
+                </a>
               </li>
             </ul>
           </div>

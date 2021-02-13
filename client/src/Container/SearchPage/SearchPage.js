@@ -106,7 +106,7 @@ class SearchPage extends Component {
               onChange={this.handleClick}
             >
               <option value="" disabled>
-                -------Select bedrooms Number------
+                Select bedrooms Number
               </option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -120,7 +120,7 @@ class SearchPage extends Component {
               onChange={this.handleClick1}
             >
               <option value="" disabled>
-                ---------Select Beds Number---------
+                Select Beds Number
               </option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -134,7 +134,7 @@ class SearchPage extends Component {
               onChange={this.handleChange}
             >
               <option value="" disabled>
-                --------------Select Type--------------
+                Select Type
               </option>
               <option value="room">room</option>
               <option value="house">house</option>

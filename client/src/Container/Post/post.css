@@ -11,6 +11,7 @@
   border-radius: 15px;
   box-shadow: 5px 3px 15px rgb(196, 191, 191);
   position: sticky;
+  height: 500px;
 }
 
 .user-img {

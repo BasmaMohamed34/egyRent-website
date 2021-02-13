@@ -1,4 +1,4 @@
-const postController = require("../controllers/post");
+/* const postController = require("../controllers/post");
 const path = require("path");
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -15,7 +15,7 @@ const fileFilter = (res, req, cb) => {
 };
 const upload = multer({
   storage: storage,
-  /* fileFilter: fileFilter, */
+  /* fileFilter: fileFilter, 
   limits: { fileSize: 400000, files: 5 },
 });
 
@@ -28,3 +28,4 @@ module.exports = (app) => {
     postController.createPost
   );
 };
+ */

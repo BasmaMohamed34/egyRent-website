@@ -11,11 +11,10 @@ export async function signIn(username, password) {
       body: JSON.stringify({ username, password }),
     });
     payload = await response.json();
-    
   } catch (err) {
     console.log(err);
   }
- 
+
   return {
     type: "SIGNIN",
     payload,
@@ -34,7 +33,6 @@ export async function signUp(user) {
       body: /* JSON.stringify({ user }) */ user,
     });
     payload = await response.json();
-   
   } catch (err) {
     console.log(err);
   }
@@ -43,21 +41,23 @@ export async function signUp(user) {
     payload,
   };
 }
-export async function logOut(){
-  localStorage.removeItem('token');
+export async function logOut() {
+  localStorage.removeItem("token");
+  //Cookies.remove("token");
+  window.location.href = "/home";
 }
 
 export async function getProfile(id) {
   let payload = null;
   try {
-    let response = await fetch(`/profile/${id}`,{
+    let response = await fetch(`/profile/${id}`, {
       method: "GET",
-      headers:{
-        Authorization:`auth-token ${localStorage.getItem('token')}`,
-      }
-    })  
-    payload = await response.json()
-    console.log(payload)
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
+      },
+    });
+    payload = await response.json();
+    console.log(payload);
   } catch (err) {
     console.log(err);
   }
@@ -70,7 +70,12 @@ export async function getProfile(id) {
 export async function getProfilePosts(id) {
   let payload = null;
   try {
-    let response = await fetch("/profile/" + id + "/profile-posts");
+    let response = await fetch("/profile/" + id + "/profile-posts", {
+      method: "GET",
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
+      },
+    });
     payload = await response.json();
     console.log("get profile post payload: ", payload);
   } catch (err) {
@@ -85,8 +90,14 @@ export async function getProfilePosts(id) {
 export async function getProfileSaved(id) {
   let payload = null;
   try {
-    let response = await fetch("/profile/" + id + "/profile-saved");
+    let response = await fetch("/profile/" + id + "/profile-saved", {
+      method: "GET",
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
+      },
+    });
     payload = await response.json();
+    console.log(response);
   } catch (err) {
     console.log(err);
   }
@@ -116,13 +127,12 @@ export async function editUser(id, userInfo) {
     let response = await fetch(`/profile/${id}`, {
       method: "PATCH",
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
       },
 
-      body: JSON.stringify(userInfo),
+      body: userInfo,
     });
-    payload = response.json;
+    payload = response.json();
   } catch (err) {
     console.log(err);
   }

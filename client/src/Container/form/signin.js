@@ -2,7 +2,7 @@ import "./sign.css";
 import { Component } from "react";
 import SimpleReactValidator from "simple-react-validator";
 import { connect } from "react-redux";
-import { signIn,getProfile } from "../../actions/profile";
+import { signIn, getProfile } from "../../actions/profile";
 import { Route } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
@@ -16,24 +16,24 @@ class SignIn extends Component {
       username: "",
       password: "",
       done: "",
-      errMsg:""
+      errMsg: "",
     };
   }
-  
-   checkUserAuth(){
-    let payload;
-     this.props.getProfile(this.state.done.id)
-    .then(res=>{
-      payload=res.payload
-    })
-    .catch(err=>{
-      console.log(err) 
-    })
 
-    if(payload!==null)
-      return true;
+  checkUserAuth() {
+    let payload;
+    this.props
+      .getProfile(this.state.done.id)
+      .then((res) => {
+        payload = res.payload;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    if (payload !== null) return true;
   }
-  ErrorMessage(){
+  ErrorMessage() {
     // if(!localStorage.getItem('token')){
     //   this.setState({errMsg:JSON.stringify(this.state.done.error)})
     //   return(
@@ -90,7 +90,7 @@ class SignIn extends Component {
                   "required|password|min:4" //will be 8 after editing users passwords in db
                 )}
               </div>
-             
+
               <Route
                 render={({ history }) => (
                   <button
@@ -103,14 +103,17 @@ class SignIn extends Component {
                           .then((res) => {
                             this.setState({ done: res.payload });
                             if (this.state.done.token) {
-                              localStorage.setItem('token', this.state.done.token);
+                              localStorage.setItem(
+                                "token",
+                                this.state.done.token
+                              );
+                              localStorage.setItem("id", this.state.done.id);
 
-                              if(this.checkUserAuth()){
+                              if (this.checkUserAuth()) {
                                 history.push(`/home`);
-                                 window.location.reload()
+                                window.location.reload();
                               }
                             }
-                            
                           });
                       } else {
                         this.validator.showMessages();
@@ -130,8 +133,7 @@ class SignIn extends Component {
   }
 }
 
-
 const mapactionstoprops = (dispatch) => {
-  return bindActionCreators({ signIn,getProfile }, dispatch);
+  return bindActionCreators({ signIn, getProfile }, dispatch);
 };
 export default connect(null, mapactionstoprops)(SignIn);

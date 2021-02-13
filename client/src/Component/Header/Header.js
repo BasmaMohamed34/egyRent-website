@@ -1,11 +1,11 @@
 import React from "react";
 import { Component } from "react";
-import BellIcon from 'react-bell-icon';
+import BellIcon from "react-bell-icon";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { signIn,logOut } from "../../actions/profile";
+import { signIn, logOut, getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 
 class Header extends Component {
@@ -14,6 +14,7 @@ class Header extends Component {
 
     this.state = {
       loggedIn: false,
+      profile: {},
     };
   }
 
@@ -24,35 +25,59 @@ class Header extends Component {
   //     }
   //   });
   // }
-
+  async componentDidMount() {
+    await this.props.getProfile(localStorage.getItem("id"));
+    this.setState({
+      profile: this.props.profile,
+    });
+    console.log(this.state.profile);
+  }
+  checkType() {
+    if (this.state.profile.type === "Host") {
+      return (
+        <>
+          <li className="md-mt-3 mb-3 text-center">
+            <NavLink
+              to={`/${this.state.profile._id}/createpost`}
+              exact
+              className=" text-decoration-none "
+            >
+              <b>Create Post</b>
+            </NavLink>
+          </li>
+          <hr />
+        </>
+      );
+    }
+  }
   render() {
     return (
       <nav className="navbar header bg-dark navbar-expand-lg">
         <div className="container-fluid ">
           <Link className="navbar-brand" to="/">
             <img
-              className="header__icon rounded-circle d-block mb-3 w-50 "
+              className="header__icon d-block mb-1 w-50"
               src="./ourLogo.png"
               alt=""
             />
           </Link>
           {/*  */}
-          <li className="nav-item bg md-mt-3 mb-3">
-                    <NavLink
-                      to="/chat"
-                      className="btn btn-pink"
-                      exact
-                      style={{
-                        backgroundColor: "#007bff",
-                        padding: "7px",
-                        borderRadius: "5px",
-                        color: "#fff",
-                      }}
-                    >
-                      <b>Live Chat</b>
-                    </NavLink>
-                  </li>
-            
+          {/* <li className="nav-item bg md-mt-3 mb-3">
+            <NavLink
+              to="/chat"
+              className="btn btn-pink"
+              exact
+              style={{
+                backgroundColor: "#007bff",
+                padding: "7px",
+                borderRadius: "5px",
+                color: "#fff",
+              }}
+            >
+              <b>Live Chat</b>
+            </NavLink>
+          </li> */}
+
           {/*  */}
           <button
             className="navbar-toggler"
@@ -81,32 +106,44 @@ class Header extends Component {
                   <b style={{ color: "#fff" }}>About US</b>
                 </Link>
               </li>
-              {localStorage.getItem("token")? 
-              //  window.location.reload()
-              (
+              {localStorage.getItem("token") ? (
+                //  window.location.reload()
                 <>
-                  <div class="dropdown">
+                  <div className="dropdown">
                     <button
-                      class="btn btn-primary dropdown-toggle"
+                      className="btn btn-primary dropdown-toggle"
                       type="button"
                       data-toggle="dropdown"
                     >
-                      Dropdown Example
-                      <span class="caret"></span>
+                      Hello {this.state.profile.firstname}
+                      <span className="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                      <li className="md-mt-3 mb-3">
-                        <NavLink to="/signin" exact>
+                    <ul className="dropdown-menu w-100">
+                      <li className="md-mt-3 dropdown-item mb-3 text-center">
+                        <NavLink
+                          to={`/profile/${this.state.profile._id}`}
+                          exact
+                          className=" text-decoration-none "
+                        >
                           <b>Profile</b>
                         </NavLink>
                       </li>
-                      <li className="md-mt-3 mb-3">
-                        <NavLink to="/signin" exact>
-                          <b onclick={()=>{
-                            this.props.logOut()
-                             window.location.reload() 
-                            console.log(this.props)
-                          }}>LogOut</b>
+                      <hr />
+                      {this.checkType()}
+                      <li className="md-mt-3 mb-3 text-center ">
+                        <NavLink
+                          to="/signin"
+                          exact
+                          className="text-decoration-none"
+                        >
+                          <b
+                            onClick={() => {
+                              this.props.logOut();
+                              //window.location.reload()
+                            }}
+                          >
+                            LogOut
+                          </b>
                         </NavLink>
                       </li>
                     </ul>
@@ -144,13 +181,22 @@ class Header extends Component {
                       <b>Sign In</b>
                     </NavLink>
                   </li>
-                  <li className="smooth-menu nav-item" data-toggle="tooltip" title="Languages" >
-                 <NavLink to='notify'
-                 exact>
-                             <BellIcon width='40'  active={true} animate={true} color="#fff" /> 
-                 </NavLink>
-          </li>
-         
+                  <li
+                    className="smooth-menu nav-item"
+                    data-toggle="tooltip"
+                    title="Languages"
+                  >
+                    <NavLink to="notify" exact>
+                       
+                      <BellIcon
+                        width="40"
+                        active={true}
+                        animate={true}
+                        color="#fff"
+                      />
+                       
+                    </NavLink>
+                  </li>
                 </>
               )}
             </ul>
@@ -160,7 +206,12 @@ class Header extends Component {
     );
   }
 }
-const mapactionstoprops = (dispatch) => {
-  return bindActionCreators({ signIn,logOut }, dispatch);
+
+const mapStateToProps = (state) => {
+  console.log(state.profile);
+  return { profile: state.profile };
 };
-export default connect(null, mapactionstoprops)(Header);
+const mapactionstoprops = (dispatch) => {
+  return bindActionCreators({ signIn, logOut, getProfile }, dispatch);
+};
+export default connect(mapStateToProps, mapactionstoprops)(Header);

@@ -31,64 +31,57 @@
 }
 
 .nearby {
-position: relative;
-left : 600px;
-background-color: rgb(243, 243, 243);
-width: 720px;
+  position: relative;
+  left: 600px;
+  background-color: rgb(243, 243, 243);
+  width: 720px;
 }
-
 
 .nearby1 {
   text-align: center;
   padding: 20px;
-
-  }
-
-  .search1{
-/* padding: 3px;*/
-width: 17%; 
-/* height: 100%; */
-margin: 20px;
-position: relative;
-left:30px;
-border-radius: 10px;
-border:1px solid rgba(26, 62, 223, 0.924);
-text-align: center;
-font-size: 16px;
-background-color: rgb(238, 239, 240);
-display: inline;
-appearance: inherit;
-cursor: pointer;
-
 }
-.search-price{
+
+.search1 {
+  /* padding: 3px;*/
+  width: 17%;
+  /* height: 100%; */
+  margin: 20px;
+  position: relative;
+  left: 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 62, 223, 0.924);
+  text-align: center;
+  font-size: 16px;
+  background-color: rgb(238, 239, 240);
+  display: inline;
+  appearance: inherit;
+  cursor: pointer;
+}
+.search-price {
   height: 47px;
 }
 
-  .container1{
-    background-color: rgb(251, 250, 250);
-  }
-
-  .search1:hover{
-    background-color: rgb(233, 234, 235);
-
-  }
-
-  .reset{
-    background-color: rgb(32, 54, 29);
-    color: aliceblue;
-    border-radius: 10px;
-    padding: 3px;
-    font-weight: bolder;
-    outline: 0;
-    position: relative;
-    left: 80px;
-  }
-.contain{
-  background-color: rgb(210, 216, 219);
- 
+.container1 {
+  background-color: rgb(251, 250, 250);
 }
-.label{
+
+.search1:hover {
+  background-color: rgb(233, 234, 235);
+}
+
+.reset {
+  background-color: rgb(32, 54, 29);
+  color: aliceblue;
+  border-radius: 10px;
+  padding: 3px;
+  font-weight: bolder;
+  outline: 0;
+}
+.contain {
+  background-color: rgb(210, 216, 219);
+}
+.label {
   position: relative;
   left: 80px;
   border: 3px solid rgb(31, 9, 226);
@@ -97,5 +90,3 @@ cursor: pointer;
   background-color: rgb(151, 187, 253);
   color: rgb(0, 3, 5);
 }
-  
- 

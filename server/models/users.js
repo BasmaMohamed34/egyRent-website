@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const usersSchema = new mongoose.Schema({
-
   firstname: {
     type: String,
     required: true,
@@ -13,7 +12,7 @@ const usersSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   email: {
     type: String,
@@ -33,7 +32,6 @@ const usersSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    required: true,
   },
   notification: [],
   /* notification: { type: Array }, Should be like this!!!*/

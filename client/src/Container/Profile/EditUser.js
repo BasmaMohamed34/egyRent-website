@@ -17,7 +17,7 @@ class EditUser extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   async componentDidMount() {
-    await this.props.getProfile(window.location.pathname.split("/")[2]);
+    await this.props.getProfile(localStorage.getItem("id"));
     this.setState({
       user: this.props.profile,
     });
@@ -116,6 +116,7 @@ class EditUser extends Component {
                       class="form-control"
                       type="text"
                       name="location"
+                      required
                       value={this.state.user.location}
                       placeholder="your new location"
                       onChange={this.handleInputChange}
@@ -128,6 +129,7 @@ class EditUser extends Component {
                     <input
                       class="form-control"
                       name="phone"
+                      required
                       type="number"
                       value={this.state.user.phone}
                       placeholder="your new phone"
@@ -191,6 +193,9 @@ class EditUser extends Component {
                 type="button"
                 className="btn btn-success"
                 data-dismiss="modal"
+                onClick={() => {
+                  this.setState({ user: this.props.profile });
+                }}
               >
                 Cancel
               </button>

@@ -1,4 +1,4 @@
-const profileController = require("../controllers/profile");
+/* const profileController = require("../controllers/profile");
 const path = require("path");
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -12,10 +12,10 @@ const storage = multer.diskStorage({
 });
 /* const fileFilter = (res, req, cb) => {
   cb(null, true);
-}; */
+}; 
 const upload = multer({
   storage: storage,
-  /* fileFilter: fileFilter, */
+  /* fileFilter: fileFilter, 
   limits: { fileSize: 400000 },
 });
 module.exports = (app) => {
@@ -27,3 +27,4 @@ module.exports = (app) => {
   app.patch("/profile/:id", upload.single("photo"), profileController.editUser);
   app.post("/signin", profileController.signIn);
 };
+ */

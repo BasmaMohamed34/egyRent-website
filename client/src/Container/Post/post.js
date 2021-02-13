@@ -93,7 +93,7 @@ class Post extends Component {
                 <p className="description text-left">{details.description}</p>
               </div>
             </div>
-            <div className="col-12 col-md-4 text-center avail p-4 pb-1font-weight-bold">
+            <div className="col-12 col-md-4 text-center avail p-4 pb-1 font-weight-bold">
               <p className="text-left price">&#36; {details.price} / Night</p>
               <hr />
               <form className="check-form p-4">

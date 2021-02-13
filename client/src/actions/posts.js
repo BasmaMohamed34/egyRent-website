@@ -56,12 +56,9 @@ export async function createPost(id, post) {
   try {
     let response = await fetch(`/${id}/createpost`, {
       method: "POST",
-      /*  headers: {
-        "Content-Type": "multipart/form-data",
-        "content-type": "application/json",
-        Accept: "application/json", 
-        type: "formData",
-      }, */
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
+      },
       body: post,
     });
     payload = response.json();

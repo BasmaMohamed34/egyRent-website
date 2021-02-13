@@ -57,7 +57,7 @@ class SearchByLocation extends Component {
                     <h3>{res.title}</h3>
                     <h6>____</h6>
                     <h6>{res.description}</h6>
-                    <h4 className="d-inline mt-5">{res.price}</h4>
+                    <h4 className="d-inline mt-5">{res.price}$ / Night</h4>
                     <Route
                       render={({ history }) => (
                         <button

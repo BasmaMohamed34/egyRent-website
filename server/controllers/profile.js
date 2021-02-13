@@ -97,17 +97,30 @@ module.exports = {
 
   editUser: async (req, res, next) => {
     const userId = req.params.id;
-    /* const userProps = req.body; */
-    await User.findByIdAndUpdate(userId, {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      email: req.body.email,
-      phone: req.body.phone,
-      location: req.body.location,
-      photo: req.file.filename,
-    })
-      .then((user) => res.status(200).json(user))
-      .catch(next);
+
+    if (req.file) {
+      await User.findByIdAndUpdate(userId, {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        location: req.body.location,
+        photo: req.file.filename,
+      })
+        .then((user) => res.status(200).json(user))
+        .catch(next);
+    } else {
+      await User.findByIdAndUpdate(userId, {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        location: req.body.location,
+      })
+        .then((user) => res.status(200).json(user))
+        .catch(next);
+    }
   },
 };
