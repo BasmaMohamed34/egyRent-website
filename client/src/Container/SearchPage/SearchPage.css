@@ -45,21 +45,24 @@ width: 720px;
   }
 
   .search1{
-padding: 3px;
-width: 290px;
+/* padding: 3px;*/
+width: 17%; 
+/* height: 100%; */
 margin: 20px;
 position: relative;
-left: 60px;
+left:30px;
 border-radius: 10px;
-border:2px solid rgba(26, 62, 223, 0.924);
+border:1px solid rgba(26, 62, 223, 0.924);
 text-align: center;
 font-size: 16px;
 background-color: rgb(238, 239, 240);
-outline:none;
 display: inline;
 appearance: inherit;
 cursor: pointer;
 
+}
+.search-price{
+  height: 47px;
 }
 
   .container1{
@@ -82,9 +85,8 @@ cursor: pointer;
     left: 80px;
   }
 .contain{
-  background-color: rgb(179, 182, 184);
-  width: 100%;
-
+  background-color: rgb(210, 216, 219);
+ 
 }
 .label{
   position: relative;

@@ -11,10 +11,11 @@ export async function signIn(username, password) {
       body: JSON.stringify({ username, password }),
     });
     payload = await response.json();
+    console.log(payload)
   } catch (err) {
     console.log(err);
   }
-  /* payload = payload.message; */
+ 
   return {
     type: "SIGNIN",
     payload,
@@ -23,20 +24,25 @@ export async function signIn(username, password) {
 export async function signUp(user) {
   let payload = null;
   try {
-    let response = await fetch("/signup", {
+    let response = await fetch("/signin", {
       method: "POST",
-      /* headers: {
-        "Content-Type": "multipart/form-data",
+      headers: {
         Accept: "application/json",
-        type: "formData",
-      }, */
-      body: user,
+        "Content-Type": "application/json",
+      },
+
+      body: /* JSON.stringify({ user }) */ JSON.stringify(user),
     });
+<<<<<<< HEAD
     payload = await response.json;
     /* for (var pair of user.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     } */
     console.log(payload);
+=======
+    payload = await response.json();
+    // console.log("check");
+>>>>>>> 5634b299eea810a645513d406555aecd7a57f355
   } catch (err) {
     console.log(err);
   }
@@ -45,15 +51,16 @@ export async function signUp(user) {
     payload,
   };
 }
-
 export async function getProfile(id) {
-  console.log(id);
   let payload = null;
   try {
-    let response = await fetch("/profile/" + id);
-    console.log(id);
+    let response = await fetch("/profile/" + id,{
+      method: "GET",
+      headers:{
+        authorization:localStorage.getItem('token'),
+      }
+    })  
     payload = await response.json();
-    console.log("get profile payload: ", payload);
   } catch (err) {
     console.log(err);
   }
@@ -111,12 +118,12 @@ export async function editUser(id, userInfo) {
   try {
     let response = await fetch(`/profile/${id}`, {
       method: "PATCH",
-      /*  headers: {
+      headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-      }, */
+      },
 
-      body: userInfo,
+      body: JSON.stringify(userInfo),
     });
     payload = response.json;
   } catch (err) {

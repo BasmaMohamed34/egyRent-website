@@ -25,6 +25,8 @@ class Home extends Component {
     this.setState({
       posts: this.props.posts,
     });
+
+    // console.log("this.state.posts:", this.props);
   }
   render = () => {
     return (

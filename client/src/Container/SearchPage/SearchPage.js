@@ -97,60 +97,65 @@ class SearchPage extends Component {
     return (
       <div>
         <div>
-          <h1 className="nearby1">Stays Nearby </h1>
-          <div className="contain">
-            <label className="label">bedrooms Number ==></label>
+          <h1 className="nearby1">Stay Nearby </h1>
+          <div className="contain w-100 p-2">
+            {/* <label className="label">bedrooms Number ==></label> */}
             <select
-              className="search1"
+              className="search1 "
               value={this.state.bedrooms}
               onChange={this.handleClick}
             >
-              <option value="">-------Select bedrooms Number------</option>
+              <option value="" disabled>
+                -------Select bedrooms Number------
+              </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
             </select>
-            <label className="label">beds Number ==></label>
+            {/* <label className="label">beds Number ==></label> */}
             <select
               className="search1"
               value={this.state.beds}
               onChange={this.handleClick1}
             >
-              <option value="">---------Select Beds Number---------</option>
+              <option value="" disabled>
+                ---------Select Beds Number---------
+              </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4 </option>
             </select>
-            <label className="label">Type ==></label>
+            {/* <label className="label">Type ==></label> */}
             <select
               className="search1"
               value={this.state.type}
               onChange={this.handleChange}
             >
-              <option value="">--------------Select Type--------------</option>
+              <option value="" disabled>
+                --------------Select Type--------------
+              </option>
               <option value="room">room</option>
               <option value="house">house</option>
               <option value="Boutique">Boutique</option>
               <option value="Bed">Bed </option>
             </select>
             <input
-              className="search1"
+              className="search1 search-price"
               type="text"
               onKeyUp={this.handlePrice}
               placeholder="Enter Price..."
             />
             <input
-              className="reset"
-              type="button"
+              className="reset btn btn-lg"
               onClick={this.handleReset}
               value="Reset"
             />
           </div>
           <Link to="/search-result"></Link>
         </div>
-        <div>{this.listSearch(this.state.Search)}</div>
+        <div className="pt-5">{this.listSearch(this.state.Search)}</div>
       </div>
     );
   };

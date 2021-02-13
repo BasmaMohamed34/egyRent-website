@@ -44,7 +44,7 @@ function AboutUs (){
                         <li>
                             <img style = {{width:"16px",height:"16px"}} src={gmail}/>
                             <p className='text-light d-inline ml-1'>
-                            <b>Egrent @gmail.com</b>
+                            <b>egyRent@gmail.com</b>
                             </p>
                         </li>
                         
