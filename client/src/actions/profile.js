@@ -11,7 +11,7 @@ export async function signIn(username, password) {
       body: JSON.stringify({ username, password }),
     });
     payload = await response.json();
-    console.log(payload)
+    
   } catch (err) {
     console.log(err);
   }
@@ -24,25 +24,17 @@ export async function signIn(username, password) {
 export async function signUp(user) {
   let payload = null;
   try {
-    let response = await fetch("/signin", {
+    let response = await fetch("/signup", {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      // },
 
-      body: /* JSON.stringify({ user }) */ JSON.stringify(user),
+      body: /* JSON.stringify({ user }) */ user,
     });
-<<<<<<< HEAD
-    payload = await response.json;
-    /* for (var pair of user.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    } */
-    console.log(payload);
-=======
     payload = await response.json();
-    // console.log("check");
->>>>>>> 5634b299eea810a645513d406555aecd7a57f355
+   
   } catch (err) {
     console.log(err);
   }
@@ -51,16 +43,21 @@ export async function signUp(user) {
     payload,
   };
 }
+export async function logOut(){
+  localStorage.removeItem('token');
+}
+
 export async function getProfile(id) {
   let payload = null;
   try {
-    let response = await fetch("/profile/" + id,{
+    let response = await fetch(`/profile/${id}`,{
       method: "GET",
       headers:{
-        authorization:localStorage.getItem('token'),
+        Authorization:`auth-token ${localStorage.getItem('token')}`,
       }
     })  
-    payload = await response.json();
+    payload = await response.json()
+    console.log(payload)
   } catch (err) {
     console.log(err);
   }

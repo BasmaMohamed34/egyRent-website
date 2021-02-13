@@ -5,7 +5,7 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { signIn } from "../../actions/profile";
+import { signIn,logOut } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 
 class Header extends Component {
@@ -17,13 +17,13 @@ class Header extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.signIn("samy123", "samy123").then((res) => {
-      if (res.payload === "Valid Password") {
-        this.setState({ loggedIn: false });
-      }
-    });
-  }
+  // componentDidMount() {
+  //   this.props.signIn("samy123", "samy123").then((res) => {
+  //     if (res.payload === "Valid Password") {
+  //       this.setState({ loggedIn: false });
+  //     }
+  //   });
+  // }
 
   render() {
     return (
@@ -81,7 +81,9 @@ class Header extends Component {
                   <b style={{ color: "#fff" }}>About US</b>
                 </Link>
               </li>
-              {this.state.loggedIn ? (
+              {localStorage.getItem("token")? 
+              //  window.location.reload()
+              (
                 <>
                   <div class="dropdown">
                     <button
@@ -100,7 +102,11 @@ class Header extends Component {
                       </li>
                       <li className="md-mt-3 mb-3">
                         <NavLink to="/signin" exact>
-                          <b>LogOut</b>
+                          <b onclick={()=>{
+                            this.props.logOut()
+                             window.location.reload() 
+                            console.log(this.props)
+                          }}>LogOut</b>
                         </NavLink>
                       </li>
                     </ul>
@@ -155,6 +161,6 @@ class Header extends Component {
   }
 }
 const mapactionstoprops = (dispatch) => {
-  return bindActionCreators({ signIn }, dispatch);
+  return bindActionCreators({ signIn,logOut }, dispatch);
 };
 export default connect(null, mapactionstoprops)(Header);

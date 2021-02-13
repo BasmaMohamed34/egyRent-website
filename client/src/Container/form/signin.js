@@ -21,14 +21,17 @@ class SignIn extends Component {
   }
   
    checkUserAuth(){
-    
+    let payload;
      this.props.getProfile(this.state.done.id)
     .then(res=>{
-      console.log(res)
+      payload=res.payload
     })
     .catch(err=>{
-      console.log(err)
+      console.log(err) 
     })
+
+    if(payload!==null)
+      return true;
   }
   ErrorMessage(){
     // if(!localStorage.getItem('token')){
@@ -102,8 +105,10 @@ class SignIn extends Component {
                             if (this.state.done.token) {
                               localStorage.setItem('token', this.state.done.token);
 
-                              if(this.checkUserAuth())
-                              history.push(`/home`);
+                              if(this.checkUserAuth()){
+                                history.push(`/home`);
+                                 window.location.reload()
+                              }
                             }
                             
                           });
