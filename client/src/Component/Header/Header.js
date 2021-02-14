@@ -61,8 +61,8 @@ class Header extends Component {
               alt=""
             />
           </Link>
-          {/*  */}
-          {/* <li className="nav-item bg md-mt-3 mb-3">
+          
+          <li className="nav-item bg md-mt-3 mb-3">
             <NavLink
               to="/chat"
               className="btn btn-pink"
@@ -76,7 +76,7 @@ class Header extends Component {
             >
               <b>Live Chat</b>
             </NavLink>
-          </li> */}
+          </li>
 
           {/*  */}
           <button
