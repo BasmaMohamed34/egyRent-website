@@ -61,8 +61,8 @@ class Header extends Component {
               alt=""
             />
           </Link>
-          
-          <li className="nav-item bg md-mt-3 mb-3">
+
+          {/* <li className="nav-item bg md-mt-3 mb-3">
             <NavLink
               to="/chat"
               className="btn btn-pink"
@@ -76,7 +76,7 @@ class Header extends Component {
             >
               <b>Live Chat</b>
             </NavLink>
-          </li>
+          </li> */}
 
           {/*  */}
           <button
@@ -109,63 +109,58 @@ class Header extends Component {
               {localStorage.getItem("token") ? (
                 //  window.location.reload()
                 <>
-                   <li
-                    className="smooth-menu"
+                  <li
+                    className="smooth-menu mr-3"
                     data-toggle="tooltip"
                     title="Notification"
                   >
                     <NavLink to="notify" exact>
                        
-                      <BellIcon
-                        width="30"
-                        active={true}
-                        color="#fff"
-                      /> 
+                      <BellIcon width="30" active={true} color="#fff" />
                        
                     </NavLink>
                   </li>
-                  <li> 
-                  <div className=" dropdown">
-                    <button
-                      className="btn btn-primary dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown"
-                    >
-                      Hello {this.state.profile.firstname}
-                      <span className="caret"></span>
-                    </button>
-                    <ul className="dropdown-menu w-100">
-                      <li className="md-mt-3 dropdown-item mb-3 text-center">
-                        <NavLink
-                          to={`/profile/${this.state.profile._id}`}
-                          exact
-                          className=" text-decoration-none "
-                        >
-                          <b>Profile</b>
-                        </NavLink>
-                      </li>
-                      <hr />
-                      {this.checkType()}
-                      <li className="md-mt-3 mb-3 text-center ">
-                        <NavLink
-                          to="/signin"
-                          exact
-                          className="text-decoration-none"
-                        >
-                          <b
-                            onClick={() => {
-                              this.props.logOut();
-                              //window.location.reload()
-                            }}
+                  <li>
+                    <div className=" dropdown">
+                      <button
+                        className="btn btn-primary dropdown-toggle"
+                        type="button"
+                        data-toggle="dropdown"
+                      >
+                        Hello {this.state.profile.firstname}
+                        <span className="caret"></span>
+                      </button>
+                      <ul className="dropdown-menu w-100">
+                        <li className="md-mt-3 dropdown-item mb-3 text-center">
+                          <NavLink
+                            to={`/profile/${this.state.profile._id}`}
+                            exact
+                            className=" text-decoration-none "
                           >
-                            LogOut
-                          </b>
-                        </NavLink>
-                      </li>
-                    </ul>
-                    
-                  </div>
-                 </li>
+                            <b>Profile</b>
+                          </NavLink>
+                        </li>
+                        <hr />
+                        {this.checkType()}
+                        <li className="md-mt-3 mb-3 text-center ">
+                          <NavLink
+                            to="/signin"
+                            exact
+                            className="text-decoration-none"
+                          >
+                            <b
+                              onClick={() => {
+                                this.props.logOut();
+                                //window.location.reload()
+                              }}
+                            >
+                              LogOut
+                            </b>
+                          </NavLink>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
                 </>
               ) : (
                 <>

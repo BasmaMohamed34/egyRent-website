@@ -25,11 +25,11 @@ function Footer() {
           <div className="col-md-4 mb-4 mb-md-0 col-sm-12 bgGray">
             <h5>Link</h5>
 
-            <ul className="list-unstyled mb-0 border-0 bgGray">
+            <ul className="list-unstyled col-12 mb-0 border-0 bgGray">
               <li>
                 <Link
                   to="/"
-                  className="nav-link text-dark"
+                  className="nav-link text-dark col-12"
                   style={{ textDecoration: "none" }}
                   exact
                   onClick={() => {
@@ -43,7 +43,7 @@ function Footer() {
               <li>
                 <Link
                   to="/about"
-                  className="nav-link text-dark"
+                  className="nav-link text-dark col-12"
                   style={{ textDecoration: "none" }}
                   exact
                   onClick={() => {

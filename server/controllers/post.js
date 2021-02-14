@@ -1,6 +1,6 @@
 const Posts = require("../models/post");
 const User = require("../models/users");
-const Reservation = require("../models/reservations")
+const Reservation = require("../models/reservations");
 module.exports = {
   getPost(req, res, next) {
     const postId = req.params.id;
@@ -46,38 +46,38 @@ module.exports = {
     await user.save();
     res.status(201).json(newPost);
   },
-  
+
   savePost: async (req, res, next) => {
-    const postId = req.params.id;
-    const userName = req.params.username;
-    const user = await User.findOne({ username: userName });
-    console.log(user.username);
-    const post = await Posts.findById(postId);
+    const userID = req.body.UserID;
+    const postID = req.body.PostID;
+    const user = await User.findOne({ _id: userID });
+    console.log("User id: ", userID);
+    console.log("Post id: ", postID);
+    const post = await Posts.findById(postID);
     post.savedBy = user.id;
     await post.save();
     user.saved.push(post);
     await user.save();
+    console.log(user);
     res.status(201).json(post);
   },
-  
-  checkAvail: async (req,res,next)=>{
-    let postID=req.body.post;
+
+  checkAvail: async (req, res, next) => {
+    let postID = req.body.post;
     // let checkin=new Date(req.body.checkIn).toISOString();
     // let checkout=new Date(req.body.checkOut).toISOString();
 
-    let checkin=new Date(req.body.checkIn).toString();
-    let st1=checkin.slice(0,25)+checkin.slice(34).toISOString();
-    let checkout=new Date(req.body.checkOut);
-    let st2=checkout.slice(0,25)+checkout.slice(34).toISOString();
-    console.log(st1)
-    console.log(st2)
-    const checking=await Reservation.find({checkIn:checkin});
+    let checkin = new Date(req.body.checkIn).toString();
+    let st1 = checkin.slice(0, 25) + checkin.slice(34).toISOString();
+    let checkout = new Date(req.body.checkOut);
+    let st2 = checkout.slice(0, 25) + checkout.slice(34).toISOString();
+    console.log(st1);
+    console.log(st2);
+    const checking = await Reservation.find({ checkIn: checkin });
     // console.log("checkin" +checkin, "checkout "+checkout)
-    console.log(checking)
-    if(checking.length>0){
+    console.log(checking);
+    if (checking.length > 0) {
       res.send("place is not available in that time");
-    }
-    else
-      res.status(200).send("place is available");
-  }
+    } else res.status(200).send("place is available");
+  },
 };

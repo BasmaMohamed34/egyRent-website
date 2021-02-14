@@ -37,11 +37,15 @@ module.exports = (app) => {
     auth.verifyUserToken,
     profileController.getSaved
   );
-  app.post("/post/:id/checkAvail",auth.verifyUserToken,postController.checkAvail)
+  app.post(
+    "/post/:id/checkAvail",
+    auth.verifyUserToken,
+    postController.checkAvail
+  );
   app.get("/post/:id", postController.getPost);
   app.post("/signup", upload.single("photo"), profileController.createUser);
   app.post("/signin", profileController.signIn);
-  app.get("/:username/post/:id", auth.verifyUserToken, postController.savePost);
+  app.patch("/post/:id", auth.verifyUserToken, postController.savePost);
   app.patch(
     "/profile/:id",
     upload.single("photo"),

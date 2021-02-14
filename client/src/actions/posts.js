@@ -70,3 +70,27 @@ export async function createPost(id, post) {
     payload,
   };
 }
+
+export async function savePost(UserID, PostID) {
+  let payload = null;
+  console.log(UserID);
+  try {
+    let response = await fetch(`/post/${PostID}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ UserID, PostID }),
+    });
+    payload = response.json();
+    console.log(payload);
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "SAVE_POST",
+    payload,
+  };
+}
