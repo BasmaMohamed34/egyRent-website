@@ -80,15 +80,15 @@ module.exports = {
     console.log(checking)
     if (checking.length > 0) {
       checking.forEach(i => {
-        console.log(i)
+        console.log(i);
         console.log(typeof(JSON.stringify(i.checkIn)));
         console.log(typeof(checkin));
-        if (JSON.stringify(i.checkIn).slice(1, -1) !== checkin) {
+        if (JSON.stringify(i.checkOut).slice(1, -1) <= checkin) {
           console.log(JSON.stringify(i.checkIn).slice(1, -1))
-          res.send("place is available");
+          res.send(true);
         }
         else
-          res.send("place is not available");
+          res.send(false);
       })
     }
     }
