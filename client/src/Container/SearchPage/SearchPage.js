@@ -72,7 +72,7 @@ class SearchPage extends Component {
         .filter(
           (auto) =>
             String(auto.bedrooms).includes(String(this.state.bedrooms)) &&
-            String(auto.price).includes(String(this.state.price)) &&
+            String(auto.price).startsWith(String(this.state.price)) &&
             String(auto.beds).includes(String(this.state.beds)) &&
             String(auto.type).includes(String(this.state.type))
         )
