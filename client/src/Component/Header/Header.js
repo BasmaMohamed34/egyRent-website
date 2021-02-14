@@ -30,7 +30,7 @@ class Header extends Component {
     this.setState({
       profile: this.props.profile,
     });
-    console.log(this.state.profile);
+    // console.log(this.state.profile);
   }
   checkType() {
     if (this.state.profile.type === "Host") {
@@ -94,7 +94,7 @@ class Header extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className=" navbar-nav ml-auto pl-3 bg-dark borderNav">
               <li className="nav-item active">
-                <Link className="nav-link" to="/home">
+                <Link className="nav-link " to="/home">
                   <b className="pr-2" style={{ color: "#fff" }}>
                     Home
                   </b>
@@ -102,14 +102,30 @@ class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item pr-2">
-                <Link className="nav-link" to="/about">
+                <Link className="nav-link " to="/about">
                   <b style={{ color: "#fff" }}>About US</b>
                 </Link>
               </li>
               {localStorage.getItem("token") ? (
                 //  window.location.reload()
                 <>
-                  <div className="dropdown">
+                   <li
+                    className="smooth-menu"
+                    data-toggle="tooltip"
+                    title="Notification"
+                  >
+                    <NavLink to="notify" exact>
+                       
+                      <BellIcon
+                        width="30"
+                        active={true}
+                        color="#fff"
+                      /> 
+                       
+                    </NavLink>
+                  </li>
+                  <li> 
+                  <div className=" dropdown">
                     <button
                       className="btn btn-primary dropdown-toggle"
                       type="button"
@@ -147,7 +163,9 @@ class Header extends Component {
                         </NavLink>
                       </li>
                     </ul>
+                    
                   </div>
+                 </li>
                 </>
               ) : (
                 <>
@@ -169,7 +187,7 @@ class Header extends Component {
                   <li className="nav-item bg md-mt-3 mb-3">
                     <NavLink
                       to="/signin"
-                      className="btn btn-pink"
+                      className="btn"
                       exact
                       style={{
                         backgroundColor: "#007bff",
@@ -179,22 +197,6 @@ class Header extends Component {
                       }}
                     >
                       <b>Sign In</b>
-                    </NavLink>
-                  </li>
-                  <li
-                    className="smooth-menu nav-item"
-                    data-toggle="tooltip"
-                    title="Languages"
-                  >
-                    <NavLink to="notify" exact>
-                       
-                      <BellIcon
-                        width="40"
-                        active={true}
-                        animate={true}
-                        color="#fff"
-                      />
-                       
                     </NavLink>
                   </li>
                 </>

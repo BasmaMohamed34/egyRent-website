@@ -6,12 +6,12 @@ class Notify extends React.Component {
     return(
 
       <div class="wrapper">
-
+          <h1 className="p-5 font-weight-bold text-center">Notifications</h1>
   <div class="notifications">
 
     <div class="notifications__item">
       <div class="notifications__item__avatar">
-        <img src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_1.jpg" />
+        <img alt="" src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_1.jpg" />
       </div>
 
       <div class="notifications__item__content">
@@ -31,7 +31,7 @@ class Notify extends React.Component {
 
     <div class="notifications__item">
       <div class="notifications__item__avatar">
-        <img src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_2.jpg" />
+        <img alt="" src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_2.jpg" />
       </div>
 
       <div class="notifications__item__content">
@@ -52,7 +52,7 @@ class Notify extends React.Component {
 
     <div class="notifications__item">
       <div class="notifications__item__avatar">
-        <img src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_3.jpg" />
+        <img alt="" src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_3.jpg" />
       </div>
 
       <div class="notifications__item__content">
@@ -72,7 +72,7 @@ class Notify extends React.Component {
 
     <div class="notifications__item">
       <div class="notifications__item__avatar">
-        <img src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_4.jpg" />
+        <img alt="" src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_4.jpg" />
       </div>
 
       <div class="notifications__item__content">
@@ -92,7 +92,7 @@ class Notify extends React.Component {
 
     <div class="notifications__item">
       <div class="notifications__item__avatar">
-        <img src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_5.jpg" />
+        <img alt="" src="https://github.com/Flat-Pixels/Notifications-card-animation/raw/master/img/avatar_5.jpg" />
       </div>
 
       <div class="notifications__item__content">

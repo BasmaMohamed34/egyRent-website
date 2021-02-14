@@ -3,6 +3,7 @@ import PostPictures from "../../Component/postPictures/postPictures";
 import Comments from "../../Component/postComments/postComments";
 import { connect } from "react-redux";
 import { getPostById } from "../../actions/posts";
+import {getProfile} from "../../actions/profile"
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
 import { Carousel } from "react-responsive-carousel";
@@ -14,12 +15,20 @@ class Post extends Component {
     this.state = {
       post: [],
       comments: [],
+      profile:{},
+      savedBtn:"Save"
     };
   }
   async componentDidMount() {
     console.log("works");
     let postArr = await this.props.getPostById(this.props.match.params.id);
     this.setState({ post: postArr.payload });
+     let userData= await this.props.getProfile(localStorage.getItem("id"));
+      this.setState({
+        profile: userData.payload
+      });
+      // console.log(this.state.profile);
+    
   }
 
   render() {
@@ -37,12 +46,17 @@ class Post extends Component {
   showPostDetails = (details) => {
     return details.map((details) => {
       return (
-        <div className="container" key={details.id}>
+        <div className="container" key={details._id}>
           <div className="row">
             <div className="col-12 m-3">
               <h3 className="loc pt-3 text-center">{details.title}</h3>
-              <button className="btn btn-outline-success sv mr-5">
-                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Save
+              <button className="btn btn-outline-success sv mr-5" onClick={()=>{
+                if(localStorage.getItem('token'))
+                  this.state.profile.saved.push(details._id)
+                  console.log(this.state.profile.saved)
+                  this.setState({savedBtn:"Saved"})
+              }}>
+                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;{this.state.savedBtn}
               </button>
             </div>
             <div className="col-12 mt-2 mb-3">
@@ -117,6 +131,7 @@ class Post extends Component {
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg w-75 mr-auto ml-auto"
+                  
                 >
                   Check Availability
                 </button>
@@ -167,6 +182,9 @@ class Post extends Component {
           </div>
           <hr />
           <h3>Reviews</h3>
+          { 
+                  console.log(this.state.profile.saved)
+                }
           <div className="row pb-5">
             {details.comments.map((comment) => {
               console.log(comment);
@@ -186,6 +204,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPostById }, dispatch);
+  return bindActionCreators({ getPostById,getProfile }, dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

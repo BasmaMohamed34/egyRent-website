@@ -42,7 +42,7 @@ function AboutUs (){
                         <h4 class="left">Need Help?</h4>
                         
                         <li>
-                            <img style = {{width:"16px",height:"16px"}} src={gmail}/>
+                            <img style = {{width:"16px",height:"16px"}} src={gmail} alt=""/>
                             <p className='text-light d-inline ml-1'>
                             <b>egyRent@gmail.com</b>
                             </p>

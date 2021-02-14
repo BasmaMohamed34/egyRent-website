@@ -10,18 +10,13 @@
     font-style: normal;
 }
 
-
-.wrapper {
-  width: 600px;
-  margin: 50px auto;
-}
-
-
 .notifications__item {
+  
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 900px;
+  margin: auto;
   height: 150px;
     /* padding:50px; */
   margin-bottom: 20px;

@@ -17,10 +17,12 @@ class SignIn extends Component {
       password: "",
       done: "",
       errMsg: "",
+      userData:{}
     };
   }
 
   checkUserAuth() {
+    console.log("checking..........")
     let payload;
     this.props
       .getProfile(this.state.done.id)
@@ -30,7 +32,7 @@ class SignIn extends Component {
       .catch((err) => {
         console.log(err);
       });
-
+      this.setState({userData:payload})
     if (payload !== null) return true;
   }
   ErrorMessage() {
@@ -108,8 +110,8 @@ class SignIn extends Component {
                                 this.state.done.token
                               );
                               localStorage.setItem("id", this.state.done.id);
-
-                              if (this.checkUserAuth()) {
+                                let checkAuth=this.checkUserAuth();
+                              if (checkAuth) {
                                 history.push(`/home`);
                                 window.location.reload();
                               }
