@@ -86,6 +86,7 @@ module.exports = {
         if (JSON.stringify(i.checkOut).slice(1, -1) <= checkin) {
           console.log(JSON.stringify(i.checkIn).slice(1, -1))
           res.send(true);
+          Reservation.create(req.body);
         }
         else
           res.send(false);
