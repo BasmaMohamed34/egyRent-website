@@ -61,28 +61,7 @@ module.exports = {
     console.log(user);
     res.status(201).json(post);
   },
-<<<<<<< Updated upstream
 
-  checkAvail: async (req, res, next) => {
-    let postID = req.body.post;
-    // let checkin=new Date(req.body.checkIn).toISOString();
-    // let checkout=new Date(req.body.checkOut).toISOString();
-
-    let checkin = new Date(req.body.checkIn).toString();
-    let st1 = checkin.slice(0, 25) + checkin.slice(34).toISOString();
-    let checkout = new Date(req.body.checkOut);
-    let st2 = checkout.slice(0, 25) + checkout.slice(34).toISOString();
-    console.log(st1);
-    console.log(st2);
-    const checking = await Reservation.find({ checkIn: checkin });
-    // console.log("checkin" +checkin, "checkout "+checkout)
-    console.log(checking);
-    if (checking.length > 0) {
-      res.send("place is not available in that time");
-    } else res.status(200).send("place is available");
-  },
-};
-=======
   
   checkAvail: async (req, res, next) => {
     let postID = req.body.post;
@@ -114,4 +93,3 @@ module.exports = {
     }
     }
 };
->>>>>>> Stashed changes
