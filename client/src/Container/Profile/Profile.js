@@ -8,7 +8,7 @@ import ProfilePosts from "./ProfilePosts/Profile-posts";
 import Saved from "./Saved/Saved";
 import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
 import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
-import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Popup from "./Popup";
 import EditUser from "./EditUser";
 class Profile extends Component {
@@ -36,6 +36,21 @@ class Profile extends Component {
     });
   }
 
+  checkType(profile) {
+    if (this.state.profile.type === "Host") {
+      return (
+        <Route exact path={`/profile/${profile}`}>
+          <ProfilePosts />
+        </Route>
+      );
+    } else {
+      return (
+        <Route exact path={`/profile/${profile}`}>
+          <Saved />
+        </Route>
+      );
+    }
+  }
   renderProfile({ profile }) {
     if (localStorage.getItem("token")) {
       return (
@@ -57,14 +72,14 @@ class Profile extends Component {
                           <p className="d-block">
                             <PhoneRoundedIcon
                               className="fa1 mr-1"
-                              style={{ color: "#577AB7" }}
+                              style={{ color: "#4169E1" }}
                             />
                             {profile.phone}
                           </p>
                           <p className="d-block">
                             <EmailRoundedIcon
                               className="fa1 mr-1"
-                              style={{ color: "#577AB7" }}
+                              style={{ color: "#4169E1" }}
                             />
                             {profile.email}
                           </p>
@@ -75,14 +90,12 @@ class Profile extends Component {
                   </p> */}
                         </div>
                         <div className="w-12 h-1 bg-red-500 rounded mt-2 mb-4 text-left">
-                          <p className="text-base">
-                            <InfoRoundedIcon
+                          <p className="text-base  mb-4">
+                            <LocationOnIcon
                               className="fa1 mr-1"
-                              style={{ color: "#577AB7" }}
+                              style={{ color: "#4169E1" }}
                             />
-                            Raclette knausgaard hella meggs normcore
-                            williamsburg enamel pin sartorial venmo tbh hot
-                            chicken gentrify portland.
+                            {profile.location}
                           </p>
                           <button
                             class="btn btn-light border col-md-6"
@@ -156,9 +169,7 @@ class Profile extends Component {
             </div>
             <div className="col-md-10 outerElem p-2">
               <Switch>
-                {/* <Route exact path={`/profile/${profile._id}`}>
-                  <ProfilePosts />
-                </Route> */}
+                {this.checkType(profile._id)}
                 <Route exact path={`/profile/${profile._id}/profile-posts`}>
                   <ProfilePosts />
                 </Route>

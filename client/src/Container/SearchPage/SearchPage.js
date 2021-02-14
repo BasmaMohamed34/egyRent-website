@@ -99,50 +99,40 @@ class SearchPage extends Component {
         <div>
           <h1 className="nearby1">Stay Nearby </h1>
           <div className="contain w-100 p-2">
-            {/* <label className="label">bedrooms Number ==></label> */}
-            <select
-              className="search1 "
+            <input
+              type="nubmer"
+              className="search1 search-price bg-light border-secondary p-3"
               value={this.state.bedrooms}
               onChange={this.handleClick}
-            >
-              <option value="" disabled>
-                Select bedrooms Number
-              </option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-            {/* <label className="label">beds Number ==></label> */}
-            <select
-              className="search1"
+              placeholder="Enter bedrooms Number"
+            />
+            <input
+              type="nubmer"
+              className="search1 search-price bg-light border-secondary p-3"
               value={this.state.beds}
               onChange={this.handleClick1}
-            >
-              <option value="" disabled>
-                Select Beds Number
-              </option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4 </option>
-            </select>
-            {/* <label className="label">Type ==></label> */}
+              placeholder="Enter Beds Number"
+            />
+
             <select
-              className="search1"
+              className="search1 search-price bg-light border-secondary"
               value={this.state.type}
               onChange={this.handleChange}
             >
               <option value="" disabled>
                 Select Type
               </option>
-              <option value="room">room</option>
-              <option value="house">house</option>
+              <option value="Room">Room</option>
+              <option value="Apartment">Apartment</option>
+              <option value="House">House</option>
               <option value="Boutique">Boutique</option>
+              <option value="Studio">Studio</option>
+              <option value="Villa">Villa</option>
+              <option value="Roof">Roof</option>
               <option value="Bed">Bed </option>
             </select>
             <input
-              className="search1 search-price"
+              className="search1 search-price bg-light border-secondary p-3"
               type="text"
               onKeyUp={this.handlePrice}
               placeholder="Enter Price..."

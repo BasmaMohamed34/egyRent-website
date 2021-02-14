@@ -43,8 +43,7 @@ export async function signUp(user) {
 }
 export async function logOut() {
   localStorage.removeItem("token");
-  //Cookies.remove("token");
-  window.location.href = "/home";
+  window.location.href = "/signin";
 }
 
 export async function getProfile(id) {

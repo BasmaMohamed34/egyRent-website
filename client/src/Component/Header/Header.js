@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { signIn, logOut, getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
-
+import { Dropdown } from "react-bootstrap";
 class Header extends Component {
   constructor() {
     super();
@@ -30,21 +30,18 @@ class Header extends Component {
     this.setState({
       profile: this.props.profile,
     });
-    // console.log(this.state.profile);
   }
   checkType() {
     if (this.state.profile.type === "Host") {
       return (
         <>
-          <li className="md-mt-3 mb-3 text-center">
-            <NavLink
-              to={`/${this.state.profile._id}/createpost`}
-              exact
-              className=" text-decoration-none "
-            >
-              <b>Create Post</b>
-            </NavLink>
-          </li>
+          <NavLink
+            to={`/${this.state.profile._id}/createpost`}
+            exact
+            className=" text-decoration-none "
+          >
+            <b>Create Post</b>
+          </NavLink>
           <hr />
         </>
       );
@@ -109,29 +106,14 @@ class Header extends Component {
               {localStorage.getItem("token") ? (
                 //  window.location.reload()
                 <>
-                  <li
-                    className="smooth-menu mr-3"
-                    data-toggle="tooltip"
-                    title="Notification"
-                  >
-                    <NavLink to="notify" exact>
-                       
-                      <BellIcon width="30" active={true} color="#fff" />
-                       
-                    </NavLink>
-                  </li>
                   <li>
-                    <div className=" dropdown">
-                      <button
-                        className="btn btn-primary dropdown-toggle"
-                        type="button"
-                        data-toggle="dropdown"
-                      >
+                    <Dropdown>
+                      <Dropdown.Toggle variant="primary" id="dropdown-basic">
                         Hello {this.state.profile.firstname}
-                        <span className="caret"></span>
-                      </button>
-                      <ul className="dropdown-menu w-100">
-                        <li className="md-mt-3 dropdown-item mb-3 text-center">
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className="text-center w-100">
+                        <Dropdown.Item>
                           <NavLink
                             to={`/profile/${this.state.profile._id}`}
                             exact
@@ -139,10 +121,10 @@ class Header extends Component {
                           >
                             <b>Profile</b>
                           </NavLink>
-                        </li>
-                        <hr />
-                        {this.checkType()}
-                        <li className="md-mt-3 mb-3 text-center ">
+                          <hr />
+                        </Dropdown.Item>
+                        <Dropdown.Item>{this.checkType()}</Dropdown.Item>
+                        <Dropdown.Item>
                           <NavLink
                             to="/signin"
                             exact
@@ -151,15 +133,25 @@ class Header extends Component {
                             <b
                               onClick={() => {
                                 this.props.logOut();
-                                //window.location.reload()
                               }}
                             >
                               LogOut
                             </b>
                           </NavLink>
-                        </li>
-                      </ul>
-                    </div>
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </li>
+                  <li
+                    className="smooth-menu ml-3"
+                    data-toggle="tooltip"
+                    title="Notification"
+                  >
+                    <NavLink to="notify" exact>
+                       
+                      <BellIcon width="30" active={true} color="#fff" />
+                       
+                    </NavLink>
                   </li>
                 </>
               ) : (

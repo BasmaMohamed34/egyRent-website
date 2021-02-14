@@ -36,6 +36,7 @@ button {
 .imgCenter {
   position: relative;
   left: 10%;
+  height: 190px;
 }
 .divProps {
   background-color: #577ab7;

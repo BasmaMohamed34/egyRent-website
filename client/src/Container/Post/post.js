@@ -7,7 +7,7 @@ import { getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
 import { Carousel } from "react-responsive-carousel";
-import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 class Post extends Component {
   constructor() {
@@ -56,15 +56,18 @@ class Post extends Component {
               <button
                 className="btn btn-outline-success sv mr-5"
                 onClick={() => {
-                  if (localStorage.getItem("token"))
+                  if (localStorage.getItem("token")) {
                     //this.state.profile.saved.push(details._id);
                     //console.log(this.state.profile.saved);
                     this.props.savePost(
                       this.state.profileID,
                       this.props.match.params.id
                     );
-                  this.setState({ savedBtn: "Saved" });
-                  console.log(this.state.profileID);
+                    this.setState({ savedBtn: "Saved" });
+                    //console.log(this.state.profileID);
+                  } else {
+                    window.location.assign("/signin");
+                  }
                 }}
               >
                 <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;
@@ -193,7 +196,7 @@ class Post extends Component {
           </div>
           <hr />
           <h3>Reviews</h3>
-          {console.log(this.state.profile.saved)}
+          {/*  {console.log(this.state.profile.saved)} */}
           <div className="row pb-5">
             {details.comments.map((comment) => {
               console.log(comment);
