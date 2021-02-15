@@ -12,7 +12,7 @@ import signin from "./signin";
 import signup from "./signup";
 import DestinationSearch from "./location";
 import locationSearch from "./locationGuests";
-import savePost from "./save-post";
+import toggleSavePost from "./toggle-save";
 export default combineReducers({
   posts,
   profile,
@@ -27,5 +27,5 @@ export default combineReducers({
   DestinationSearch,
   signin,
   signup,
-  savePost,
+  toggleSavePost,
 });
