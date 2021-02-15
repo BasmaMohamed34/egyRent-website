@@ -87,7 +87,7 @@ module.exports = {
               let host = Posts[0].createdBy;
                User.findOne({ _id: userID }).then((user)=>{
                 user.notification.push(`${host.firstname} ${host.lastname} creator of ${Posts[0].title} in ${Posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}.`);
-                //console.log(user.notification[0])
+                //console.log(user.notification[0]) 
                 user.save()
               }).catch((err)=>{console.log(err)})
             })
