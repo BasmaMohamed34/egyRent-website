@@ -81,7 +81,7 @@ export async function createPost(id, post) {
   };
 }
 
-export async function savePost(UserID, PostID) {
+export async function toggleSavePost(UserID, PostID) {
   let payload = null;
   console.log(UserID);
   try {
@@ -95,12 +95,12 @@ export async function savePost(UserID, PostID) {
       body: JSON.stringify({ UserID, PostID }),
     });
     payload = response.json();
-    console.log(payload);
+    
   } catch (err) {
     console.log(err);
   }
   return {
-    type: "SAVE_POST",
+    type: "TOGGLE_SAVE",
     payload,
   };
 }

@@ -2,7 +2,7 @@ import "./post.css";
 import PostPictures from "../../Component/postPictures/postPictures";
 import Comments from "../../Component/postComments/postComments";
 import { connect } from "react-redux";
-import { getPostById, savePost ,CheckAvail} from "../../actions/posts";
+import { getPostById, toggleSavePost } from "../../actions/posts";
 import { getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
@@ -18,9 +18,6 @@ class Post extends Component {
       profile: {},
       savedBtn: "Save",
       profileID: "",
-      checkInDate:"",
-      checkOutDate:"",
-      response:""
     };
   }
   async componentDidMount() {
@@ -34,28 +31,13 @@ class Post extends Component {
     this.setState({
       profileID: localStorage.getItem("id"),
     });
-    // console.log(this.state.profile);
+    if (localStorage.getItem("token")) {
+    if(this.state.profile.saved.includes(this.props.match.params.id)){
+      this.setState({ savedBtn: "Saved" })
+    }else{
+      this.setState({ savedBtn: "Save" })
+    }}
   }
-  responseOfAvalability(){
-    if(this.state.response===true){
-      return(
-        <div>
-          This place is Available , host contact info will be send to you.
-        </div>
-      )
-    }
-    else if(this.state.response===false){
-      return(
-        <div>
-          The place isn't Available on that date.
-        </div>
-      )
-    }
-    else return(
-      <div></div>
-    )
-  }
-
   render() {
     return <div>{this.showPostDetails(this.state.post)}</div>;
   }
@@ -78,24 +60,21 @@ class Post extends Component {
               <button
                 className="btn btn-outline-success sv mr-5"
                 onClick={() => {
-                  if(this.state.savedBtn==="Save"){
-                    if (localStorage.getItem("token")) {
-                        this.props.savePost(
-                        this.state.profileID,
-                        this.props.match.params.id
-                        );
-                        this.setState({ savedBtn: "Saved" });
-                      } else {
-                      window.location.assign("/signin");
-                    }
+                  if (localStorage.getItem("token")) {
+                    this.props.toggleSavePost(this.state.profileID,
+                      this.props.match.params.id).then((res)=>{
+                      if(res.payload === true ) {
+                        this.setState({savedBtn: "Saved"})
+                      }else{
+                        this.setState({savedBtn: "Save"})
+                      }
+                    })
+                   } else {
+                    window.location.assign("/signin");
                   }
-                  else if(this.state.savedBtn==="Saved"){
-                    this.setState({savedBtn:"Save"})
-                  }
-                }
-                }
+                }}
               >
-                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;
+                <i className="fa fa-heart" aria-hidden="true"></i>&nbsp;
                 {this.state.savedBtn}
               </button>
             </div>
@@ -130,15 +109,15 @@ class Post extends Component {
               <div className="row justify-content-between p-5">
                 <div className="col-12 col-md-3 p-3 dt">
                   <h4>{details.type}</h4>
-                  <i class="fa fa-home fa-3x pt-3" aria-hidden="true"></i>
+                  <i className="fa fa-home fa-3x pt-3" aria-hidden="true"></i>
                 </div>
                 <div className="col-12 col-md-3 p-3 dt">
                   <h3>Enhanced Clean</h3>
-                  <i class="fa fa-star-half-o fa-3x" aria-hidden="true"></i>
+                  <i className="fa fa-star-half-o fa-3x" aria-hidden="true"></i>
                 </div>
                 <div className="col-12 col-md-3 p-3 dt">
                   <h3>Super Host</h3>
-                  <i class="fa fa-empire fa-3x" aria-hidden="true"></i>
+                  <i className="fa fa-empire fa-3x" aria-hidden="true"></i>
                 </div>
               </div>
               <div className="col-12">
@@ -151,47 +130,30 @@ class Post extends Component {
               <p className="text-left price">&#36; {details.price} / Night</p>
               <hr />
               <form className="check-form p-4">
-                <div className="form-group pt-3">
-                  <label for="checkin">Check In</label>
+                <div className="form-group">
+                  <label htmlFor="checkin">Check In</label>
                   <input
                     type="date"
                     className="form-control"
                     id="checkin"
                     aria-describedby="dateHelp"
-                    min={new Date().toISOString().split("T")[0]}
-                    value={this.state.checkInDate}
-                    onChange={(e)=>{this.setState({checkInDate:e.target.value});console.log(this.state.checkInDate)}}
                   />
                 </div>
-                <div className="form-group pb-5 pt-3">
-                  <label for="checkout">Check Out</label>
-                  
-                  <input type="date"
-                   className="form-control" id="checkout" 
-                   min={new Date().toISOString().split("T")[0]}
-                   value={this.state.checkOutDate}
-                   onChange={(e)=>{this.setState({checkOutDate:e.target.value});console.log(this.state.checkOutDate)}}
-                   />
+                <div className="form-group">
+                  <label htmlFor="checkout">Check Out</label>
+                  <input type="date" className="form-control" id="checkout" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="guests">Guests</label>
+                  <input type="number" className="form-control" id="guests" />
                 </div>
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg w-75 mr-auto ml-auto"
-                  onClick={async(e)=>{
-                    e.preventDefault()
-                    await this.props.CheckAvail(localStorage.getItem("id"),details._id,this.state.checkInDate,this.state.checkOutDate)
-                    .then(res=>{
-                      this.setState({response:res.payload})
-                    })
-                    .catch(err=>{
-                      console.log(err)
-                    })
-    
-                  }}
                 >
                   Check Availability
                 </button>
               </form>
-                {this.responseOfAvalability()}
             </div>
           </div>
           <div className="row mb-3">
@@ -205,7 +167,7 @@ class Post extends Component {
                   {this.checkAmenities("Wifi", details.wifi)}
                 </li>
                 <li className="list-group-item p-3">
-                  <i class="fa fa-2x fa-gg-circle" aria-hidden="true"></i>&nbsp;
+                  <i className="fa fa-2x fa-gg-circle" aria-hidden="true"></i>&nbsp;
                   &nbsp; {this.checkAmenities("AC", details.ac)}
                 </li>
                 <li className="list-group-item p-3">
@@ -217,11 +179,11 @@ class Post extends Component {
                   &nbsp; {this.checkAmenities("Heating", details.heating)}
                 </li>
                 <li className="list-group-item p-3">
-                  <i class="fa fa-2x fa-fire" aria-hidden="true"></i>&nbsp;
+                  <i className="fa fa-2x fa-fire" aria-hidden="true"></i>&nbsp;
                   &nbsp; {this.checkAmenities("Kitchen", details.kitchen)}
                 </li>
                 <li className="list-group-item p-3">
-                  <i class="fa fa-2x fa-outdent" aria-hidden="true"></i>&nbsp;
+                  <i className="fa fa-2x fa-outdent" aria-hidden="true"></i>&nbsp;
                   &nbsp;{" "}
                   {this.checkAmenities("Smoke Alarm", details.smokeAlarm)}
                 </li>
@@ -230,21 +192,21 @@ class Post extends Component {
                   {this.checkAmenities("TV", details.tv)}
                 </li>
                 <li className="list-group-item p-3">
-                  <i class="fa fa-2x fa-arrow-up" aria-hidden="true"></i>&nbsp;
+                  <i className="fa fa-2x fa-arrow-up" aria-hidden="true"></i>&nbsp;
                   &nbsp; {this.checkAmenities("Elevator", details.elevator)}
                 </li>
               </ul>
             </div>
           </div>
           <hr />
-          {/* <h3>Reviews</h3> */}
+          <h3>Reviews</h3>
           {/*  {console.log(this.state.profile.saved)} */}
-          {/* <div className="row pb-5">
+          <div className="row pb-5">
             {details.comments.map((comment) => {
               console.log(comment);
               return <Comments comment={comment} />;
             })}
-          </div> */}
+          </div>
         </div>
       );
     }); //map end
@@ -258,6 +220,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPostById, getProfile, savePost, CheckAvail }, dispatch);
+  return bindActionCreators({ getPostById, getProfile, toggleSavePost }, dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

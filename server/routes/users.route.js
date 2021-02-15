@@ -41,12 +41,11 @@ module.exports = (app) => {
     "/post/:id/checkAvail",
     auth.verifyUserToken,
     postController.checkAvail
-  );
-  app.get("/post/:id", postController.getPost);
-  app.post("/signup", upload.single("photo"), profileController.createUser);
-  app.post("/signin", profileController.signIn);
-  app.patch("/post/:id", auth.verifyUserToken, postController.savePost);
-  app.patch("/post/:id", auth.verifyUserToken, postController.deleteSavedPost);
+    );
+    app.get("/post/:id", postController.getPost);
+    app.post("/signup", upload.single("photo"), profileController.createUser);
+    app.post("/signin", profileController.signIn);
+    app.patch("/post/:id", auth.verifyUserToken, postController.toggleSavePost)
   app.patch(
     "/profile/:id",
     upload.single("photo"),

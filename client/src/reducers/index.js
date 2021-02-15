@@ -13,7 +13,6 @@ import signup from "./signup";
 import DestinationSearch from "./location";
 import locationSearch from "./locationGuests";
 import toggleSavePost from "./toggle-save";
-import savePost from "./save-post";
 import CheckAvailability from "./checkAvail";
   
 export default combineReducers({
@@ -31,6 +30,5 @@ export default combineReducers({
   signin,
   signup,
   toggleSavePost,
-  savePost,
   CheckAvailability
 });

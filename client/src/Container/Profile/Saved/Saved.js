@@ -22,7 +22,7 @@ class Saved extends Component {
       if (profileSaved.length > 0) {
         return profileSaved.map((profileSaved) => (
           <>
-            <div className="col col-md-12p-2 ">
+            <div className="col col-md-12 imgg ">
               <img
                 className=" rounded"
                 src={
@@ -36,7 +36,7 @@ class Saved extends Component {
                 <h5 className="card-title">{profileSaved.location}</h5>
                 <p className="card-text">{profileSaved.description}</p>
                 <h4 className="card-title">{profileSaved.price}$ / Night</h4>
-                <a href="#!" className="btn btn-primary mt-1">
+                <a href={"/post/" + profileSaved._id} className="btn btn-primary mt-1">
                   More Details
                 </a>
               </div>

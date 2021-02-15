@@ -222,6 +222,7 @@ class Signup extends Component {
                   /* } else {
                     this.validator.showMessages();
                   } */
+                  window.location.assign("/home")
                 }}
               >
                 Sign Up
