@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     cb(null, "../uploads/");
   },
   filename: function (req, file, cb) {
-    console.log(file);
+    
     cb(null, "pic" + "-" + Date.now() + path.extname(file.originalname));
   },
 });
@@ -46,6 +46,7 @@ module.exports = (app) => {
   app.post("/signup", upload.single("photo"), profileController.createUser);
   app.post("/signin", profileController.signIn);
   app.patch("/post/:id", auth.verifyUserToken, postController.savePost);
+  app.patch("/post/:id", auth.verifyUserToken, postController.deleteSavedPost);
   app.patch(
     "/profile/:id",
     upload.single("photo"),
