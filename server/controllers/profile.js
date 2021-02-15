@@ -79,7 +79,7 @@ module.exports = {
               //user.save()
               let payload = { id: user._id };
               const token = jwt.sign(payload, config.TOKEN_SECRET);
-              res.status(200).send({ token });
+              res.status(200).send({ token: token, id: user._id });
             })
             .catch(next);
         } else console.log(err);
