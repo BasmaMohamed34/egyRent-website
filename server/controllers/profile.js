@@ -57,7 +57,6 @@ module.exports = {
 
   createUser: async (req, res, next) => {
     let user = await User.findOne({ username: req.body.username });
-    console.log(req.file);
     if (user) return res.status(400).send("User already registered.");
     else {
       const myPlaintextPassword = req.body.password;
