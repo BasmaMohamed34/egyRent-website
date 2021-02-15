@@ -57,7 +57,7 @@ module.exports = {
 
   createUser: async (req, res, next) => {
     let user = await User.findOne({ username: req.body.username });
-    if (user) return res.status(400).send("User already registered.");
+    if (user) return res.status(400).send({payload:"User already registered."});
     else {
       const myPlaintextPassword = req.body.password;
       await bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
@@ -79,7 +79,7 @@ module.exports = {
               //user.save()
               let payload = { id: user._id };
               const token = jwt.sign(payload, config.TOKEN_SECRET);
-              res.status(200).send({ token });
+              res.status(200).send({ token: token, id: user._id });
             })
             .catch(next);
         } else console.log(err);
