@@ -46,6 +46,7 @@ module.exports = {
     await user.save();
     res.status(201).json(newPost);
   },
+
   toggleSavePost: async (req, res, next) => {
     const userID = req.body.UserID;
     const postID = req.body.PostID;
@@ -67,11 +68,11 @@ module.exports = {
     res.send(true);
     }
   },
-  
+
   checkAvail: async (req, res, next) => {
+    // console.log(req.body)
     let userID = req.body.id;
     let postID = req.body.post;
-    console.log(postID);
     let x1 = new Date(req.body.checkIn);
     let x2 = x1.getDate();
     let y1 = new Date(req.body.checkOut);
@@ -80,26 +81,38 @@ module.exports = {
     let dateOut = y1.setDate(y2 + 1);
     let checkin = new Date(dateIn).toISOString();
     let checkout = new Date(dateOut).toISOString();
+    
+    let notify=()=>{
+        res.send(true);
+        Reservation.create(req.body);
+        Posts.find({ _id: postID })
+          .populate("createdBy")
+          .then((Posts) => {
+            let host1 = Posts[0].createdBy;
+            User.findOne({ _id: userID }).then((user)=>{
+              user.notification.push(`${host1.firstname} ${host1.lastname} creator of ${Posts[0].title} in ${Posts[0].location} to contact the host: Email:${host1.email}, Phone Number:${host1.phone}.`);
+              //console.log(user.notification[0]) 
+              user.save()
+            }).catch((err)=>{console.log(err)})
+          })
+          .catch((err)=>{console.log(err)});
+    }
 
     const checking = await Reservation.find({ post: postID });
-    if (checking.length > 0) {
+    if (checking.length >0) {
+      console.log("CHECKING ",checking)
       checking.forEach((i) => {
-        if (JSON.stringify(i.checkOut).slice(1, -1) <= checkin) {
-          res.send(true);
-          Reservation.create(req.body);
-          Posts.find({ _id: postID })
-            .populate("createdBy")
-            .then((Posts) => {
-              let host = Posts[0].createdBy;
-               User.findOne({ _id: userID }).then((user)=>{
-                user.notification.push(`${host.firstname} ${host.lastname} creator of ${Posts[0].title} in ${Posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}.`);
-                //console.log(user.notification[0]) 
-                user.save()
-              }).catch((err)=>{console.log(err)})
-            })
-            .catch((err)=>{console.log(err)});
-          } else res.send(false);
-        });
+        if ((JSON.stringify(i.checkIn).slice(1, -1) > checkin || JSON.stringify(i.checkOut).slice(1, -1)< checkin) && (JSON.stringify(i.checkIn).slice(1, -1) >= checkout || JSON.stringify(i.checkOut).slice(1, -1)< checkout)) {  
+          console.log(checkin," ",checkout)
+          notify();
+          }
+         else res.send(false);
+      });
+        
+    }
+    else{
+     notify();
     }
   },
 };
+
