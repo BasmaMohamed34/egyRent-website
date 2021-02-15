@@ -62,9 +62,10 @@ module.exports = {
     res.status(201).json(post);
   },
 
-  
   checkAvail: async (req, res, next) => {
+    let userID = req.body.id;
     let postID = req.body.post;
+    console.log(postID);
     let x1 = new Date(req.body.checkIn);
     let x2 = x1.getDate();
     let y1 = new Date(req.body.checkOut);
@@ -73,23 +74,26 @@ module.exports = {
     let dateOut = y1.setDate(y2 + 1);
     let checkin = new Date(dateIn).toISOString();
     let checkout = new Date(dateOut).toISOString();
-  
-    console.log(checkin)
-    console.log(checkout)
+
     const checking = await Reservation.find({ post: postID });
-    console.log(checking)
     if (checking.length > 0) {
-      checking.forEach(i => {
-        console.log(i);
-        console.log(typeof(JSON.stringify(i.checkIn)));
-        console.log(typeof(checkin));
+      checking.forEach((i) => {
         if (JSON.stringify(i.checkOut).slice(1, -1) <= checkin) {
-          console.log(JSON.stringify(i.checkIn).slice(1, -1))
           res.send(true);
-        }
-        else
-          res.send(false);
-      })
+          Reservation.create(req.body);
+          Posts.find({ _id: postID })
+            .populate("createdBy")
+            .then((Posts) => {
+              let host = Posts[0].createdBy;
+               User.findOne({ _id: userID }).then((user)=>{
+                user.notification.push(`${host.firstname} ${host.lastname} creator of ${Posts[0].title} in ${Posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}.`);
+                //console.log(user.notification[0])
+                user.save()
+              }).catch((err)=>{console.log(err)})
+            })
+            .catch((err)=>{console.log(err)});
+          } else res.send(false);
+        });
     }
-    }
+  },
 };

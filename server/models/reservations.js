@@ -9,11 +9,13 @@ const reservationSchema=new schema({
     },
     checkIn:{
         type:Date,
-        required:true
+        required:true,
+        unique: true
     },
     checkOut:{
         type:Date,
-        required:true
+        required:true,
+        unique: true
     }
 })
 
