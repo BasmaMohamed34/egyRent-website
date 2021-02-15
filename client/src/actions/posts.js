@@ -1,22 +1,32 @@
-/* export function getPosts() {
+export async function CheckAvail(id,post,checkin,checkout) {
   let payload = null;
-  console.log("before fetch");
-  fetch("/home")
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      payload = res;
-      console.log("result ", res);
-    })
-    .catch((err) => console.log(err));
-
-  console.log("after fetch");
+  let i= checkin.split("-")
+  let checkIn=`${i[1]}/${i[2]}/${i[0]}`
+  let o= checkout.split("-")
+  let checkOut=`${o[1]}/${o[2]}/${o[0]}`
+  // console.log(checkin," ",checkout);
+  console.log(post)
+  try {
+    let response = await fetch(`/post/${post}/checkAvail`, {
+      method: "POST",
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,  
+        Accept: "application/json",
+        "Content-Type": "application/json",   
+      },
+      body:JSON.stringify({ id,post,checkIn,checkOut}),
+    });
+    console.log(response.body)
+    payload = response.json();
+    console.log(payload);
+  } catch (err) {
+    console.log(err);
+  }
   return {
-    type: "POSTS",
+    type: "CHECK-AVAILABILITY",
     payload,
   };
-} */
+}
 
 export async function getPosts() {
   let payload = null;
@@ -39,7 +49,7 @@ export async function getPostById(id) {
   try {
     let response = await fetch(`/post/${id}`);
     payload = await response.json();
-    console.log(payload);
+ 
   } catch (err) {
     console.log(err);
   }
@@ -94,3 +104,5 @@ export async function savePost(UserID, PostID) {
     payload,
   };
 }
+
+
