@@ -4,10 +4,14 @@ const Reservation = require("../models/reservations");
 module.exports = {
   getPost(req, res, next) {
     const postId = req.params.id;
-    Posts.find({ _id: postId })
-      .populate("createdBy")
-      .then((Posts) => res.send(Posts))
-      .then((Posts) => res.send(Posts.createdBy))
+    Posts.find({
+        _id: postId
+      }).populate("createdBy")
+      .then((Posts) => res.send({
+        Posts: Posts,
+        Creator: Posts.createdBy
+      }))
+      // .then((Posts) => res.send())
       .catch(next);
   },
 
@@ -50,69 +54,73 @@ module.exports = {
   toggleSavePost: async (req, res, next) => {
     const userID = req.body.UserID;
     const postID = req.body.PostID;
-    const user = await User.findOne({ _id: userID });
+    const user = await User.findOne({
+      _id: userID
+    });
     const post = await Posts.findById(postID);
-    let savedPosts = user.saved
-    if(savedPosts.includes(postID)){
-    savedPosts.splice(postID,2)
-    post.savedBy = null
-    user.save()
-    post.save()
-    res.send(false)
-  }
-  else{
-    post.savedBy = user.id;
-    post.save();
-    savedPosts.push(post);
-    user.save();
-    res.send(true);
+    let savedPosts = user.saved;
+    if (savedPosts.includes(postID)) {
+      savedPosts.splice(postID, 2)
+      post.savedBy = null
+      user.save()
+      post.save()
+      res.send(false)
+    } else {
+      post.savedBy = user.id;
+      post.save();
+      savedPosts.push(post);
+      user.save();
+      res.send(true);
     }
   },
 
-  checkAvail: async (req, res, next) => {
-    // console.log(req.body)
-    let userID = req.body.id;
+  checkAvail: (req, res, next) => {
+    let userID = req.body.usrId;
     let postID = req.body.post;
-    let x1 = new Date(req.body.checkIn);
-    let x2 = x1.getDate();
-    let y1 = new Date(req.body.checkOut);
-    let y2 = y1.getDate();
-    let dateIn = x1.setDate(x2 + 1);
-    let dateOut = y1.setDate(y2 + 1);
+    let dateIn = (new Date(req.body.checkIn));
+    let dateOut = (new Date(req.body.checkOut));
     let checkin = new Date(dateIn).toISOString();
     let checkout = new Date(dateOut).toISOString();
-    
-    let notify=()=>{
-        res.send(true);
-        Reservation.create(req.body);
-        Posts.find({ _id: postID })
-          .populate("createdBy")
-          .then((Posts) => {
-            let host1 = Posts[0].createdBy;
-            User.findOne({ _id: userID }).then((user)=>{
-              user.notification.push(`${host1.firstname} ${host1.lastname} creator of ${Posts[0].title} in ${Posts[0].location} to contact the host: Email:${host1.email}, Phone Number:${host1.phone}.`);
-              //console.log(user.notification[0]) 
-              user.save()
-            }).catch((err)=>{console.log(err)})
-          })
-          .catch((err)=>{console.log(err)});
-    }
 
-    const checking = await Reservation.find({ post: postID });
-    if (checking.length >0) {
-      console.log("CHECKING ",checking)
-      checking.forEach((i) => {
-        if ((JSON.stringify(i.checkIn).slice(1, -1) > checkin || JSON.stringify(i.checkOut).slice(1, -1)< checkin) && (JSON.stringify(i.checkIn).slice(1, -1) >= checkout || JSON.stringify(i.checkOut).slice(1, -1)< checkout)) {  
-          console.log(checkin," ",checkout)
-          notify();
+    Reservation.find({
+        post: postID
+      })
+      .then(reserved => {
+        console.log(reserved.length);
+        var c = "f";
+        if (reserved.length > 0) {
+          for (i of reserved) {
+            let DBCheckIn = JSON.stringify(i.checkIn).slice(1, -1);
+            let DBCheckOut = JSON.stringify(i.checkOut).slice(1, -1);
+            if ((DBCheckIn >= checkout) || (DBCheckOut <= checkin)) {
+              c = "t";
+            } else res.send("Not Available");
           }
-         else res.send(false);
+        }
+        if ((reserved.length === 0) || c) {
+          res.send("Available");
+          Reservation.create(req.body).catch(err => console.log(err));
+          Posts.find({
+              _id: postID
+            }).populate("createdBy")
+            .then((posts) => {
+              if (posts.length > 0) {
+                let host = posts[0].createdBy;
+                User.findOne({
+                  _id: userID
+                }).then((user) => {
+                  user.notification.push(`${host.firstname} ${host.lastname} creator of ${posts[0].title} in ${posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}.`);
+                  user.save()
+                }).catch((err) => {
+                  console.log(err)
+                });
+              }
+            }).catch((err) => {
+              console.log(err)
+            });
+        }
+      }).catch(err => {
+        console.log(err);
       });
-        
-    }
-    else{
-     notify();
-    }
   },
 };
-
