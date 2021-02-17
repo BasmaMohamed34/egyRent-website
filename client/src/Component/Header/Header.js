@@ -8,13 +8,25 @@ import { connect } from "react-redux";
 import { signIn, logOut, getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 import { Dropdown } from "react-bootstrap";
+import Badge from '@material-ui/core/Badge';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 class Header extends Component {
   constructor() {
     super();
-
     this.state = {
       loggedIn: false,
       profile: {},
+      count:1,
+      badgeNum:0 
     };
   }
 
@@ -28,7 +40,7 @@ class Header extends Component {
   async componentDidMount() {
     await this.props.getProfile(localStorage.getItem("id"));
     this.setState({
-      profile: this.props.profile,
+      profile: this.props.profile,  
     });
   }
   checkType() {
@@ -147,10 +159,11 @@ class Header extends Component {
                     data-toggle="tooltip"
                     title="Notification"
                   >
-                    <NavLink to="notify" exact>
-                       
-                      <BellIcon width="30" active={true} color="#fff" />
-                       
+                    <NavLink to="/notify" exact>
+                      
+                    <Badge color="secondary" badgeContent={this.state.badgeNum} showZero>
+                      <BellIcon width="30" active={true} color="#fff"/>
+                    </Badge>
                     </NavLink>
                   </li>
                 </>
@@ -159,10 +172,9 @@ class Header extends Component {
                   <li className="nav-item bg mr-3 mb-3">
                     <Link
                       to="/signup"
-                      className="btn btn-pink"
+                      className="btn btn-primary"
                       exact
                       style={{
-                        backgroundColor: "#007bff",
                         padding: "7px",
                         borderRadius: "5px",
                         color: "#fff",

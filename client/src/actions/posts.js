@@ -1,13 +1,14 @@
 export async function CheckAvail(id,post,checkin,checkout) {
   let payload = null;
   let i= checkin.split("-")
-  let checkIn=`${i[1]}/${i[2]}/${i[0]}`
+  let dayin=parseInt(i[2])+1;
+  let checkIn=`${i[1]}/${dayin.toString()}/${i[0]}`
   let o= checkout.split("-")
-  let checkOut=`${o[1]}/${o[2]}/${o[0]}`
-  // console.log(checkin," ",checkout);
-  console.log(post)
-  try {
-    let response = await fetch(`/post/${post}/checkAvail`, {
+  let dayout=parseInt(o[2])+1;
+  let checkOut=`${o[1]}/${dayout.toString()}/${o[0]}`
+  console.log("chechin= ",checkIn)
+    console.log("chechout= ",checkOut)
+     await fetch(`/post/${post}/checkAvail`, {
       method: "POST",
       headers: {
         Authorization: `auth-token ${localStorage.getItem("token")}`,  
@@ -15,13 +16,17 @@ export async function CheckAvail(id,post,checkin,checkout) {
         "Content-Type": "application/json",   
       },
       body:JSON.stringify({ id,post,checkIn,checkOut}),
-    });
-    console.log(response.body)
-    payload = response.json();
-    console.log(payload);
-  } catch (err) {
+    })
+    .then(res=>{
+      return res.text();
+    })
+    .then(res=>{
+      payload=res;
+    })
+    .catch (err=> {
     console.log(err);
-  }
+    })
+
   return {
     type: "CHECK-AVAILABILITY",
     payload,

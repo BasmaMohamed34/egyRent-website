@@ -25,7 +25,7 @@ import "./Card.css";
   );
 } */
 const Ecard = ({ posts }) => {
-  console.log(posts.slice(0, 6));
+ 
   if (posts) {
     return posts.slice(0, 6).map((post) => (
       <Route

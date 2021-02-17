@@ -2,7 +2,7 @@ import "./post.css";
 import PostPictures from "../../Component/postPictures/postPictures";
 import Comments from "../../Component/postComments/postComments";
 import { connect } from "react-redux";
-import { getPostById, toggleSavePost } from "../../actions/posts";
+import { getPostById, toggleSavePost ,CheckAvail} from "../../actions/posts";
 import { getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
@@ -18,12 +18,16 @@ class Post extends Component {
       profile: {},
       savedBtn: "Save",
       profileID: "",
+      startDate:"",
+      endDate:"",
+      resultOfAvail:""
     };
   }
   async componentDidMount() {
-    console.log("works");
+    // console.log("works");
     let postArr = await this.props.getPostById(this.props.match.params.id);
-    this.setState({ post: postArr.payload });
+    this.setState({ post: postArr.payload.Posts });
+    console.log(this.state.post)
     let userData = await this.props.getProfile(localStorage.getItem("id"));
     this.setState({
       profile: userData.payload,
@@ -38,8 +42,19 @@ class Post extends Component {
       this.setState({ savedBtn: "Save" })
     }}
   }
+  showAvailabilitlyMsg(){
+    console.log(this.state.resultOfAvail)
+    if(this.state.resultOfAvail==="Not Available"){
+      return (<div> The place is not available at that date, choose another date for reservation.</div>)
+    }
+    else if(this.state.resultOfAvail==="Available"){
+      return (<div> Place is available and reserved at that date , we will send you the host details for contact.</div>)
+    }
+    else return <div> </div>
+  }
   render() {
-    return <div>{this.showPostDetails(this.state.post)}</div>;
+     return <div>{this.showPostDetails(this.state.post)}</div>;
+    
   }
   checkAmenities(type, value) {
     if (value === false) {
@@ -50,6 +65,7 @@ class Post extends Component {
       );
     } else return <span style={{ color: "black" }}>{type}</span>;
   }
+
   showPostDetails = (details) => {
     return details.map((details) => {
       return (
@@ -126,7 +142,7 @@ class Post extends Component {
                 <p className="description text-left">{details.description}</p>
               </div>
             </div>
-            <div className="col-12 col-md-4 text-center avail p-4 pb-1 font-weight-bold">
+            <div className="col-12 col-md-4 text-center avail p-4 font-weight-bold">
               <p className="text-left price">&#36; {details.price} / Night</p>
               <hr />
               <form className="check-form p-4">
@@ -136,24 +152,31 @@ class Post extends Component {
                     type="date"
                     className="form-control"
                     id="checkin"
+                    min={new Date().toISOString().split('T')[0]}
                     aria-describedby="dateHelp"
+                    onChange={(event) => {this.setState({startDate: event.target.value})}}
                   />
                 </div>
                 <div className="form-group">
                   <label htmlFor="checkout">Check Out</label>
-                  <input type="date" className="form-control" id="checkout" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="guests">Guests</label>
-                  <input type="number" className="form-control" id="guests" />
+                  <input type="date" className="form-control" id="checkout"
+                  min={new Date().toISOString().split('T')[0]} onChange={(event) =>{this.setState({endDate: event.target.value})}}/>
                 </div>
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg w-75 mr-auto ml-auto"
+                   onClick={async(e)=>{
+                     e.preventDefault();
+                     console.log(this.state.startDate," ",this.state.endDate)
+                     await this.props.CheckAvail(localStorage.getItem("id"),details._id,this.state.startDate,this.state.endDate)
+                     .then(res=>{
+                       this.setState({resultOfAvail:res.payload});
+                     })}}
                 >
                   Check Availability
                 </button>
               </form>
+                {this.showAvailabilitlyMsg()}
             </div>
           </div>
           <div className="row mb-3">
@@ -203,7 +226,7 @@ class Post extends Component {
           {/*  {console.log(this.state.profile.saved)} */}
           <div className="row pb-5">
             {details.comments.map((comment) => {
-              console.log(comment);
+              // console.log(comment);
               return <Comments comment={comment} />;
             })}
           </div>
@@ -213,13 +236,13 @@ class Post extends Component {
   }; //showfunction end
 }
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     details: state.postDetails,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPostById, getProfile, toggleSavePost }, dispatch);
+  return bindActionCreators({ getPostById, getProfile, toggleSavePost,CheckAvail }, dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

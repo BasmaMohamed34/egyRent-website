@@ -75,13 +75,14 @@ module.exports = {
   },
 
   checkAvail: (req, res, next) => {
-    let userID = req.body.usrId;
+    let userID = req.body.id;
     let postID = req.body.post;
     let dateIn = (new Date(req.body.checkIn));
     let dateOut = (new Date(req.body.checkOut));
     let checkin = new Date(dateIn).toISOString();
     let checkout = new Date(dateOut).toISOString();
-
+    console.log("chechin= ",checkin)
+    console.log("chechout= ",checkout)
     Reservation.find({
         post: postID
       })
@@ -98,18 +99,19 @@ module.exports = {
           }
         }
         if ((reserved.length === 0) || c) {
-          res.send("Available");
           Reservation.create(req.body).catch(err => console.log(err));
           Posts.find({
               _id: postID
             }).populate("createdBy")
             .then((posts) => {
+              console.log("posts= ",posts);
               if (posts.length > 0) {
                 let host = posts[0].createdBy;
                 User.findOne({
                   _id: userID
                 }).then((user) => {
-                  user.notification.push(`${host.firstname} ${host.lastname} creator of ${posts[0].title} in ${posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}.`);
+                  console.log("user= ",user)
+                  user.notification.push(`${host.firstname} ${host.lastname} creator of ${posts[0].title} in ${posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}. your reservation checkin date: ${checkin.split('T')[0]} checkout date: ${checkout.split('T')[0]}`);
                   user.save()
                 }).catch((err) => {
                   console.log(err)
@@ -118,6 +120,7 @@ module.exports = {
             }).catch((err) => {
               console.log(err)
             });
+          res.send("Available");
         }
       }).catch(err => {
         console.log(err);

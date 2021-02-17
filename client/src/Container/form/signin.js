@@ -22,7 +22,7 @@ class SignIn extends Component {
   }
 
   checkUserAuth() {
-    console.log("checking..........")
+
     let payload;
     this.props
       .getProfile(this.state.done.id)
@@ -35,20 +35,10 @@ class SignIn extends Component {
       this.setState({userData:payload})
     if (payload !== null) return true;
   }
-  ErrorMessage() {
-    // if(!localStorage.getItem('token')){
-    //   this.setState({errMsg:JSON.stringify(this.state.done.error)})
-    //   return(
-    //     <div>
-    //       {JSON.parse(this.state.errMsg)}
-    //     </div>
-    //   )
-    // }
-    // console.log(!localStorage.getItem('token'))
-  }
+  
   render() {
     return (
-      <div className="wrapper">
+      <div className="signInWrapper">
         <div className="sign-panels">
           <div className="login">
             <div className="title">
@@ -126,7 +116,6 @@ class SignIn extends Component {
                   </button>
                 )}
               />
-              {/* {this.ErrorMessage()} */}
             </form>
           </div>
         </div>
