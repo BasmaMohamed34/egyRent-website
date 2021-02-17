@@ -45,7 +45,6 @@ module.exports = (app) => {
     app.get("/post/:id", postController.getPost);
     app.post("/signup", upload.single("photo"), profileController.createUser);
     app.post("/signin", profileController.signIn);
-    app.patch("/post/:id", auth.verifyUserToken, postController.toggleSavePost)
   app.patch(
     "/profile/:id",
     upload.single("photo"),
@@ -63,6 +62,10 @@ module.exports = (app) => {
     auth.verifyUserToken,
     profileController.deleteUser
   );
+  app.post("/post/:id",  auth.verifyUserToken, profileController.writeComment);
+  app.patch("/post/:id", auth.verifyUserToken, postController.toggleSavePost);
+  app.delete("/post/:id", profileController.deleteComment);
+
 };
 
 // module.exports = app;

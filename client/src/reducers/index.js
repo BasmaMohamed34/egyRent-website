@@ -14,6 +14,7 @@ import DestinationSearch from "./location";
 import locationSearch from "./locationGuests";
 import toggleSavePost from "./toggle-save";
 import CheckAvailability from "./checkAvail";
+import WriteComment from "./write-comment"
   
 export default combineReducers({
   posts,
@@ -30,5 +31,6 @@ export default combineReducers({
   signin,
   signup,
   toggleSavePost,
-  CheckAvailability
+  CheckAvailability,
+  WriteComment,
 });

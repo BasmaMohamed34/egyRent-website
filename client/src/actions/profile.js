@@ -22,24 +22,24 @@ export async function signIn(username, password) {
 }
 export async function signUp(user) {
   let payload = null;
-    await fetch("/signup", {
+  try {
+    let response = await fetch("/signup", {
       method: "POST",
-      body: user,
-    })
-    .then(res=>{
-      if(res.status!==200){
-      payload="This username already exists"
-    }
-    else
-      payload=res.json()
-    })
-    .catch (err=>{
-      console.log(err);
-    })
-    return {
-      type: "SIGNUP",
-      payload,
-    };
+      // headers: {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      // },
+
+      body: /* JSON.stringify({ user }) */ user,
+    });
+    payload = await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "SIGNUP",
+    payload,
+  };
 }
 export async function logOut() {
   localStorage.removeItem("token");
@@ -137,6 +137,29 @@ export async function editUser(id, userInfo) {
   }
   return {
     type: "EDIT_USER",
+    payload,
+  };
+}
+export async function WriteComment(postID, userID, comment) {
+  let payload = null;
+  try {
+    let response = await fetch(`/post/${postID}`, {
+      method: "POST",
+        headers: {
+          Authorization: `auth-token ${localStorage.getItem("token")}`,
+            Accept: "application/json",
+           "Content-Type": "application/json",
+         },
+
+      body: JSON.stringify({ userID, comment }),
+    });
+    payload = response.json();
+    console.log(payload)
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    type: "WRITE_COMMENT",
     payload,
   };
 }

@@ -52,11 +52,13 @@ const usersSchema = new mongoose.Schema({
       ref: "Posts",
     },
   ],
-  history: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Posts",
-    },
+  commentedOn: [
+      /* type: mongoose.Schema.Types.ObjectId,
+      ref: "Posts", */
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Posts",
+      }
   ],
 });
 

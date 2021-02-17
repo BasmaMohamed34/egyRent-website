@@ -4,14 +4,10 @@ const Reservation = require("../models/reservations");
 module.exports = {
   getPost(req, res, next) {
     const postId = req.params.id;
-    Posts.find({
-        _id: postId
-      }).populate("createdBy")
-      .then((Posts) => res.send({
-        Posts: Posts,
-        Creator: Posts.createdBy
-      }))
-      // .then((Posts) => res.send())
+    Posts.find({ _id: postId })
+    .populate("createdBy", "firstname")
+    .populate("commentsDetails.commentedBy")
+    .then((Posts) => res.send(Posts))
       .catch(next);
   },
 

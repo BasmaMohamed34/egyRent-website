@@ -47,9 +47,14 @@ const postSchema = new schema({
     required: true,
   },
 
-  comments: [
+  commentsDetails: [
     {
-      type: String,
+      commentedBy:{type: mongoose.Schema.Types.ObjectId,
+      ref: "User"},
+      
+      comment:{
+        type: String
+      }
     },
   ],
   description: {

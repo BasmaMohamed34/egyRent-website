@@ -2,6 +2,7 @@ const User = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const Posts = require("../models/post");
 const saltRounds = 10;
 
 module.exports = {
@@ -122,4 +123,43 @@ module.exports = {
         .catch(next);
     }
   },
+  writeComment: async(req,res,next)=>{
+
+    const userID = req.body.userID;
+    const postID = req.params.id;
+    const comment = req.body.comment;
+    console.log("userID: ",userID)
+    console.log("postID: ",postID)
+    console.log("comment: ",comment)
+    const user = await User.findById(userID)
+    const post = await Posts.findById(postID)
+    user.commentedOn.push(postID);
+    await user.save();
+    const commentsObj = {
+      commentedBy: userID,
+      comment: comment      
+    }
+    post.commentsDetails.push(commentsObj);
+    await post.save();
+
+    await Posts.findById(postID)
+      .populate("commentsDetails.commentedBy")
+      .then((post) => res.send(post.commentsDetails))
+      .catch(next);
+  },
+
+  deleteComment: async(res,req,next)=>{
+    /* onst userID = req.body */
+    const postID = req.params.id
+    console.log("postID", postID)
+    /* const user = await User.findById(userID)
+    const post = await Posts.findById(postID)
+    user.populate("commentedOn").then(user=>{
+      console.log(user)
+    });
+    post.populate("commentsDetails.commentedBy").then(post=>{
+      console.log(post)
+      });    
+    const query = { commentedBy: userID }; */
+  }
 };
