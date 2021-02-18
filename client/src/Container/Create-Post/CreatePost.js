@@ -29,6 +29,7 @@ class CreatePost extends Component {
         ac: false,
         smokeAlarm: false,
         /*  }, */
+        showMsg:false
       },
       pictures: [],
     };
@@ -38,6 +39,11 @@ class CreatePost extends Component {
     const script = document.createElement("script");
     script.async = true;
     document.body.appendChild(script);
+  }
+  showMsg(){
+    if(this.state.showMsg===true){
+      return (<p className="text-success pt-2 ">Post created successfully</p>)
+    }
   }
   render() {
     if (localStorage.getItem("token")) {
@@ -501,10 +507,12 @@ class CreatePost extends Component {
                     window.location.pathname.split("/")[1],
                     formData
                   );
+                  this.setState({showMsg:true})
                 }}
               >
                 Create Post
               </button>
+              {this.showMsg()}
             </form>
             {/* </div> */}
           </div>

@@ -100,7 +100,7 @@ module.exports = {
                 User.findOne({
                   _id: userID
                 }).then((user) => {
-                  user.notification.push(`${host.firstname} ${host.lastname} creator of ${posts[0].title} in ${posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}. your reservation checkin date: ${checkin.split('T')[0]} checkout date: ${checkout.split('T')[0]}`);
+                  user.notification.push(`${host.firstname} ${host.lastname} creator of ${posts[0].title} in ${posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}.`);
                   user.save()
                 }).catch((err) => {
                   console.log(err)

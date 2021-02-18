@@ -2,6 +2,7 @@
 import "./sign.css";
 import { Component } from "react";
 import { connect } from "react-redux";
+import {Route} from 'react-router-dom';
 import { signUp } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 
@@ -24,12 +25,26 @@ class Signup extends Component {
         location: "",
         type: "",
         photo: "",
+        done:"",
+        resStatus:"",
+        userMsg:""
       },
     };
   }
+  userExists(){
+    if(this.state.userExist===true){
+    window.scrollTo(0, -window.scrollMaxY)
+      return(
+      <div className="pt-3 text-center w-75 m-auto ">
+        <h3 className="text-danger">{this.state.done}</h3>
+      </div>
+      )
+    }
+}
   render() {
     return (
       <div className="wrapper">
+        {this.userExists()}
         <div className="sign-panels">
           <div className="signup">
             <div className="title">
@@ -207,6 +222,8 @@ class Signup extends Component {
                   });
                 }}
               />
+              <Route
+                render={({ history }) => (
               <button
                 className="btn-signin btn-primary"
                 type="button"
@@ -217,15 +234,35 @@ class Signup extends Component {
                   Object.keys(this.state.user).forEach((key) =>
                     formData.append(key, this.state.user[key])
                   );
-                  this.props.signUp(formData);
-                  window.location.assign("/home")
-                   } else {
+                  this.props.signUp(formData)
+                  .then(res=>{
+                    this.setState({ done: res.payload })
+                            if (this.state.done.token) {
+                              localStorage.setItem(
+                                "token",
+                                this.state.done.token
+                              );
+                              localStorage.setItem("id", this.state.done.id);
+                                history.push(`/home`);
+                                window.location.reload();
+                            }
+                            else{
+                              this.setState({userExist:true});
+                            }
+                            console.log(this.state.user)
+                          })
+                  .catch(err=>{
+                    console.log(err)
+                  })
+                   }  else {
                     this.validator.showMessages();
-                  }
-                }}
+                   }
+                  }}
               >
                 Sign Up
               </button>
+              )}
+              />
             </form>
           </div>
         </div>

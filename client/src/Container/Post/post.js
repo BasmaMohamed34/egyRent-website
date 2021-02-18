@@ -2,7 +2,7 @@ import "./post.css";
 import PostPictures from "../../Component/postPictures/postPictures";
 import Comments from "../../Component/postComments/postComments";
 import { connect } from "react-redux";
-import { getPostById, toggleSavePost } from "../../actions/posts";
+import { getPostById, toggleSavePost,CheckAvail } from "../../actions/posts";
 import { getProfile } from "../../actions/profile";
 import {WriteComment} from "../../actions/profile"
 import { bindActionCreators } from "redux";
@@ -19,6 +19,9 @@ class Post extends Component {
       profile: {},
       savedBtn: "Save",
       profileID: "",
+      startDate:"",
+      endDate:"",
+      resultOfAvail:"",
       comment:""
     };
   }
@@ -26,7 +29,7 @@ class Post extends Component {
  
     let postArr = await this.props.getPostById(this.props.match.params.id);
     this.setState({ post: postArr.payload });
-   
+    // this.setState({ post: postArr.payload.Posts });
     let userData = await this.props.getProfile(localStorage.getItem("id"));
     this.setState({
       profile: userData.payload,
@@ -40,6 +43,16 @@ class Post extends Component {
     }else{
       this.setState({ savedBtn: "Save" })
     }}
+  }
+  showAvailabilitlyMsg(){
+    console.log(this.state.resultOfAvail)
+    if(this.state.resultOfAvail==="Not Available"){
+      return (<div> The place is not available at that date, choose another date for reservation.</div>)
+    }
+    else if(this.state.resultOfAvail==="Available"){
+      return (<div> Place is available and reserved at that date , check your notifications for host details for the contact.</div>)
+    }
+    else return <div> </div>
   }
   render() {
     return <div>{this.showPostDetails(this.state.post)}</div>;
@@ -129,7 +142,7 @@ class Post extends Component {
                 <p className="description text-left">{details.description}</p>
               </div>
             </div>
-            <div className="col-12 col-md-4 text-center avail p-4 pb-1 font-weight-bold">
+            <div className="col-12 col-md-4 text-center avail p-4 font-weight-bold">
               <p className="text-left price">&#36; {details.price} / Night</p>
               <hr />
               <form className="check-form p-4">
@@ -139,24 +152,31 @@ class Post extends Component {
                     type="date"
                     className="form-control"
                     id="checkin"
+                    min={new Date().toISOString().split('T')[0]}
                     aria-describedby="dateHelp"
+                    onChange={(event) => {this.setState({startDate: event.target.value})}}
                   />
                 </div>
                 <div className="form-group">
                   <label htmlFor="checkout">Check Out</label>
-                  <input type="date" className="form-control" id="checkout" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="guests">Guests</label>
-                  <input type="number" className="form-control" id="guests" />
+                  <input type="date" className="form-control" id="checkout"
+                  min={new Date().toISOString().split('T')[0]} onChange={(event) =>{this.setState({endDate: event.target.value})}}/>
                 </div>
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg w-75 mr-auto ml-auto"
+                  onClick={async(e)=>{
+                    e.preventDefault();
+                    console.log(this.state.startDate," ",this.state.endDate)
+                    await this.props.CheckAvail(localStorage.getItem("id"),details._id,this.state.startDate,this.state.endDate)
+                    .then(res=>{
+                      this.setState({resultOfAvail:res.payload});
+                    })}}
                 >
                   Check Availability
                 </button>
               </form>
+              {this.showAvailabilitlyMsg()}
             </div>
           </div>
           <div className="row mb-3">
@@ -208,8 +228,9 @@ class Post extends Component {
               return <Comments comment={comment} />
             })}
           </div>
+            {localStorage.getItem("token")?(
+              <div className="row ml-1 mt-3">
             <hr/>
-          <div className="row ml-1 mt-3">
           <InsertCommentIcon className="m-2"/>
             <h5 className="pt-2">Add your comment:</h5>
           <textarea className="border ml-3 mb-3  w-50" onChange={(e)=>{
@@ -220,6 +241,7 @@ class Post extends Component {
             window.location.reload();
           }}>Comment</button>
           </div>
+            ):(<></>)}
         </div>
       );
     }); //map end
@@ -232,6 +254,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPostById, getProfile, toggleSavePost, WriteComment }, dispatch);
+  return bindActionCreators({ getPostById, getProfile, toggleSavePost, WriteComment,CheckAvail }, dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
