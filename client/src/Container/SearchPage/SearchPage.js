@@ -22,7 +22,6 @@ class SearchPage extends Component {
 
   async componentDidMount() {
     let x = await this.props.getSearch();
-    console.log("sdddd", x.payload);
     this.setState({
       Search: x.payload,
     });
@@ -152,7 +151,6 @@ class SearchPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.Search);
   return { Search: state.Search };
 };
 const mapactionstoprops = (dispatch) => {

@@ -56,7 +56,6 @@ export async function getProfile(id) {
       },
     });
     payload = await response.json();
-    console.log(payload);
   } catch (err) {
     console.log(err);
   }
@@ -76,7 +75,6 @@ export async function getProfilePosts(id) {
       },
     });
     payload = await response.json();
-    console.log("get profile post payload: ", payload);
   } catch (err) {
     console.log(err);
   }
@@ -96,7 +94,6 @@ export async function getProfileSaved(id) {
       },
     });
     payload = await response.json();
-    console.log(response);
   } catch (err) {
     console.log(err);
   }
@@ -154,7 +151,6 @@ export async function WriteComment(postID, userID, comment) {
       body: JSON.stringify({ userID, comment }),
     });
     payload = response.json();
-    console.log(payload)
   } catch (err) {
     console.log(err);
   }

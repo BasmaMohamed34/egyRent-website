@@ -18,8 +18,7 @@ class LocationOnly extends Component {
       this.props.match.params.location
     );
     this.setState({ res: locs.payload });
-    console.log(this.props);
-    console.log(this.state.res);
+    
   }
 
   render = () => {
@@ -35,9 +34,7 @@ class LocationOnly extends Component {
     );
   };
   renderDestination() {
-    //console.log(DestinationSearch);
-    console.log(this.state.res);
-    //console.log(":(", DestinationSearch);
+   
     if (this.state.res.length !== 0) {
       return this.state.res.map((res) => {
         return (
@@ -81,7 +78,6 @@ class LocationOnly extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state.DestinationSearch);
   return { DestinationSearch: state.DestinationSearch };
 };
 const mapactionstoprops = (dispatch) => {

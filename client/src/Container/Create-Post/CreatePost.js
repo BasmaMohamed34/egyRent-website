@@ -125,7 +125,6 @@ class CreatePost extends Component {
                           type: e.target.value,
                         },
                       });
-                      console.log(this.state.post);
                     }}
                   >
                     <option selected disabled>
@@ -357,7 +356,6 @@ class CreatePost extends Component {
                               wifi: true,
                             },
                           });
-                          // console.log(this.state.post.wifi);
                         }}
                       />
                       <span className="text-dark m-1">WiFi</span>
@@ -503,8 +501,6 @@ class CreatePost extends Component {
                     window.location.pathname.split("/")[1],
                     formData
                   );
-
-                  console.log(this.state.pictures);
                 }}
               >
                 Create Post

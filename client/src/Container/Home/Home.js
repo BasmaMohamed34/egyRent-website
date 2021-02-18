@@ -16,22 +16,20 @@ class Home extends Component {
       posts: [],
       postsLocation: [],
     };
-    /*     if (posts) {
-    console.log("done"); */
+    
   }
   async componentDidMount() {
-    //console.log('works')
+
     await this.props.getPosts();
     this.setState({
       posts: this.props.posts,
     });
 
-    // console.log("this.state.posts:", this.props);
   }
   render = () => {
     return (
       <div className="home mb-3">
-        {/* <br/> */}
+       
         <Banner />
         <Search />
         <h1 className=" m-5 text-center">Top Destination</h1>
@@ -107,7 +105,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.posts);
   return { posts: state.posts };
 };
 const mapactionstoprops = (dispatch) => {

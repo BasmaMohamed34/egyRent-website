@@ -4,9 +4,6 @@ import { useHistory } from "react-router-dom";
 
 function Banner() {
     const history = useHistory();
-   
-    // 1 pt-2
-    // 2 m-5
     return (
         <div className='banner '>
             <div className='banner__info'>

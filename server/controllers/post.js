@@ -13,9 +13,7 @@ module.exports = {
 
   createPost: async (req, res, next) => {
     const userId = req.params.id;
-    //console.log(req.files); //Postman test for multiple files works!!!
     const picturesList = req.files.map((file) => file.filename);
-    console.log(picturesList);
     const newPost = new Posts({
       title: req.body.title,
       location: req.body.location,
@@ -77,13 +75,10 @@ module.exports = {
     let dateOut = (new Date(req.body.checkOut));
     let checkin = new Date(dateIn).toISOString();
     let checkout = new Date(dateOut).toISOString();
-    console.log("chechin= ",checkin)
-    console.log("chechout= ",checkout)
     Reservation.find({
         post: postID
       })
       .then(reserved => {
-        console.log(reserved.length);
         var c = "f";
         if (reserved.length > 0) {
           for (i of reserved) {
@@ -100,13 +95,11 @@ module.exports = {
               _id: postID
             }).populate("createdBy")
             .then((posts) => {
-              console.log("posts= ",posts);
               if (posts.length > 0) {
                 let host = posts[0].createdBy;
                 User.findOne({
                   _id: userID
                 }).then((user) => {
-                  console.log("user= ",user)
                   user.notification.push(`${host.firstname} ${host.lastname} creator of ${posts[0].title} in ${posts[0].location} to contact the host: Email:${host.email}, Phone Number:${host.phone}. your reservation checkin date: ${checkin.split('T')[0]} checkout date: ${checkout.split('T')[0]}`);
                   user.save()
                 }).catch((err) => {

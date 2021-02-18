@@ -21,10 +21,8 @@ function AboutUs() {
               in Egypt.
               <br />
               <br />
-              {/* <b>For hosts</b>, participating in Egrent is a way to earn some income from their property, but with the risk that the guest might do damage to it. For guests, the advantage can be relatively inexpensive accommodations, but with the risk that the property won’t be as appealing as the listing made it seem. */}
             </p>
           </div>
-          {/* section 2 */}
           <div
             class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn"
             data-wow-offset="200"
@@ -43,11 +41,8 @@ function AboutUs() {
               week, or per month
               <br />
               <br />
-              {/* <h5>Protections for Guests & Hosts:</h5>
-                As a protection for guests, <b>Egrent</b> holds the guest’s payment for 24 hours after check-in before releasing the funds to the host. */}
             </p>
           </div>
-          {/* end section 2 */}
 
           <div class="col-lg-4 col-sm-6 col-ex-12 ">
             <span class="fa fa-info mb-3"></span>

@@ -70,24 +70,6 @@ class Header extends Component {
               alt=""
             />
           </Link>
-
-          {/* <li className="nav-item bg md-mt-3 mb-3">
-            <NavLink
-              to="/chat"
-              className="btn btn-pink"
-              exact
-              style={{
-                backgroundColor: "#007bff",
-                padding: "7px",
-                borderRadius: "5px",
-                color: "#fff",
-              }}
-            >
-              <b>Live Chat</b>
-            </NavLink>
-          </li> */}
-
-          {/*  */}
           <button
             className="navbar-toggler"
             type="button"
@@ -209,7 +191,6 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.profile);
   return { profile: state.profile };
 };
 const mapactionstoprops = (dispatch) => {

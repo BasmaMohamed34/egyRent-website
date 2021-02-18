@@ -15,7 +15,6 @@ class SearchByLocation extends Component {
   }
 
   async componentDidMount() {
-    //console.log(this.props.match.params.location);
 
     let x = await this.props.getByLocation(
       this.props.match.params.location.toString().toLowerCase(),
@@ -37,7 +36,6 @@ class SearchByLocation extends Component {
     );
   };
   renderSearch(Search) {
-    console.log(Search);
     if (Search.length !== 0) {
       return Search.map((res) => {
         return (
@@ -81,7 +79,6 @@ class SearchByLocation extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state.locationSearch);
   return { Search: state.locationSearch };
 };
 const mapactionstoprops = (dispatch) => {

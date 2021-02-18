@@ -11,13 +11,11 @@ class ProfilePosts extends Component {
     };
   }
   async componentDidMount() {
-    console.log(this.props);
     await this.props.getProfilePosts(window.location.pathname.split("/")[2]);
     this.setState({
       profilePosts: this.props.profilePosts,
     });
-    /*  console.log("this.state.profile:", this.state.profile); */
-    //console.log(window.location.pathname.split("/")[2]);
+ 
   }
   renderProfilePosts({ profilePosts }) {
     if (localStorage.getItem("token")) {
@@ -60,7 +58,6 @@ class ProfilePosts extends Component {
   };
 }
 const mapStateToProps = (state) => {
-  console.log(state.profilePosts);
   return { profilePosts: state.profilePosts };
 };
 const mapactionstoprops = (dispatch) => {

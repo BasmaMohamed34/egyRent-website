@@ -186,7 +186,6 @@ class Signup extends Component {
                       type: e.target.value,
                     },
                   });
-                  console.log(this.state.user);
                 }}
               >
                 <option selected disabled>

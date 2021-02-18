@@ -11,7 +11,6 @@ class Saved extends Component {
     };
   }
   async componentDidMount() {
-    console.log(this.props);
     await this.props.getProfileSaved(window.location.pathname.split("/")[2]);
     this.setState({
       profileSaved: this.props.profileSaved,
@@ -55,7 +54,6 @@ class Saved extends Component {
   };
 }
 const mapStateToProps = (state) => {
-  console.log(state.profileSaved);
   return { profileSaved: state.profileSaved };
 };
 const mapactionstoprops = (dispatch) => {

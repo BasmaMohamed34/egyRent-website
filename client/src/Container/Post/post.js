@@ -23,11 +23,10 @@ class Post extends Component {
     };
   }
   async componentDidMount() {
-    console.log("works");
+ 
     let postArr = await this.props.getPostById(this.props.match.params.id);
     this.setState({ post: postArr.payload });
-    /* this.state.post.push(postArr.payload)
-    console.log(this.state.post) */
+   
     let userData = await this.props.getProfile(localStorage.getItem("id"));
     this.setState({
       profile: userData.payload,
@@ -55,7 +54,6 @@ class Post extends Component {
     } else return <span style={{ color: "black" }}>{type}</span>;
   }
   showPostDetails = (details) => {
-   console.log(this.state.post);
     return details.map((details) => {
       return (
         <div className="container" key={details._id}>
@@ -219,9 +217,6 @@ class Post extends Component {
           }}>{this.state.comment}</textarea>
           <button className="btn btn-primary ml-3 mb-3 " onClick={()=>{
             this.props.WriteComment(this.props.match.params.id,this.state.profileID,this.state.comment)
-            console.log(this.props.match.params.id)
-            console.log(this.state.profileID)
-            console.log(this.state.comment)
             window.location.reload();
           }}>Comment</button>
           </div>
@@ -231,7 +226,6 @@ class Post extends Component {
   }; //showfunction end
 }
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     details: state.postDetails,
   };

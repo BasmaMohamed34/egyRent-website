@@ -128,9 +128,6 @@ module.exports = {
     const userID = req.body.userID;
     const postID = req.params.id;
     const comment = req.body.comment;
-    console.log("userID: ",userID)
-    console.log("postID: ",postID)
-    console.log("comment: ",comment)
     const user = await User.findById(userID)
     const post = await Posts.findById(postID)
     user.commentedOn.push(postID);
@@ -150,8 +147,9 @@ module.exports = {
 
   deleteComment: async(res,req,next)=>{
     /* onst userID = req.body */
-    const postID = req.params.id
-    console.log("postID", postID)
+    //  const postID = req.params.id
+    // console.log("postID", req.body)
+    // res.send("done")
     /* const user = await User.findById(userID)
     const post = await Posts.findById(postID)
     user.populate("commentedOn").then(user=>{

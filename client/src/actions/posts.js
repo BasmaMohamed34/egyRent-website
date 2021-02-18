@@ -1,13 +1,9 @@
 export async function CheckAvail(id,post,checkin,checkout) {
   let payload = null;
   let i= checkin.split("-")
-  let dayin=parseInt(i[2])+1;
-  let checkIn=`${i[1]}/${dayin.toString()}/${i[0]}`
+  let checkIn=`${i[1]}/${i[2]}/${i[0]}`
   let o= checkout.split("-")
-  let dayout=parseInt(o[2])+1;
-  let checkOut=`${o[1]}/${dayout.toString()}/${o[0]}`
-  console.log("chechin= ",checkIn)
-    console.log("chechout= ",checkOut)
+  let checkOut=`${o[1]}/${o[2]}/${o[0]}`
      await fetch(`/post/${post}/checkAvail`, {
       method: "POST",
       headers: {
@@ -38,7 +34,6 @@ export async function getPosts() {
   try {
     let response = await fetch("/home");
     payload = await response.json();
-    console.log("Payload", payload);
   } catch (err) {
     console.log(err);
   }
@@ -66,8 +61,6 @@ export async function getPostById(id) {
 
 export async function createPost(id, post) {
   let payload = null;
-  //console.log(post);
-  // console.log(Object.fromEntries(post));
   try {
     let response = await fetch(`/${id}/createpost`, {
       method: "POST",
@@ -88,7 +81,6 @@ export async function createPost(id, post) {
 
 export async function toggleSavePost(UserID, PostID) {
   let payload = null;
-  console.log(UserID);
   try {
     let response = await fetch(`/post/${PostID}`, {
       method: "PATCH",

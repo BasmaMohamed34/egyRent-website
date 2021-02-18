@@ -48,7 +48,6 @@ function App() {
             <Home />{" "}
           </Route>
           <Route exact path="/home" component={Home} />
-          {/* <Route exact path="/chat" component={Chat} /> */}
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/about" component={AboutUs} />
