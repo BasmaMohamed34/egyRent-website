@@ -21,9 +21,9 @@ class Signup extends Component {
         lastname: "",
         email: "",
         password: "",
-        phone: 0,
+        phone: "phone",
         location: "",
-        type: "",
+        type: "Traveller",
         photo: "",
         done:"",
         resStatus:"",
@@ -174,7 +174,7 @@ class Signup extends Component {
               </div>
               <input
                 type="location"
-                placeholder="Location"
+                placeholder="City"
                 id="location"
                 value={this.state.user.location}
                 onChange={(e) => {
