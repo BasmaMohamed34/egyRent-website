@@ -8,17 +8,17 @@ import { connect } from "react-redux";
 import { signIn, logOut, getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 import { Dropdown } from "react-bootstrap";
-import Badge from '@material-ui/core/Badge';
-import { makeStyles } from '@material-ui/core/styles';
+// import Badge from '@material-ui/core/Badge';
+// import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     '& > *': {
+//       margin: theme.spacing(1),
+//     },
+//   },
+// }));
 class Header extends Component {
   constructor() {
     super();
@@ -143,9 +143,9 @@ class Header extends Component {
                   >
                     <NavLink to="/notify" exact>
                       
-                    <Badge color="secondary" badgeContent={this.state.badgeNum} showZero>
+                    {/* <Badge color="secondary" badgeContent={this.state.badgeNum} showZero> */}
                       <BellIcon width="30" active={true} color="#fff"/>
-                    </Badge>
+                    {/* </Badge> */}
                     </NavLink>
                   </li>
                 </>
