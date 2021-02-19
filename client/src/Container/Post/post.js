@@ -45,7 +45,6 @@ class Post extends Component {
     }}
   }
   showAvailabilitlyMsg(){
-    console.log(this.state.resultOfAvail)
     if(this.state.resultOfAvail==="Not Available"){
       return (<div> The place is not available at that date, choose another date for reservation.</div>)
     }
@@ -167,7 +166,7 @@ class Post extends Component {
                   className="btn btn-primary btn-lg w-75 mr-auto ml-auto"
                   onClick={async(e)=>{
                     e.preventDefault();
-                    console.log(this.state.startDate," ",this.state.endDate)
+                    //console.log(this.state.startDate," ",this.state.endDate)
                     await this.props.CheckAvail(localStorage.getItem("id"),details._id,this.state.startDate,this.state.endDate)
                     .then(res=>{
                       this.setState({resultOfAvail:res.payload});
@@ -228,9 +227,9 @@ class Post extends Component {
               return <Comments comment={comment} />
             })}
           </div>
+          <hr/>
             {localStorage.getItem("token")?(
               <div className="row ml-1 mt-3">
-            <hr/>
           <InsertCommentIcon className="m-2"/>
             <h5 className="pt-2">Add your comment:</h5>
           <textarea className="border ml-3 mb-3  w-50" onChange={(e)=>{

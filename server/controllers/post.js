@@ -42,7 +42,7 @@ module.exports = {
     await newPost.save();
     user.posts.push(newPost);
     await user.save();
-    res.status(201).json(newPost);
+    res.status(201).send("Post Has Been Created Successfully");
   },
 
   toggleSavePost: async (req, res, next) => {

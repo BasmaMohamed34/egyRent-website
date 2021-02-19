@@ -3,23 +3,26 @@ import { connect } from "react-redux";
 import { createPost } from "../../actions/posts";
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
+import SimpleReactValidator from "simple-react-validator";
 class CreatePost extends Component {
   constructor() {
     super();
+    this.validator = new SimpleReactValidator({
+      autoForceUpdate: this,
+    });
     this.state = {
       post: {
         title: "",
         location: "",
         address: "",
         type: "",
-        price: 0,
-        guests: 0,
-        rooms: 0,
-        beds: 0,
-        baths: 0,
-        bedrooms: 0,
+        price: "",
+        guests: "",
+        rooms: "",
+        beds: "",
+        baths: "",
+        bedrooms: "",
         description: "",
-        /* amenities: { */
         wifi: false,
         kitchen: false,
         heating: false,
@@ -28,10 +31,10 @@ class CreatePost extends Component {
         breakfast: false,
         ac: false,
         smokeAlarm: false,
-        /*  }, */
-        showMsg:false
+        showMsg: false,
       },
       pictures: [],
+      resultOfCreatePost: "",
     };
   }
 
@@ -40,17 +43,16 @@ class CreatePost extends Component {
     script.async = true;
     document.body.appendChild(script);
   }
-  showMsg(){
-    if(this.state.showMsg===true){
-      return (<p className="text-success pt-2 ">Post created successfully</p>)
-    }
+  showMsg() {
+    return (
+      <p className="text-success pt-2 ">{this.state.resultOfCreatePost}</p>
+    );
   }
   render() {
     if (localStorage.getItem("token")) {
       return (
         <div class="container py-5 ">
           <div class="row">
-            {/* <div class="col-md-10 mx-auto "> */}
             <form
               className="p-5 col-12"
               enctype="multipart/form-data"
@@ -60,11 +62,13 @@ class CreatePost extends Component {
               <div class="form-group row">
                 <div class="col-sm-12">
                   <label for="Title">
-                    Property Title <span className="require">*</span>
+                    Property Title
+                    <span className="require text-danger">*</span>
                   </label>
                   <input
                     type="text"
                     className="form-control"
+                    placeholder="Title"
                     name="title"
                     value={this.state.post.title}
                     onChange={(e) => {
@@ -75,16 +79,25 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("title")}
                   />
+                </div>
+                <div className="validation col-sm-12 m-2">
+                  {this.validator.message(
+                    "title",
+                    this.state.post.title,
+                    "required"
+                  )}
                 </div>
                 <div class="col-sm-6">
                   <label for="Address">
-                    Address <span className="require">*</span>
+                    Address <span className="require text-danger">*</span>
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     name="address"
+                    placeholder="address"
                     value={this.state.post.address}
                     onChange={(e) => {
                       this.setState({
@@ -94,16 +107,25 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("address")}
                   />
+                  <div className="validation  m-2">
+                    {this.validator.message(
+                      "address",
+                      this.state.post.address,
+                      "required"
+                    )}
+                  </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="Location">
-                    Location <span className="require">*</span>
+                    Location <span className="require text-danger">*</span>
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     name="location"
+                    placeholder="location"
                     value={this.state.post.location}
                     onChange={(e) => {
                       this.setState({
@@ -113,7 +135,15 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("location")}
                   />
+                  <div className="validation m-2">
+                    {this.validator.message(
+                      "location",
+                      this.state.post.location,
+                      "required"
+                    )}
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -132,6 +162,7 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("type")}
                   >
                     <option selected disabled>
                       Choose from list here
@@ -146,15 +177,24 @@ class CreatePost extends Component {
                   </select>
                 </div>
               </div>
+              <div className="validation col-sm-12 m-2">
+                {this.validator.message(
+                  "type",
+                  this.state.post.type,
+                  "required"
+                )}
+              </div>
               <div class="form-group row">
                 <div class="col-sm-6">
                   <label for="guests">
-                    Number of Guests<span className="require">*</span>
+                    Number of Guests
+                    <span className="require text-danger">*</span>
                   </label>
                   <input
                     className="form-control"
                     type="number"
                     id="guests"
+                    placeholder="guests"
                     name="guests"
                     min="1"
                     max="15"
@@ -167,11 +207,20 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("guests")}
                   />
+                  <div className="validation col-sm-6 m-2">
+                    {this.validator.message(
+                      "guests",
+                      this.state.post.guests,
+                      "required"
+                    )}
+                  </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="rooms">
-                    Number of Room<span className="require">*</span>
+                    Number of Rooms
+                    <span className="require text-danger">*</span>
                   </label>
                   <input
                     type="number"
@@ -179,6 +228,7 @@ class CreatePost extends Component {
                     name="rooms"
                     min="1"
                     max="15"
+                    placeholder="rooms"
                     className="form-control"
                     value={this.state.post.rooms}
                     onChange={(e) => {
@@ -189,13 +239,22 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("rooms")}
                   />
+                  <div className="validation col-sm-6 m-2">
+                    {this.validator.message(
+                      "rooms",
+                      this.state.post.rooms,
+                      "required"
+                    )}
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6">
                   <label for="baths">
-                    Number of Bath<span className="require">*</span>
+                    Number of Baths
+                    <span className="require text-danger">*</span>
                   </label>
                   <input
                     type="number"
@@ -203,6 +262,7 @@ class CreatePost extends Component {
                     name="baths"
                     min="1"
                     max="15"
+                    placeholder="baths"
                     className="form-control"
                     value={this.state.post.baths}
                     onChange={(e) => {
@@ -213,16 +273,25 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("baths")}
                   />
+                  <div className="validation col-sm-6 m-2">
+                    {this.validator.message(
+                      "baths",
+                      this.state.post.baths,
+                      "required"
+                    )}
+                  </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="beds">
-                    Number of Beds<span className="require">*</span>
+                    Number of Beds<span className="require text-danger">*</span>
                   </label>
                   <input
                     type="number"
                     id="beds"
                     name="beds"
+                    placeholder="beds"
                     min="1"
                     max="15"
                     className="form-control"
@@ -235,14 +304,22 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("beds")}
                   />
+                  <div className="validation col-sm-6 m-2">
+                    {this.validator.message(
+                      "beds",
+                      this.state.post.beds,
+                      "required"
+                    )}
+                  </div>
                 </div>
               </div>
-
               <div class="form-group row">
                 <div class="col-sm-6">
                   <label for="bedrooms">
-                    Number of BedRooms<span className="require">*</span>
+                    Number of BedRooms
+                    <span className="require text-danger">*</span>
                   </label>
                   <input
                     type="number"
@@ -250,6 +327,7 @@ class CreatePost extends Component {
                     name="bedrooms"
                     min="1"
                     max="15"
+                    placeholder="bedrooms"
                     className="form-control"
                     value={this.state.post.bedrooms}
                     onChange={(e) => {
@@ -260,17 +338,25 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("bedrooms")}
                   />
+                  <div className="validation col-sm-6 m-2">
+                    {this.validator.message(
+                      "bedrooms",
+                      this.state.post.bedrooms,
+                      "required"
+                    )}
+                  </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="price">
-                    Price<span className="require">*</span>
+                    Price<span className="require text-danger">*</span>
                   </label>
                   <input
                     type="number"
                     id="price"
                     name="price"
-                    min="1"
+                    placeholder="price"
                     className="form-control"
                     value={this.state.post.price}
                     onChange={(e) => {
@@ -281,18 +367,27 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("price")}
                   />
+                  <div className="validation col-sm-12 m-2">
+                    {this.validator.message(
+                      "price",
+                      this.state.post.price,
+                      "required"
+                    )}
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
                 <div className="col-sm-12">
                   <label for="description">
-                    Description<span className="require">*</span>
+                    Description<span className="require text-danger">*</span>
                   </label>
                   <textarea
                     id="description"
                     name="description"
                     row="5"
+                    placeholder="Write any information about your property to help travllers choose your property..."
                     className="form-control"
                     value={this.state.post.description}
                     onChange={(e) => {
@@ -303,46 +398,43 @@ class CreatePost extends Component {
                         },
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("description")}
                   ></textarea>
+                  <div className="validation col-sm-12 m-2">
+                    {this.validator.message(
+                      "description",
+                      this.state.post.description,
+                      "required"
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="form-group row">
                 <div className="col-sm-12">
-                  <label for="pics">Select Your Property Pictures:</label>
+                  <label for="pictures" className="pr-2">
+                    Select Your Property Pictures:
+                  </label>
                   <input
                     type="file"
-                    id="pics"
-                    name="pics"
+                    id="pictures"
+                    name="pictures"
                     multiple
+                    placeholder="pictures"
                     enctype="multipart/form-data"
                     onChange={(e) => {
                       this.setState({
                         pictures: e.target.files,
                       });
                     }}
+                    onBlur={() => this.validator.showMessageFor("pictures")}
                   />
-                  {/* /* const pictures = state.pictures.concat(
-                        state.e.target.files[0]
-                      );
-                      return pictures; */
-                  /* {state
-                      pictures: e.target.files[0], 
-                      
-                      <div className="col-sm-12">
-                <div class="file-input mb-5">
-                  <input type="file" id="file" class="file" />
-                  <label for="file">file one</label>
-                  <input type="file" id="file" class="file" />
-                  <label for="file">file Two</label>
-                  <input type="file" id="file" class="file" />
-                  <label for="file">file Three</label>
-                </div>
-               <label for="Comment">
-                  Comment<span className="require">*</span>
-                </label>
-                <textarea id="Comment" name="user_bio" row="5"></textarea>
-              </div>
-              */}
+                  <div className="validation col-sm-6 m-2">
+                    {this.validator.message(
+                      "pictures",
+                      this.state.post.pictures,
+                      "required"
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="form-group row">
@@ -482,39 +574,36 @@ class CreatePost extends Component {
                   </div>
                 </div>
               </div>
-              {/* <button
-              type="Create"
-              className="btn rounded btn-info "
-              onClick={(e) => {
-                console.log(this.state.post);
-              }}
-            >
-              Create an advertisement
-            </button> */}
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const formData = new FormData();
-                  Object.keys(this.state.post).forEach((key) =>
-                    formData.append(key, this.state.post[key])
-                  );
-                  for (let i = 0; i < this.state.pictures.length; i++) {
-                    formData.append("files", this.state.pictures[i]);
+                onClick={async (e) => {
+                  if (this.validator.allValid()) {
+                    e.preventDefault();
+                    const formData = new FormData();
+                    Object.keys(this.state.post).forEach((key) =>
+                      formData.append(key, this.state.post[key])
+                    );
+                    for (let i = 0; i < this.state.pictures.length; i++) {
+                      formData.append("files", this.state.pictures[i]);
+                    }
+                    await this.props
+                      .createPost(
+                        window.location.pathname.split("/")[1],
+                        formData
+                      )
+                      .then((res) => {
+                        this.setState({ resultOfCreatePost: res.payload });
+                      });
+                  } else {
+                    this.validator.showMessages();
                   }
-                  this.props.createPost(
-                    window.location.pathname.split("/")[1],
-                    formData
-                  );
-                  this.setState({showMsg:true})
                 }}
               >
                 Create Post
               </button>
               {this.showMsg()}
             </form>
-            {/* </div> */}
           </div>
         </div>
       );

@@ -3,15 +3,15 @@ import "./aboutus.css";
 import gmail from "./gmail.png";
 function AboutUs() {
   return (
-    <section class="text-center about">
+    <section className="text-center about">
       <h1>About US</h1>
-      <div class="container">
-        <div class="row">
+      <div className="container">
+        <div className="row">
           <div
-            class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn"
+            className="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn"
             data-wow-offset="200"
           >
-            <span class="fa fa-group mb-3"></span>
+            <span className="fa fa-group mb-3"></span>
             <h2>OverView</h2>
             <p className="lead text-light">
               <h5> egyRent: An Overview</h5>
@@ -24,10 +24,10 @@ function AboutUs() {
             </p>
           </div>
           <div
-            class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn"
+            className="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn"
             data-wow-offset="200"
           >
-            <span class="fa fa-file mb-3"></span>
+            <span className="fa fa-file mb-3"></span>
             <h2>Our Services</h2>
             <p className="lead text-light">
               <h5>Wide Selection:</h5>
@@ -44,13 +44,14 @@ function AboutUs() {
             </p>
           </div>
 
-          <div class="col-lg-4 col-sm-6 col-ex-12 ">
-            <span class="fa fa-info mb-3"></span>
+          <div className="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn"
+            data-wow-offset="200">
+            <span className="fa fa-info mb-3"></span>
             <h2>Contact Us</h2>
             <div>
               <div>
                 <ul className="type">
-                  <h4 class="left">Need Help?</h4>
+                  <h4 className="left">Need Help?</h4>
 
                   <li>
                     <img

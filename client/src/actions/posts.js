@@ -61,18 +61,22 @@ export async function getPostById(id) {
 
 export async function createPost(id, post) {
   let payload = null;
-  try {
-    let response = await fetch(`/${id}/createpost`, {
+     await fetch(`/${id}/createpost`, {
       method: "POST",
       headers: {
         Authorization: `auth-token ${localStorage.getItem("token")}`,
       },
       body: post,
-    });
-    payload = response.json();
-  } catch (err) {
+    })
+    .then(res=>{
+      return res.text();
+    })
+    .then(res=>{
+      payload=res;
+    })
+    .catch (err=> {
     console.log(err);
-  }
+    })
   return {
     type: "CREATE_POST",
     payload,

@@ -17,12 +17,12 @@ class SignIn extends Component {
       password: "",
       done: "",
       errMsg: "",
-      userData:{}
+      userData: {},
+      resultOfSignIn: "",
     };
   }
 
   checkUserAuth() {
-
     let payload;
     this.props
       .getProfile(this.state.done.id)
@@ -32,10 +32,10 @@ class SignIn extends Component {
       .catch((err) => {
         console.log(err);
       });
-      this.setState({userData:payload})
+    this.setState({ userData: payload });
     if (payload !== null) return true;
   }
-  
+
   render() {
     return (
       <div className="signInWrapper">
@@ -93,14 +93,17 @@ class SignIn extends Component {
                         this.props
                           .signIn(this.state.username, this.state.password)
                           .then((res) => {
-                            this.setState({ done: res.payload });
+                            this.setState({
+                              done: res.payload,
+                              resultOfSignIn: res.payload.error,
+                            });
                             if (this.state.done.token) {
                               localStorage.setItem(
                                 "token",
                                 this.state.done.token
                               );
                               localStorage.setItem("id", this.state.done.id);
-                                let checkAuth=this.checkUserAuth();
+                              let checkAuth = this.checkUserAuth();
                               if (checkAuth) {
                                 history.push(`/home`);
                                 window.location.reload();
@@ -118,6 +121,7 @@ class SignIn extends Component {
               />
             </form>
           </div>
+          <h5 className="text-danger pt-4 lead">{this.state.resultOfSignIn}</h5>
         </div>
       </div>
     );

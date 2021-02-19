@@ -1,20 +1,23 @@
 export async function signIn(username, password) {
   let payload = null;
-  try {
-    let response = await fetch("/signin", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+  await fetch("/signin", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
 
-      body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ username, password }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      payload = res;
+    })
+    .catch((res) => {
+      payload = res.error();
     });
-    payload = await response.json();
-  } catch (err) {
-    console.log(err);
-  }
-
   return {
     type: "SIGNIN",
     payload,
@@ -23,23 +26,21 @@ export async function signIn(username, password) {
 export async function signUp(user) {
   let payload = null;
   await fetch("/signup", {
-      method: "POST",
-      body: user,
+    method: "POST",
+    body: user,
+  })
+    .then((res) => {
+      if (res.status !== 200) {
+        payload = "This username already exists";
+      } else payload = res.json();
     })
-    .then(res=>{
-      if(res.status!==200){
-      payload="This username already exists"
-    }
-    else
-      payload=res.json()
-    })
-    .catch (err=>{
+    .catch((err) => {
       console.log(err);
-    })
-    return {
-      type: "SIGNUP",
-      payload,
-    };
+    });
+  return {
+    type: "SIGNUP",
+    payload,
+  };
 }
 export async function logOut() {
   localStorage.removeItem("token");
@@ -142,11 +143,11 @@ export async function WriteComment(postID, userID, comment) {
   try {
     let response = await fetch(`/post/${postID}`, {
       method: "POST",
-        headers: {
-          Authorization: `auth-token ${localStorage.getItem("token")}`,
-            Accept: "application/json",
-           "Content-Type": "application/json",
-         },
+      headers: {
+        Authorization: `auth-token ${localStorage.getItem("token")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
 
       body: JSON.stringify({ userID, comment }),
     });
