@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/egyRent/static/css/main.16619ebe.chunk.css",
+    "main.js": "/egyRent/static/js/main.dffeb199.chunk.js",
+    "main.js.map": "/egyRent/static/js/main.dffeb199.chunk.js.map",
+    "runtime-main.js": "/egyRent/static/js/runtime-main.acdebd6b.js",
+    "runtime-main.js.map": "/egyRent/static/js/runtime-main.acdebd6b.js.map",
+    "static/css/2.4fbd0ccd.chunk.css": "/egyRent/static/css/2.4fbd0ccd.chunk.css",
+    "static/js/2.ae21a977.chunk.js": "/egyRent/static/js/2.ae21a977.chunk.js",
+    "static/js/2.ae21a977.chunk.js.map": "/egyRent/static/js/2.ae21a977.chunk.js.map",
+    "index.html": "/egyRent/index.html",
+    "static/css/2.4fbd0ccd.chunk.css.map": "/egyRent/static/css/2.4fbd0ccd.chunk.css.map",
+    "static/css/main.16619ebe.chunk.css.map": "/egyRent/static/css/main.16619ebe.chunk.css.map",
+    "static/js/2.ae21a977.chunk.js.LICENSE.txt": "/egyRent/static/js/2.ae21a977.chunk.js.LICENSE.txt",
+    "static/media/gmail.a2f2146f.png": "/egyRent/static/media/gmail.a2f2146f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.acdebd6b.js",
+    "static/css/2.4fbd0ccd.chunk.css",
+    "static/js/2.ae21a977.chunk.js",
+    "static/css/main.16619ebe.chunk.css",
+    "static/js/main.dffeb199.chunk.js"
+  ]
+}
