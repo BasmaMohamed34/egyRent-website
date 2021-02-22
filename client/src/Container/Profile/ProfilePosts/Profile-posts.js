@@ -25,7 +25,7 @@ class ProfilePosts extends Component {
             <div className="col col-md-12p-2 ">
               <img
                 className=" rounded"
-                src={"http://localhost:5000/uploads/" + profilePost.pictures[0]}
+                src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + profilePost.pictures[0]}
                 alt="img"
                 style={{ width: "100%", height: "50%" }}
               />

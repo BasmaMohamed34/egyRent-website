@@ -8,7 +8,7 @@ function SearchResult({ id, img, location, title, description, price }) {
       <div className="searchResult container">
         <div className="col-sm-12 col-md-4 w-50 imgDIV">
           <img
-            src={"http://localhost:5000/uploads/" + img[0]}
+            src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + img[0]}
             alt=""
             className="imgSearchResult"
           />

@@ -4,7 +4,7 @@ const PostPictures = ({ picture }) => {
     return (
       <div>
         <img
-          src={"http://localhost:5000/uploads/" + picture}
+          src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + picture}
           alt=""
           className="picsDiv"
         />

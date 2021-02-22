@@ -60,7 +60,7 @@ class Profile extends Component {
               <div className="lg:w-4/6 mx-auto">
                 <div className="rounded-lg h-64 overflow-hidden">
                   <img
-                    src={"http://localhost:5000/uploads/" + profile.photo}
+                    src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + profile.photo}
                     alt="content"
                     className="rounded-circle w-75 bg-dark imgCenter border-0"
                   ></img>

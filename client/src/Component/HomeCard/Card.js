@@ -38,7 +38,7 @@ const Ecard = ({ posts }) => {
           >
             <div className="card Ecard border-0">
               <img
-                src={"http://localhost:5000/uploads/" + post.pictures[0]}
+                src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + post.pictures[0]}
                 alt=""
                 className="imgDivEcard"
               />

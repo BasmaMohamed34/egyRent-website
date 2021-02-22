@@ -25,7 +25,7 @@ class Saved extends Component {
               <img
                 className=" rounded"
                 src={
-                  "http://localhost:5000/uploads/" + profileSaved.pictures[0]
+                  "https://fathomless-stream-04225.herokuapp.com/uploads/" + profileSaved.pictures[0]
                 }
                 alt="img"
                 style={{ width: "100%", height: "50%" }}

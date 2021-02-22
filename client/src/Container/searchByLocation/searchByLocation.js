@@ -44,7 +44,7 @@ class SearchByLocation extends Component {
               <div className="searchResult container">
                 <div className="col-sm-12 col-md-4 img-fluid">
                   <img
-                    src={"http://localhost:5000/uploads/" + res.pictures[0]}
+                    src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + res.pictures[0]}
                     alt=""
                     className="imgSearchResult"
                   />

@@ -6,7 +6,7 @@ const Comments = ({ comment }) => {
         <div className="col-md-6 col-12 d-inline pt-4">
           <img
             className="img-user rounded-circle"
-            src={"http://localhost:5000/uploads/" + comment.commentedBy.photo}
+            src={"https://fathomless-stream-04225.herokuapp.com/uploads/" + comment.commentedBy.photo}
             alt="UserPicture"
           />
         </div>
