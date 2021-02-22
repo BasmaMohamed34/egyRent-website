@@ -8,17 +8,7 @@ import { connect } from "react-redux";
 import { signIn, logOut, getProfile } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 import { Dropdown } from "react-bootstrap";
-// import Badge from '@material-ui/core/Badge';
-// import { makeStyles } from '@material-ui/core/styles';
 
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//     },
-//   },
-// }));
 class Header extends Component {
   constructor() {
     super();
@@ -30,13 +20,6 @@ class Header extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.signIn("samy123", "samy123").then((res) => {
-  //     if (res.payload === "Valid Password") {
-  //       this.setState({ loggedIn: false });
-  //     }
-  //   });
-  // }
   async componentDidMount() {
     await this.props.getProfile(localStorage.getItem("id"));
     this.setState({
@@ -98,7 +81,6 @@ class Header extends Component {
                 </Link>
               </li>
               {localStorage.getItem("token") ? (
-                //  window.location.reload()
                 <>
                   <li>
                     <Dropdown>
@@ -142,10 +124,7 @@ class Header extends Component {
                     title="Notification"
                   >
                     <NavLink to="/notify" exact>
-                      
-                    {/* <Badge color="secondary" badgeContent={this.state.badgeNum} showZero> */}
                       <BellIcon width="30" active={true} color="#fff"/>
-                    {/* </Badge> */}
                     </NavLink>
                   </li>
                 </>

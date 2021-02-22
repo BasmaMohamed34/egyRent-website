@@ -3,11 +3,7 @@ import { Component } from "react";
 import "./Search.css";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import  getByLocation  from "../../actions/Search";
 import { Link } from "react-router-dom";
-// DATE PICKER COMPONENT
 
 class Search extends Component {
   constructor() {
@@ -18,15 +14,6 @@ class Search extends Component {
       guests: 0,
     };
   }
-  //   async componentDidMount() {
-  //     console.log(this.props);
-  //     await this.props.getProfile(window.location.pathname.split("/")[2]);
-  //     this.setState({
-  //       profile: this.props.profile,
-  //     });
-  //     console.log("this.state.profile:", this.state.profile);
-  //     //console.log(window.location.pathname.split("/")[2]);
-  //   }
 
   render() {
     return (
@@ -34,7 +21,6 @@ class Search extends Component {
         <div className="card-body">
           <div className="container">
             <div className="row search-form justify-content-between ">
-              {/* <form className="form-row"> */}
               <div className="col-md-4 col">
                 <h5>Location</h5>
                 <input
@@ -63,10 +49,6 @@ class Search extends Component {
                   }}
                 />
               </div>
-
-              {/* <Route path={`/search-result/${this.state.location}/${this.state.guests}`}><input value="Search By Location" type="submit" className="searchBtn btn-primary " onClick={()=>{}}/>
-                                    <i className="fa fa-search"/></Route> */}
-
               <Link
                 to={`/search-result/${this.state.location}/${this.state.guests}`}
               >
@@ -74,8 +56,6 @@ class Search extends Component {
                   Search By Location
                 </button>
               </Link>
-
-              {/* </form> */}
             </div>
           </div>
         </div>
@@ -83,14 +63,5 @@ class Search extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//     console.log(state.location);
-//     return { location: state.location };
-//   };
-//   const mapactionstoprops = (dispatch) => {
-//     return bindActionCreators({ getByLocation }, dispatch);
-//   };
-//   export default connect(mapStateToProps, mapactionstoprops)(Search);
 
 export default Search;

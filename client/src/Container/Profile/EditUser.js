@@ -9,10 +9,8 @@ class EditUser extends Component {
     super();
 
     this.state = {
-      //profile: {},
       user: {},
-      photo: "",
-      /* "https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png" */
+      photo: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -140,21 +138,14 @@ class EditUser extends Component {
                     <label for="photo" className="col-6 mt-3 mr-3">
                       your new profile picture:
                     </label>
-                    {/* <img
-                      src={this.state.photo}
-                      alt="profile Pic"
-                      className="rounded-circle w-25 h-75 bg-dark mt-3 mb-2 border-0"
-                    ></img> */}
                     <input
                       name="photo"
                       className="form-control-file col-12"
                       type="file"
                       onChange={(e) => {
-                        /* if (e.target.files[0] !== null) { */
                         this.setState({
                           photo: e.target.files[0],
                         });
-                        /* } */
                       }}
                     />
                   </div>

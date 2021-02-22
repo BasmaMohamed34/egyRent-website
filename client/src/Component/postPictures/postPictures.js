@@ -9,10 +9,6 @@ const PostPictures = ({ picture }) => {
           className="picsDiv"
         />
       </div>
-      // <div className="col-12 col-md-6 ">
-      //     <img src={picture} alt="..." className="w-25"/>
-      //     {/* {picture} */}
-      // </div>
     );
   }
 };

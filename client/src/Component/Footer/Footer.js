@@ -73,12 +73,6 @@ function Footer() {
           </div>
         </div>
       </div>
-      {/*  <div className="text-center p-3 col-12 justify-content-center">
-        © 2020 Copyright:
-        <a className="text-dark" href="https://mdbootstrap.com/">
-          MDBootstrap.com
-        </a>
-      </div> */}
     </div>
   );
 }

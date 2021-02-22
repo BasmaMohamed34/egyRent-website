@@ -83,11 +83,6 @@ class Profile extends Component {
                             />
                             {profile.email}
                           </p>
-                          {/*  <p className="d-block">
-                    <InfoRoundedIcon className="fa1 mr-1" />
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
-                  </p> */}
                         </div>
                         <div className="w-12 h-1 bg-red-500 rounded mt-2 mb-4 text-left">
                           <p className="text-base  mb-4">
@@ -124,19 +119,8 @@ class Profile extends Component {
 
           <div className="jumbotron col-md-8 row h-25 justify-content-between">
             <h1 className="font-medium title-font mt-4 ml-3 text-gray-900 text-lg col-8 text-left">
-              {/* {`${profile.firstname
-                .charAt(0)
-                .toUpperCase()}${profile.firstname.slice(
-                1
-              )} ${profile.lastname
-                .charAt(0)
-                .toUpperCase()}${profile.lastname.slice(1)}`} */}
               {`${this.state.fName} ${this.state.lName}`}
             </h1>
-            {/* <NotificationsRoundedIcon
-          className="ico rounded-circle p-2"
-          style={{ color: "white", fontSize: 50 }}
-        /> */}
             <div className="col-md-8  outerElem p-2">
               <hr />
               <div className="d-flex justify-content-between text-center SaveBtn1 rounded">
