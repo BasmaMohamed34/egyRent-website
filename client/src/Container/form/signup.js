@@ -209,19 +209,6 @@ class Signup extends Component {
                 <option id="traveller">Traveller</option>
                 <option id="host">Host</option>
               </select>
-              <label for="img" className="mt-2">
-                Select profile photo:
-              </label>
-              <input
-                type="file"
-                id="pic"
-                name="pic"
-                onChange={(e) => {
-                  this.setState({
-                    user: { ...this.state.user, photo: e.target.files[0] },
-                  });
-                }}
-              />
               <Route
                 render={({ history }) => (
                   <button

@@ -7,10 +7,9 @@ const multer = require("multer");
 const auth = require("../middlewares/auth");
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
-    cb(null, "https://fathomless-stream-04225.herokuapp.com/uploads");
+    cb(null, "../uploads/");
   },
   filename: function (req, file, cb) {
-    
     cb(null, "pic" + "-" + Date.now() + path.extname(file.originalname));
   },
 });
@@ -41,10 +40,10 @@ module.exports = (app) => {
     "/post/:id/checkAvail",
     auth.verifyUserToken,
     postController.checkAvail
-    );
-    app.get("/post/:id", postController.getPost);
-    app.post("/signup", upload.single("photo"), profileController.createUser);
-    app.post("/signin", profileController.signIn);
+  );
+  app.get("/post/:id", postController.getPost);
+  app.post("/signup", upload.single("photo"), profileController.createUser);
+  app.post("/signin", profileController.signIn);
   app.patch(
     "/profile/:id",
     upload.single("photo"),
@@ -62,10 +61,9 @@ module.exports = (app) => {
     auth.verifyUserToken,
     profileController.deleteUser
   );
-  app.post("/post/:id",  auth.verifyUserToken, profileController.writeComment);
+  app.post("/post/:id", auth.verifyUserToken, profileController.writeComment);
   app.patch("/post/:id", auth.verifyUserToken, postController.toggleSavePost);
   app.delete("/post/:id", profileController.deleteComment);
-
 };
 
 // module.exports = app;

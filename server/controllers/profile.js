@@ -58,11 +58,13 @@ module.exports = {
 
   createUser: async (req, res, next) => {
     let user = await User.findOne({ username: req.body.username });
-    if (user) return res.status(400).send({payload:"User already registered."});
+    if (user)
+      return res.status(400).send({ payload: "User already registered." });
     else {
       const myPlaintextPassword = req.body.password;
       await bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
         // Store hash in your password DB.
+        console.log(req.file);
         if (hash) {
           req.body.password = hash;
           User.create({
@@ -123,19 +125,18 @@ module.exports = {
         .catch(next);
     }
   },
-  writeComment: async(req,res,next)=>{
-
+  writeComment: async (req, res, next) => {
     const userID = req.body.userID;
     const postID = req.params.id;
     const comment = req.body.comment;
-    const user = await User.findById(userID)
-    const post = await Posts.findById(postID)
+    const user = await User.findById(userID);
+    const post = await Posts.findById(postID);
     user.commentedOn.push(postID);
     await user.save();
     const commentsObj = {
       commentedBy: userID,
-      comment: comment      
-    }
+      comment: comment,
+    };
     post.commentsDetails.push(commentsObj);
     await post.save();
 
@@ -145,7 +146,7 @@ module.exports = {
       .catch(next);
   },
 
-  deleteComment: async(res,req,next)=>{
+  deleteComment: async (res, req, next) => {
     /* onst userID = req.body */
     //  const postID = req.params.id
     // console.log("postID", req.body)
@@ -159,5 +160,5 @@ module.exports = {
       console.log(post)
       });    
     const query = { commentedBy: userID }; */
-  }
+  },
 };

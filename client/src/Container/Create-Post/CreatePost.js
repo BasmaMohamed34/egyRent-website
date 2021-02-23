@@ -418,7 +418,6 @@ class CreatePost extends Component {
                     id="pictures"
                     name="pictures"
                     multiple
-                    required
                     placeholder="pictures"
                     enctype="multipart/form-data"
                     onChange={(e) => {
@@ -428,13 +427,13 @@ class CreatePost extends Component {
                     }}
                     //onBlur={() => this.validator.showMessageFor("pictures")}
                   />
-                  <div className="validation col-sm-6 m-2">
+                  {/* <div className="validation col-sm-6 m-2">
                     {this.validator.message(
                       "pictures",
                       this.state.post.pictures,
                       "required"
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="form-group row">
