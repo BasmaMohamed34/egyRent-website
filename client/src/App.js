@@ -4,6 +4,7 @@ import Home from "./Container/Home/Home";
 import Header from "./Component/Header/Header"
 import Notify from "./Component/notify"
 import Footer from "./Component/Footer/Footer";
+import DateTime from "./Component/dateTime/DateTime";
 import AboutUs from "./Component/aboutus/aboutus";
 import CreatePost from "./Container/Create-Post/CreatePost";
 import SearchByLocation from "./Container/searchByLocation/searchByLocation";
@@ -63,6 +64,7 @@ function App() {
           <Route path="*" component={NotFound} />
         </Switch>
         <Footer />
+        <DateTime/>
       </Router>
     </Provider>
   );

@@ -1,0 +1,17 @@
+.time{
+    display: inline;
+    float: right;
+    padding-right: 600px;
+}
+
+.date{
+    display: inline;
+    padding-left: 600px;
+
+}
+
+.dateTime{
+    background-color: rgb(255, 255, 255);
+    margin: 1px;
+
+}
