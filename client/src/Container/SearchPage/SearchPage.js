@@ -27,13 +27,13 @@ class SearchPage extends Component {
     });
   }
 
-  handleClick = (e) => {
+  handleBedrooms = (e) => {
     this.setState({
       bedrooms: e.target.value,
     });
   };
 
-  handleClick1 = (e) => {
+  handleBeds = (e) => {
     this.setState({
       beds: e.target.value,
     });
@@ -102,14 +102,14 @@ class SearchPage extends Component {
               type="nubmer"
               className="search1 search-price bg-light border-secondary p-3"
               value={this.state.bedrooms}
-              onChange={this.handleClick}
+              onChange={this.handleBedrooms}
               placeholder="Enter bedrooms Number"
             />
             <input
               type="nubmer"
               className="search1 search-price bg-light border-secondary p-3"
               value={this.state.beds}
-              onChange={this.handleClick1}
+              onChange={this.handleBeds}
               placeholder="Enter Beds Number"
             />
 
@@ -140,6 +140,7 @@ class SearchPage extends Component {
               className="reset btn btn-lg"
               onClick={this.handleReset}
               value="Reset"
+              type="button"
             />
           </div>
           <Link to="/search-result"></Link>
