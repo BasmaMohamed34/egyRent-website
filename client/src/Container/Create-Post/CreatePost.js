@@ -418,6 +418,7 @@ class CreatePost extends Component {
                     id="pictures"
                     name="pictures"
                     multiple
+                    required
                     placeholder="pictures"
                     enctype="multipart/form-data"
                     onChange={(e) => {
@@ -425,7 +426,7 @@ class CreatePost extends Component {
                         pictures: e.target.files,
                       });
                     }}
-                    onBlur={() => this.validator.showMessageFor("pictures")}
+                    //onBlur={() => this.validator.showMessageFor("pictures")}
                   />
                   <div className="validation col-sm-6 m-2">
                     {this.validator.message(
@@ -578,8 +579,8 @@ class CreatePost extends Component {
                 className="btn btn-primary"
                 onClick={async (e) => {
                   if (this.validator.allValid()) {
-                    // e.preventDefault();
-                    console.log("ay 7aga")
+                    e.preventDefault();
+                    console.log("ay 7aga");
                     const formData = new FormData();
                     Object.keys(this.state.post).forEach((key) =>
                       formData.append(key, this.state.post[key])

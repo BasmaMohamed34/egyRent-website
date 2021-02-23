@@ -24,7 +24,6 @@ class Popup extends Component {
               </button>
             </div>
             <div className="modal-body">
-              {" "}
               Are You Sure You Want To Delete Your Account?
             </div>
             <div className="modal-footer">
@@ -34,9 +33,8 @@ class Popup extends Component {
                     type="button"
                     className="btn btn-danger"
                     onClick={() => {
-                      this.props.deleteUser(
-                        window.location.pathname.split("/")[2]
-                      );
+                      this.props.deleteUser(localStorage.getItem("id"));
+                      localStorage.removeItem("token");
                       history.push(`/`);
                       window.location.reload(false);
                     }}
