@@ -1,8 +1,7 @@
-
 import "./sign.css";
 import { Component } from "react";
 import { connect } from "react-redux";
-import {Route} from 'react-router-dom';
+import { Route } from "react-router-dom";
 import { signUp } from "../../actions/profile";
 import { bindActionCreators } from "redux";
 
@@ -25,22 +24,23 @@ class Signup extends Component {
         location: "",
         type: "Traveller",
         photo: "",
-        done:"",
-        resStatus:"",
-        userMsg:""
       },
+      done: "",
+      resStatus: "",
+      userMsg: "",
+      userExist: false,
     };
   }
-  userExists(){
-    if(this.state.userExist===true){
-    window.scrollTo(0, -window.scrollMaxY)
-      return(
-      <div className="pt-3 text-center w-75 m-auto ">
-        <h3 className="text-danger">{this.state.done}</h3>
-      </div>
-      )
+  userExists() {
+    if (this.state.userExist === true) {
+      window.scrollTo(0, -window.scrollMaxY);
+      return (
+        <div className="pt-3 text-center w-75 m-auto ">
+          <h3 className="text-danger">{this.state.done}</h3>
+        </div>
+      );
     }
-}
+  }
   render() {
     return (
       <div className="wrapper">
@@ -169,7 +169,7 @@ class Signup extends Component {
                 {this.validator.message(
                   "password",
                   this.state.user.password,
-                  "required|password|min:4" //will be 8 after editing users passwords in db
+                  "required|password|min:4"
                 )}
               </div>
               <input
@@ -224,44 +224,43 @@ class Signup extends Component {
               />
               <Route
                 render={({ history }) => (
-              <button
-                className="btn-signin btn-primary"
-                type="button"
-                onClick={(e) => {
-                  if (this.validator.allValid()) { 
-                  e.preventDefault();
-                  const formData = new FormData();
-                  Object.keys(this.state.user).forEach((key) =>
-                    formData.append(key, this.state.user[key])
-                  );
-                  this.props.signUp(formData)
-                  .then(res=>{
-                    this.setState({ done: res.payload })
+                  <button
+                    className="btn-signin btn-primary"
+                    type="button"
+                    onClick={() => {
+                      if (this.validator.allValid()) {
+                        const formData = new FormData();
+                        Object.keys(this.state.user).forEach((key) =>
+                          formData.append(key, this.state.user[key])
+                        );
+                        this.props
+                          .signUp(formData)
+                          .then((res) => {
+                            this.setState({ done: res.payload });
                             if (this.state.done.token) {
                               localStorage.setItem(
                                 "token",
                                 this.state.done.token
                               );
                               localStorage.setItem("id", this.state.done.id);
-                                history.push(`/home`);
-                                window.location.reload();
+                              history.push(`/home`);
+                              window.location.reload();
+                            } else {
+                              this.setState({ userExist: true });
                             }
-                            else{
-                              this.setState({userExist:true});
-                            }
-                            console.log(this.state.user)
+                            console.log(this.state.user);
                           })
-                  .catch(err=>{
-                    console.log(err)
-                  })
-                   }  else {
-                    this.validator.showMessages();
-                   }
-                  }}
-              >
-                Sign Up
-              </button>
-              )}
+                          .catch((err) => {
+                            console.log(err);
+                          });
+                      } else {
+                        this.validator.showMessages();
+                      }
+                    }}
+                  >
+                    Sign Up
+                  </button>
+                )}
               />
             </form>
           </div>

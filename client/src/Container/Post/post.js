@@ -237,7 +237,9 @@ class Post extends Component {
           }}>{this.state.comment}</textarea>
           <button className="btn btn-primary ml-3 mb-3 " onClick={()=>{
             this.props.WriteComment(this.props.match.params.id,this.state.profileID,this.state.comment)
-            window.location.reload();
+            .then(res=>{
+              window.location.reload();
+            })
           }}>Comment</button>
           </div>
             ):(<></>)}
