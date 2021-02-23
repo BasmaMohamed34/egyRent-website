@@ -37,11 +37,11 @@ class CreatePost extends Component {
     };
   }
 
-  componentWillMount() {
-    const script = document.createElement("script");
-    script.async = true;
-    document.body.appendChild(script);
-  }
+  // componentWillMount() {
+  //   const script = document.createElement("script");
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  // }
   showMsg() {
     return (
       <p className="text-success pt-2 ">{this.state.resultOfCreatePost}</p>
@@ -578,7 +578,8 @@ class CreatePost extends Component {
                 className="btn btn-primary"
                 onClick={async (e) => {
                   if (this.validator.allValid()) {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    console.log("ay 7aga")
                     const formData = new FormData();
                     Object.keys(this.state.post).forEach((key) =>
                       formData.append(key, this.state.post[key])
@@ -593,6 +594,7 @@ class CreatePost extends Component {
                       )
                       .then((res) => {
                         this.setState({ resultOfCreatePost: res.payload });
+                        console.log(res);
                       });
                   } else {
                     this.validator.showMessages();

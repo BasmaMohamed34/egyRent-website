@@ -7,7 +7,7 @@ const multer = require("multer");
 const auth = require("../middlewares/auth");
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
-    cb(null, "../uploads/");
+    cb(null, "https://fathomless-stream-04225.herokuapp.com/uploads");
   },
   filename: function (req, file, cb) {
     
